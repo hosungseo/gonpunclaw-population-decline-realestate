@@ -1,0 +1,78 @@
+{
+  "verifiedAt": "2026-03-26",
+  "monthsChecked": ["2025-01", "2024-12", "2024-11"],
+  "regions": [
+    {
+      "province": "전라남도",
+      "name": "해남군",
+      "regionType": "decline",
+      "lawdCd": "46820",
+      "tradeCounts": {"2025-01": 15, "2024-12": 22, "2024-11": 22},
+      "status": "verified"
+    },
+    {
+      "province": "전라남도",
+      "name": "완도군",
+      "regionType": "decline",
+      "lawdCd": "46890",
+      "tradeCounts": {"2025-01": 3, "2024-12": 6, "2024-11": 6},
+      "status": "verified"
+    },
+    {
+      "province": "전라남도",
+      "name": "강진군",
+      "regionType": "decline",
+      "lawdCd": "46810",
+      "tradeCounts": {"2025-01": 7, "2024-12": 7, "2024-11": 10},
+      "status": "verified"
+    },
+    {
+      "province": "강원특별자치도",
+      "name": "영월군",
+      "regionType": "decline",
+      "lawdCd": "42750",
+      "tradeCounts": {"2025-01": 0, "2024-12": 0, "2024-11": 0},
+      "status": "no-trades-observed"
+    },
+    {
+      "province": "전북특별자치도",
+      "name": "남원시",
+      "regionType": "decline",
+      "lawdCd": "45190",
+      "tradeCounts": {"2025-01": 0, "2024-12": 0, "2024-11": 0},
+      "status": "no-trades-observed"
+    },
+    {
+      "province": "경상북도",
+      "name": "영주시",
+      "regionType": "decline",
+      "lawdCd": "47210",
+      "tradeCounts": {"2025-01": 40, "2024-12": 44, "2024-11": 55},
+      "status": "verified"
+    },
+    {
+      "province": "경상북도",
+      "name": "문경시",
+      "regionType": "decline",
+      "lawdCd": "47280",
+      "tradeCounts": {"2025-01": 21, "2024-12": 21, "2024-11": 25},
+      "status": "verified"
+    },
+    {
+      "province": "경상남도",
+      "name": "통영시",
+      "regionType": "interest",
+      "lawdCd": "48220",
+      "tradeCounts": {"2025-01": 81, "2024-12": 64, "2024-11": 74},
+      "status": "verified"
+    },
+    {
+      "province": "경상북도",
+      "name": "경주시",
+      "regionType": "interest",
+      "lawdCd": "47130",
+      "tradeCounts": {"2025-01": 156, "2024-12": 146, "2024-11": 214},
+      "status": "verified"
+    }
+  ]
+}
