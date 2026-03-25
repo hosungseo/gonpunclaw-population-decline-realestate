@@ -1,0 +1,42 @@
+{
+  "source": {
+    "name": "인구감소관심지역 지정 고시",
+    "issuer": "행정안전부",
+    "noticeNo": "2025-78",
+    "announcedDate": "2025-12-24",
+    "effectiveDate": "2026-01-01",
+    "expiryDate": "2026-10-19",
+    "lawApiTarget": "admrul",
+    "lawApiId": "2100000270632",
+    "notes": "지방시대위원회 심의를 거쳐 확정된 인구감소관심지역 18개"
+  },
+  "totalCount": 18,
+  "regions": [
+    {"province": "부산광역시", "name": "금정구"},
+    {"province": "부산광역시", "name": "중구"},
+
+    {"province": "인천광역시", "name": "동구"},
+
+    {"province": "광주광역시", "name": "동구"},
+
+    {"province": "대전광역시", "name": "대덕구"},
+    {"province": "대전광역시", "name": "동구"},
+    {"province": "대전광역시", "name": "중구"},
+
+    {"province": "경기도", "name": "동두천시"},
+    {"province": "경기도", "name": "포천시"},
+
+    {"province": "강원특별자치도", "name": "강릉시"},
+    {"province": "강원특별자치도", "name": "동해시"},
+    {"province": "강원특별자치도", "name": "속초시"},
+    {"province": "강원특별자치도", "name": "인제군"},
+
+    {"province": "전북특별자치도", "name": "익산시"},
+
+    {"province": "경상북도", "name": "경주시"},
+    {"province": "경상북도", "name": "김천시"},
+
+    {"province": "경상남도", "name": "사천시"},
+    {"province": "경상남도", "name": "통영시"}
+  ]
+}
