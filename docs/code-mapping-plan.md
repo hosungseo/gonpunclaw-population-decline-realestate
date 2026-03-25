@@ -17,6 +17,7 @@
 3. 통합 인덱스에 `lawdCd` 필드 추가
 4. 시범 지역 3곳에 대해 실거래가 API 테스트
    - 현재 `data/pilot-regions.json` 초안 작성 완료
+   - `data/pilot-region-codes.json`에 1차 검증 결과 반영 완료
 
 ## 주의
 - 실거래가 API는 시군구 단위 5자리 코드 기준

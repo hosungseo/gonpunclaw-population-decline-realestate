@@ -1,0 +1,37 @@
+{
+  "verifiedAt": "2026-03-26",
+  "api": "국토교통부 아파트 매매 실거래가 상세 API",
+  "regions": [
+    {
+      "province": "전라남도",
+      "name": "고흥군",
+      "regionType": "decline",
+      "lawdCd": "46770",
+      "verificationMonth": "202501",
+      "tradeCountObserved": ">=1",
+      "status": "verified"
+    },
+    {
+      "province": "강원특별자치도",
+      "name": "고성군",
+      "regionType": "decline",
+      "lawdCd": "42820",
+      "verificationMonth": "202407-202412,202501",
+      "tradeCountObserved": "0",
+      "status": "code-valid-no-apartment-trades-observed"
+    },
+    {
+      "province": "경상북도",
+      "name": "의성군",
+      "regionType": "decline",
+      "lawdCd": "47730",
+      "verificationMonth": "202501",
+      "tradeCountObserved": ">=1",
+      "status": "verified"
+    }
+  ],
+  "notes": [
+    "LAWD_CD는 시군구 단위 5자리 코드",
+    "고성군은 최근 조회 월 기준 아파트 실거래가 0건일 수 있음"
+  ]
+}
