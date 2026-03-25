@@ -13,8 +13,10 @@
    - 법정동코드 전체 자료 또는 시군구 코드 CSV/TXT
 2. 시도/시군구 명칭 정규화
    - 예: 강원 ↔ 강원특별자치도, 전북 ↔ 전북특별자치도
+   - 현재 `data/province-normalization.json` 초안 작성 완료
 3. 통합 인덱스에 `lawdCd` 필드 추가
 4. 시범 지역 3곳에 대해 실거래가 API 테스트
+   - 현재 `data/pilot-regions.json` 초안 작성 완료
 
 ## 주의
 - 실거래가 API는 시군구 단위 5자리 코드 기준
