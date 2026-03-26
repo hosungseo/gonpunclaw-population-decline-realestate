@@ -272,6 +272,10 @@
       gap: 8px;
       transform: translate(-50%, -50%);
       cursor: pointer;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      font: inherit;
     }
     .map-dot {
       width: 12px;
@@ -530,15 +534,15 @@
             <div class="map-korea">
               <img src="./assets/korea-provinces.svg" alt="대한민국 지도" />
 
-              <div class="map-node decline" style="left: 33%; top: 78%;">
+              <button class="map-node decline" data-region="haenam" style="left: 33%; top: 78%;">
                 <span class="map-dot"></span><span class="map-chip">해남군</span>
-              </div>
-              <div class="map-node decline" style="left: 59%; top: 46%;">
+              </button>
+              <button class="map-node decline" data-region="yeongju" style="left: 59%; top: 46%;">
                 <span class="map-dot"></span><span class="map-chip">영주시</span>
-              </div>
-              <div class="map-node interest" style="left: 66%; top: 64%;">
+              </button>
+              <button class="map-node interest" data-region="gyeongju" style="left: 66%; top: 64%;">
                 <span class="map-dot"></span><span class="map-chip">경주시</span>
-              </div>
+              </button>
               <div class="map-node decline" style="left: 39%; top: 72%; opacity:.8;">
                 <span class="map-dot"></span><span class="map-chip">강진군</span>
               </div>
@@ -554,20 +558,20 @@
             </div>
           </div>
 
-          <article class="trade-card">
-            <div class="badge decline">선택 지역 · 인구감소지역</div>
-            <h3>해남군</h3>
-            <div class="trade-sub">전라남도 · 특례와 실제 거래가 자연스럽게 연결되는 1차 시범 지역</div>
+          <article class="trade-card" id="region-panel">
+            <div class="badge decline" id="panel-badge">선택 지역 · 인구감소지역</div>
+            <h3 id="panel-title">해남군</h3>
+            <div class="trade-sub" id="panel-sub">전라남도 · 특례와 실제 거래가 자연스럽게 연결되는 1차 시범 지역</div>
             <div class="trade-stat">
-              <div><strong>최근 2년 59건+</strong><span>확인된 거래 흐름(표본 기준)</span></div>
-              <div><strong>1.2억~4.3억</strong><span>2025년 1월 샘플 거래가 범위</span></div>
+              <div><strong id="panel-stat-1">최근 2년 59건+</strong><span>확인된 거래 흐름(표본 기준)</span></div>
+              <div><strong id="panel-stat-2">1.2억~4.3억</strong><span>2025년 1월 샘플 거래가 범위</span></div>
             </div>
-            <ul class="deal-list">
+            <ul class="deal-list" id="panel-deals">
               <li><div><strong>해남코아루더베스트1단지아파트</strong><small>116.75㎡ · 2019년 · 영빈로</small></div><div class="deal-price">4억 3,000만원</div></li>
               <li><div><strong>해남파크사이드2차아파트</strong><small>75.52㎡ · 2019년 · 구교3길</small></div><div class="deal-price">3억 1,000만원</div></li>
               <li><div><strong>세영스위트</strong><small>84.60㎡ · 2017년 · 남부길</small></div><div class="deal-price">2억 4,500만원</div></li>
             </ul>
-            <div class="trade-sub" style="margin-top:18px; margin-bottom:0;">적용 특례 예시 · 노후주택 개보수 지원 · 공공임대 우선 공급 · 양도세·종부세 특례</div>
+            <div class="trade-sub" id="panel-policy" style="margin-top:18px; margin-bottom:0;">적용 특례 예시 · 노후주택 개보수 지원 · 공공임대 우선 공급 · 양도세·종부세 특례</div>
           </article>
         </div>
       </div>
@@ -591,5 +595,76 @@
       인구감소지역 부동산 안내 MVP · 법제처 국가법령정보 API · 국토교통부 실거래가 API 기반
     </div>
   </footer>
+
+<script>
+const REGION_DATA = {
+  haenam: {
+    badgeClass: "decline",
+    badge: "선택 지역 · 인구감소지역",
+    title: "해남군",
+    sub: "전라남도 · 특례와 실제 거래가 자연스럽게 연결되는 1차 시범 지역",
+    stat1: "최근 2년 59건+",
+    stat2: "1.2억~4.3억",
+    deals: [
+      ["해남코아루더베스트1단지아파트", "116.75㎡ · 2019년 · 영빈로", "4억 3,000만원"],
+      ["해남파크사이드2차아파트", "75.52㎡ · 2019년 · 구교3길", "3억 1,000만원"],
+      ["세영스위트", "84.60㎡ · 2017년 · 남부길", "2억 4,500만원"]
+    ],
+    policy: "적용 특례 예시 · 노후주택 개보수 지원 · 공공임대 우선 공급 · 양도세·종부세 특례"
+  },
+  yeongju: {
+    badgeClass: "decline",
+    badge: "선택 지역 · 인구감소지역",
+    title: "영주시",
+    sub: "경상북도 · 정착지원과 지역 생활권 중심의 거래가 꾸준히 확인되는 사례",
+    stat1: "최근 2년 139건+",
+    stat2: "9,200만~3.1억",
+    deals: [
+      ["세영리첼", "84.45㎡ · 2011년 · 대동로", "3억 1,000만원"],
+      ["영주가흥사랑으로부영", "59.93㎡ · 2016년 · 대동로", "2억 5,400만원"],
+      ["화성리버빌2", "59.45㎡ · 2002년 · 대학로142번길", "1억 5,800만원"]
+    ],
+    policy: "적용 특례 예시 · 청년·중장년 정착 지원 · 생활인구 확대 시책 · 양도세·종부세 특례"
+  },
+  gyeongju: {
+    badgeClass: "interest",
+    badge: "선택 지역 · 인구감소관심지역",
+    title: "경주시",
+    sub: "경상북도 · 관심지역으로 확장된 세제특례와 실제 거래 밀도가 함께 보이는 사례",
+    stat1: "최근 2년 516건+",
+    stat2: "5,000만~4.09억",
+    deals: [
+      ["두산위브트레지움", "84.89㎡ · 2020년 · 유림로", "4억 900만원"],
+      ["현진에버빌1차", "132.41㎡ · 2009년 · 광중길", "3억 8,900만원"],
+      ["경주두산위브", "84.97㎡ · 2017년 · 진현로", "3억 1,500만원"]
+    ],
+    policy: "적용 특례 예시 · 세컨드홈 세제특례 확대 · 관심지역 대응계획 수립 · 지방세 지원 확대 흐름"
+  }
+};
+const nodes = document.querySelectorAll('.map-node[data-region]');
+const badge = document.getElementById('panel-badge');
+const title = document.getElementById('panel-title');
+const sub = document.getElementById('panel-sub');
+const stat1 = document.getElementById('panel-stat-1');
+const stat2 = document.getElementById('panel-stat-2');
+const deals = document.getElementById('panel-deals');
+const policy = document.getElementById('panel-policy');
+function renderRegion(key){
+  const d = REGION_DATA[key]; if(!d) return;
+  badge.className = 'badge ' + d.badgeClass;
+  badge.textContent = d.badge;
+  title.textContent = d.title;
+  sub.textContent = d.sub;
+  stat1.textContent = d.stat1;
+  stat2.textContent = d.stat2;
+  deals.innerHTML = d.deals.map(item => `<li><div><strong>${item[0]}</strong><small>${item[1]}</small></div><div class="deal-price">${item[2]}</div></li>`).join('');
+  policy.textContent = d.policy;
+  nodes.forEach(n => n.style.filter = '');
+  nodes.forEach(n => n.style.zIndex = '1');
+  const active = document.querySelector(`.map-node[data-region="${key}"]`);
+  if(active){ active.style.filter = 'brightness(1.08)'; active.style.zIndex = '3'; }
+}
+nodes.forEach(node => node.addEventListener('click', () => renderRegion(node.dataset.region)));
+</script>
 </body>
 </html>
