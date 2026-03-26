@@ -401,6 +401,73 @@
       box-shadow: var(--shadow);
     }
 
+
+    .law-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 30px;
+    }
+    .law-card {
+      padding: 18px 18px 16px;
+      border-top: 2px solid var(--ink);
+      background: rgba(255,255,255,.52);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.03);
+    }
+    .law-card h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      letter-spacing: -.02em;
+    }
+    .law-card .law-axis {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .law-card p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .compare-summary {
+      margin-top: 34px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+    .compare-summary summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 15px;
+    }
+    .compare-summary summary::-webkit-details-marker { display: none; }
+    .compare-summary summary::after {
+      content: '＋';
+      flex: none;
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.9);
+    }
+    .compare-summary[open] summary::after { content: '－'; }
+    .compare-summary .summary-copy {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
     .law-list { display: grid; gap: 18px; margin-top: 30px; }
     .law-row {
       display: grid;
@@ -1021,6 +1088,7 @@
 
       .special-grid { grid-template-columns: 1fr 1fr; }
       .secondhome-feature { grid-template-columns: 1fr; gap: 22px; }
+      .law-grid { grid-template-columns: 1fr; }
       .secondhome-statement { padding: 16px 16px 14px; border-radius: 16px; }
       .secondhome-copy h3 { max-width: none; }
       .secondhome-points { gap: 8px; }
@@ -1350,22 +1418,22 @@
           </div>
         </div>
 
-        <div class="law-list">
-          <div class="law-row">
-            <div class="law-name">인구감소지역 지원 특별법</div>
-            <div class="law-summary">제24조 주거·교통기반 확충, 제24조의2 국토계획법 특례, 제15조 생활인구 확대, 제17조 정착 지원 등</div>
-            <div class="law-why">공공임대 우선 공급, 노후주택 개선, 공유지 우선 매각·대부, 건폐율·용적률 완화 같은 정주 인센티브의 핵심 근거입니다.</div>
-          </div>
-          <div class="law-row">
-            <div class="law-name">조세특례제한법</div>
-            <div class="law-summary">인구감소지역 주택 취득 국세 특례, 비수도권 인구감소관심지역까지 확대된 세컨드홈 세제지원 흐름</div>
-            <div class="law-why">양도소득세·종합부동산세 같은 국세 특례를 설명하는 축입니다. 지역 유형에 따라 체감이 달라집니다.</div>
-          </div>
-          <div class="law-row">
-            <div class="law-name">지방세특례제한법</div>
-            <div class="law-summary">인구감소지역 지원 확대, 비수도권 미분양 아파트 물량 해소, 빈집 정비 관련 지방세 감면 흐름</div>
-            <div class="law-why">취득세·재산세, 빈집·미분양과 연결되는 지방세 측면의 지원 근거입니다.</div>
-          </div>
+        <div class="law-grid">
+          <article class="law-card">
+            <h3>인구감소지역 지원 특별법</h3>
+            <div class="law-axis">제24조 주거·교통기반 확충 · 제24조의2 도시계획 특례 · 제15조 생활인구 · 제17조 정착 지원</div>
+            <p>공공임대 우선 공급, 노후주택 개선, 공유지 우선 매각·대부, 건폐율·용적률 완화 같은 정주 인센티브의 핵심 근거입니다.</p>
+          </article>
+          <article class="law-card">
+            <h3>조세특례제한법</h3>
+            <div class="law-axis">인구감소지역 주택 취득 국세 특례 · 비수도권 인구감소관심지역까지 확장된 세컨드홈 흐름</div>
+            <p>양도소득세·종합부동산세 같은 국세 특례를 설명하는 축입니다. 같은 지역이라도 지정 유형에 따라 체감이 달라집니다.</p>
+          </article>
+          <article class="law-card">
+            <h3>지방세특례제한법</h3>
+            <div class="law-axis">취득세·재산세 지원 · 빈집 정비 · 비수도권 미분양 해소와 연결되는 지방세 특례 흐름</div>
+            <p>취득세·재산세, 빈집·미분양과 연결되는 지방세 측면의 지원 근거입니다. 국세와는 다른 층위의 정책 신호를 읽게 합니다.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -1442,7 +1510,12 @@
         </div>
 
         
-        <div class="compare-table-wrap" id="compare-section">
+        <details class="compare-summary" id="compare-section">
+          <summary>
+            <span>전체 지역 비교표 펼치기</span>
+            <span class="summary-copy">기본 화면에서는 지도와 패널에 집중하고, 필요할 때만 107개 전체 비교표를 엽니다.</span>
+          </summary>
+          <div class="compare-table-wrap">
           <div class="compare-table-header">
             <h4>지역 비교 테이블</h4>
             <select id="table-province-filter">
@@ -1769,22 +1842,22 @@
           </div>
         </div>
 
-        <div class="law-list">
-          <div class="law-row">
-            <div class="law-name">인구감소지역 지원 특별법</div>
-            <div class="law-summary">제24조 주거·교통기반 확충, 제24조의2 국토계획법 특례, 제15조 생활인구 확대, 제17조 정착 지원 등</div>
-            <div class="law-why">공공임대 우선 공급, 노후주택 개선, 공유지 우선 매각·대부, 건폐율·용적률 완화 같은 정주 인센티브의 핵심 근거입니다.</div>
-          </div>
-          <div class="law-row">
-            <div class="law-name">조세특례제한법</div>
-            <div class="law-summary">인구감소지역 주택 취득 국세 특례, 비수도권 인구감소관심지역까지 확대된 세컨드홈 세제지원 흐름</div>
-            <div class="law-why">양도소득세·종합부동산세 같은 국세 특례를 설명하는 축입니다. 지역 유형에 따라 체감이 달라집니다.</div>
-          </div>
-          <div class="law-row">
-            <div class="law-name">지방세특례제한법</div>
-            <div class="law-summary">인구감소지역 지원 확대, 비수도권 미분양 아파트 물량 해소, 빈집 정비 관련 지방세 감면 흐름</div>
-            <div class="law-why">취득세·재산세, 빈집·미분양과 연결되는 지방세 측면의 지원 근거입니다.</div>
-          </div>
+        <div class="law-grid">
+          <article class="law-card">
+            <h3>인구감소지역 지원 특별법</h3>
+            <div class="law-axis">제24조 주거·교통기반 확충 · 제24조의2 도시계획 특례 · 제15조 생활인구 · 제17조 정착 지원</div>
+            <p>공공임대 우선 공급, 노후주택 개선, 공유지 우선 매각·대부, 건폐율·용적률 완화 같은 정주 인센티브의 핵심 근거입니다.</p>
+          </article>
+          <article class="law-card">
+            <h3>조세특례제한법</h3>
+            <div class="law-axis">인구감소지역 주택 취득 국세 특례 · 비수도권 인구감소관심지역까지 확장된 세컨드홈 흐름</div>
+            <p>양도소득세·종합부동산세 같은 국세 특례를 설명하는 축입니다. 같은 지역이라도 지정 유형에 따라 체감이 달라집니다.</p>
+          </article>
+          <article class="law-card">
+            <h3>지방세특례제한법</h3>
+            <div class="law-axis">취득세·재산세 지원 · 빈집 정비 · 비수도권 미분양 해소와 연결되는 지방세 특례 흐름</div>
+            <p>취득세·재산세, 빈집·미분양과 연결되는 지방세 측면의 지원 근거입니다. 국세와는 다른 층위의 정책 신호를 읽게 합니다.</p>
+          </article>
         </div>
       </div>
     </section>
