@@ -332,6 +332,7 @@
       color: var(--ink);
       font: inherit;
     }
+    .map-select.wide { min-width: 220px; }
     .map-note {
       margin-top: 12px;
       color: var(--muted);
@@ -623,7 +624,15 @@
               <span class="legend-item"><span class="legend-swatch" style="background: rgba(29,27,24,.18);"></span> 일반 지역(비활성)</span>
             </div>
             <div class="map-controls">
-              <select id="region-select" class="map-select">
+              <select id="province-filter" class="map-select">
+                <option value="all">시도 전체</option>
+              </select>
+              <select id="type-filter" class="map-select">
+                <option value="all">유형 전체</option>
+                <option value="decline">인구감소지역</option>
+                <option value="interest">인구감소관심지역</option>
+              </select>
+              <select id="region-select" class="map-select wide">
                 <option value="">지역 선택</option>
               </select>
             </div>
@@ -721,6 +730,8 @@ const REGION_DATA = {
   }
 };
 const overlay = document.getElementById('map-overlay');
+const provinceFilter = document.getElementById('province-filter');
+const typeFilter = document.getElementById('type-filter');
 const select = document.getElementById('region-select');
 const badge = document.getElementById('panel-badge');
 const title = document.getElementById('panel-title');
@@ -795,6 +806,24 @@ function genericData(point, summary){
       : '적용 특례 예시 · 주거특례 · 정주 인센티브 · 양도세·종부세 특례 · 빈집·개보수 지원 검토 가능'
   };
 }
+function applyFilters(points){
+  const province = provinceFilter.value;
+  const type = typeFilter.value;
+  allNodes.forEach((node) => {
+    const matchProvince = province === 'all' || node.dataset.province === province;
+    const matchType = type === 'all' || node.dataset.type === type;
+    node.style.display = matchProvince && matchType ? 'inline-flex' : 'none';
+  });
+  select.innerHTML = '<option value="">지역 선택</option>';
+  points.filter(point => (province === 'all' || point.province === province) && (type === 'all' || point.regionType === type))
+    .forEach(point => {
+      const opt = document.createElement('option');
+      opt.value = point.key;
+      opt.textContent = `${point.province} ${point.name}`;
+      select.appendChild(opt);
+    });
+}
+
 Promise.all([
   fetch('./data/map-points.json').then(r=>r.json()),
   fetch('./data/monthly-series-24m-all.json').then(r=>r.json()).catch(() => ({})),
@@ -802,10 +831,19 @@ Promise.all([
 ]).then(([points, seriesData, summaryData]) => {
   monthlySeries = seriesData || {};
   marketSummary = summaryData || [];
+  const provinces = [...new Set(points.map(p => p.province))].sort();
+  provinces.forEach(province => {
+    const opt = document.createElement('option');
+    opt.value = province;
+    opt.textContent = province;
+    provinceFilter.appendChild(opt);
+  });
   points.forEach(point => {
     const btn = document.createElement('button');
     btn.className = `map-node ${point.regionType} dim`;
     btn.dataset.region = slugify(point.name);
+    btn.dataset.province = point.province;
+    btn.dataset.type = point.regionType;
     btn.style.left = point.x + '%';
     btn.style.top = point.y + '%';
     btn.innerHTML = `<span class="map-dot"></span>`;
@@ -824,11 +862,10 @@ Promise.all([
     });
     overlay.appendChild(btn);
     allNodes.push(btn);
-    const opt = document.createElement('option');
-    opt.value = point.key;
-    opt.textContent = `${point.province} ${point.name}`;
-    select.appendChild(opt);
   });
+  applyFilters(points);
+  provinceFilter.addEventListener('change', () => applyFilters(points));
+  typeFilter.addEventListener('change', () => applyFilters(points));
   select.addEventListener('change', () => {
     const point = points.find(p => p.key === select.value);
     if(point){
