@@ -1038,7 +1038,7 @@
             <div class="map-note">지도 포인트는 인구감소지역·인구감소관심지역 기초지자체만 표시합니다. 거래가 적은 지역은 해석에 주의가 필요합니다.</div>
             <div class="map-korea">
               <div class="map-viewport" id="map-viewport">
-                <img src="./assets/korea-provinces.svg" alt="대한민국 지도" />
+                <img src="./assets/korea-districts.svg" alt="대한민국 지도 — 인구감소지역·관심지역 경계 표시" />
                 <div class="map-overlay" id="map-overlay"></div>
               </div>
             </div>
@@ -1243,11 +1243,17 @@ function genericData(point, summary){
     sub: `${point.province} · 최근 24개월 아파트 실거래와 정책 지위를 함께 보는 기본 패널`,
     stat1: `최근 24개월 ${total.toLocaleString()}건`,
     stat2: range,
-    deals: [
-      ['최근 거래월', latest, months > 0 ? `${months}개월에서 거래 확인` : '거래 희소'],
-      ['24개월 중위가격', `${median}`, summary?.latestMedian != null ? `최근월 중위 ${formatPrice(Math.round(summary.latestMedian))}` : '최근월 중위 없음'],
-      ['데이터 메모', total > 0 ? '국토부 실거래가 공개자료 기반' : '최근 24개월 거래 미확인', total > 0 ? `LAWD_CD ${point.lawdCd}` : '표본 부족 지역']
-    ],
+    deals: (function(){
+      const rd = (window._repDeals || []).find(d => d.province === point.province && d.name === point.name);
+      if (rd && rd.deals && rd.deals.length > 0) {
+        return rd.deals.map(d => [d.name || '거래', `${d.area}㎡ · ${d.year}년 · ${d.road}`, formatPrice(d.price)]);
+      }
+      return [
+        ['최근 거래월', latest, months > 0 ? `${months}개월에서 거래 확인` : '거래 희소'],
+        ['24개월 중위가격', `${median}`, summary?.latestMedian != null ? `최근월 중위 ${formatPrice(Math.round(summary.latestMedian))}` : '최근월 중위 없음'],
+        ['데이터 메모', total > 0 ? '국토부 실거래가 공개자료 기반' : '최근 24개월 거래 미확인', total > 0 ? `LAWD_CD ${point.lawdCd}` : '표본 부족 지역']
+      ];
+    })(),
     policy: point.regionType === 'interest'
       ? '적용 특례 예시 · 관심지역 대응계획 수립 · 세컨드홈 세제특례 확대 범위 · 정책 변화 모니터링 필요 · ↑ 이 지역의 특례를 챕터 1에서 확인하세요'
       : '적용 특례 예시 · 주거특례 · 정주 인센티브 · 양도세·종부세 특례 · 빈집·개보수 지원 검토 가능 · ↑ 이 지역의 특례를 챕터 1에서 확인하세요'
@@ -1314,10 +1320,12 @@ function applyFilters(points){
 Promise.all([
   fetch('./data/map-points.json').then(r=>r.json()),
   fetch('./data/monthly-series-24m-all.json').then(r=>r.json()).catch(() => ({})),
-  fetch('./data/region-market-summary-24m.json').then(r=>r.json()).catch(() => ([]))
-]).then(([points, seriesData, summaryData]) => {
+  fetch('./data/region-market-summary-24m.json').then(r=>r.json()).catch(() => ([])),
+  fetch('./data/representative-deals.json').then(r=>r.json()).catch(() => ([]))
+]).then(([points, seriesData, summaryData, dealsData]) => {
   monthlySeries = seriesData || {};
   marketSummary = summaryData || [];
+  window._repDeals = dealsData || [];
   const provinces = [...new Set(points.map(p => p.province))].sort();
   provinces.forEach(province => {
     const opt = document.createElement('option');
@@ -1413,6 +1421,20 @@ Promise.all([
     });
   });
   renderTable();
+
+
+  // District boundary click handler
+  document.querySelectorAll('.district').forEach(path => {
+    path.addEventListener('click', () => {
+      const prov = path.dataset.province;
+      const name = path.dataset.name;
+      const point = points.find(p => p.province === prov && p.name === name);
+      if(point){
+        const node = allNodes.find(n => n.title === `${prov} ${name}`);
+        if(node) node.click();
+      }
+    });
+  });
 
   const initial = points.find(p => p.name === '해남군');
   if(initial){
