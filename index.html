@@ -332,11 +332,49 @@
       color: var(--ink);
       font: inherit;
     }
+    .map-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      position: relative;
+      z-index: 2;
+    }
+    .map-tooltip {
+      position: fixed;
+      z-index: 20;
+      pointer-events: none;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(29,27,24,.92);
+      color: #fff;
+      font-size: 12px;
+      line-height: 1.35;
+      transform: translate(10px, 10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,.18);
+      opacity: 0;
+      transition: opacity .12s ease;
+    }
+    .map-tooltip.show { opacity: 1; }
     .map-overlay {
       position: absolute;
       inset: 0;
     }
-    .map-node.dim { opacity: .52; }
+    .map-node.dim { opacity: .42; }
+    .map-node.active .map-dot { box-shadow: 0 0 0 5px rgba(255,255,255,.85), 0 0 0 10px rgba(31,95,74,.16); }
+    .map-node.interest.active .map-dot { box-shadow: 0 0 0 5px rgba(255,255,255,.85), 0 0 0 10px rgba(181,122,42,.18); }
+    .insight-line {
+      margin: 14px 0 0;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(32,79,63,.06);
+      color: var(--ink);
+      font-size: 14px;
+    }
+    .caution-line {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
     .trade-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -589,6 +627,7 @@
                 <option value="">지역 선택</option>
               </select>
             </div>
+            <div class="map-note">지도 포인트는 인구감소지역·인구감소관심지역 기초지자체만 표시합니다. 거래가 적은 지역은 해석에 주의가 필요합니다.</div>
             <div class="map-korea">
               <img src="./assets/korea-provinces.svg" alt="대한민국 지도" />
               <div class="map-overlay" id="map-overlay"></div>
@@ -619,6 +658,8 @@
               <li><div><strong>세영스위트</strong><small>84.60㎡ · 2017년 · 남부길</small></div><div class="deal-price">2억 4,500만원</div></li>
             </ul>
             <div class="trade-sub" id="panel-policy" style="margin-top:18px; margin-bottom:0;">적용 특례 예시 · 노후주택 개보수 지원 · 공공임대 우선 공급 · 양도세·종부세 특례</div>
+            <div class="insight-line" id="panel-insight">최근 24개월 흐름을 간단히 해석한 문장이 여기에 표시됩니다.</div>
+            <div class="caution-line" id="panel-caution">실거래가가 적은 지역은 월별 변동성이 크게 보일 수 있습니다.</div>
           </article>
         </div>
       </div>
@@ -692,10 +733,34 @@ const countChart = document.getElementById('count-chart');
 const medianChart = document.getElementById('median-chart');
 const countCaption = document.getElementById('count-caption');
 const medianCaption = document.getElementById('median-caption');
+const insight = document.getElementById('panel-insight');
+const caution = document.getElementById('panel-caution');
+const tooltip = document.getElementById('map-tooltip');
 let monthlySeries = {};
 let marketSummary = [];
 let allNodes = [];
 function slugify(name){ return ({'해남군':'haenam','영주시':'yeongju','경주시':'gyeongju'})[name] || name; }
+
+function buildInsight(point, summary){
+  const total = summary?.totalCount24m ?? 0;
+  const months = summary?.monthsWithTrades ?? 0;
+  if (total === 0) return '최근 24개월 기준 아파트 실거래가 확인되지 않아, 정책 정보 중심으로 해석하는 편이 맞습니다.';
+  if (months <= 6) return `최근 24개월 중 거래가 확인된 달이 ${months}개월로 적어, 가격보다 거래 존재 여부 자체를 먼저 보는 지역입니다.`;
+  if (total < 80) return `거래는 이어지고 있지만 표본이 두껍지는 않아, 개별 거래가격보다 범위와 최근 거래월을 함께 보는 것이 좋습니다.`;
+  if (total < 400) return `거래가 희소 지역은 아니어서 최근 2년 흐름을 참고할 수 있지만, 월별 변동은 여전히 크게 튈 수 있습니다.`;
+  return `최근 24개월 거래가 비교적 충분히 누적돼, 이 지역은 정책 대상 지역 중에서도 시장 흐름을 읽어볼 만한 편입니다.`;
+}
+function buildCaution(summary){
+  const total = summary?.totalCount24m ?? 0;
+  const months = summary?.monthsWithTrades ?? 0;
+  if (total === 0) return '주의: 최근 24개월 거래가 없어 그래프 해석보다 지정 유형과 특례 방향을 우선 확인하세요.';
+  if (months <= 6) return `주의: 거래가 ${months}개월만 확인돼 월별 중위가격이 크게 흔들릴 수 있습니다.`;
+  if (total < 80) return '주의: 표본이 얇은 지역은 특정 단지 1~2건이 중위가격에 큰 영향을 줄 수 있습니다.';
+  return '실거래가는 국토부 공개자료 기준이며, 투자 권유가 아니라 정책·시장 안내용입니다.';
+}
+function showTooltip(text, x, y){ tooltip.textContent = text; tooltip.style.left = x + 'px'; tooltip.style.top = y + 'px'; tooltip.classList.add('show'); }
+function hideTooltip(){ tooltip.classList.remove('show'); }
+
 function formatPrice(v){
   if (v == null) return '-';
   const eok = Math.floor(v / 10000);
@@ -745,9 +810,13 @@ Promise.all([
     btn.style.top = point.y + '%';
     btn.innerHTML = `<span class="map-dot"></span>`;
     btn.title = `${point.province} ${point.name}`;
+    btn.addEventListener('mouseenter', (e) => showTooltip(`${point.province} ${point.name} · ${point.regionType === 'interest' ? '관심지역' : '인구감소지역'}`, e.clientX, e.clientY));
+    btn.addEventListener('mousemove', (e) => showTooltip(`${point.province} ${point.name} · ${point.regionType === 'interest' ? '관심지역' : '인구감소지역'}`, e.clientX, e.clientY));
+    btn.addEventListener('mouseleave', hideTooltip);
     btn.addEventListener('click', () => {
-      allNodes.forEach(n => n.classList.add('dim'));
+      allNodes.forEach(n => { n.classList.add('dim'); n.classList.remove('active'); });
       btn.classList.remove('dim');
+      btn.classList.add('active');
       const specific = REGION_DATA[slugify(point.name)];
       const summary = marketSummary.find(s => s.key === point.key);
       renderPanel(specific || genericData(point, summary), point.key);
@@ -774,5 +843,6 @@ Promise.all([
   }
 });
 </script>
+  <div class="map-tooltip" id="map-tooltip"></div>
 </body>
 </html>
