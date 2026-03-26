@@ -444,6 +444,21 @@
       pointer-events: none;
     }
     .mini-avg-line.interest { border-top-color: rgba(181,122,42,.82); }
+    .mini-avg-label {
+      position: absolute;
+      right: 0;
+      transform: translateY(-50%);
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(29,27,24,.08);
+      color: var(--ink);
+      font-size: 11px;
+      line-height: 1;
+      z-index: 3;
+      pointer-events: none;
+      white-space: nowrap;
+    }
     .mini-bar {
       background: linear-gradient(180deg, rgba(31,95,74,.35), rgba(31,95,74,.9));
       border-radius: 4px 4px 0 0;
@@ -789,12 +804,13 @@ function buildCaution(summary){
 function showTooltip(text, x, y){ tooltip.textContent = text; tooltip.style.left = x + 'px'; tooltip.style.top = y + 'px'; tooltip.classList.add('show'); }
 function hideTooltip(){ tooltip.classList.remove('show'); }
 
-function renderBars(container, values, kind){
+function renderBars(container, values, kind, formatter){
   const nums = values.map(v => v ?? 0);
   const max = Math.max(...nums, 1);
   const avg = nums.reduce((a,b) => a+b, 0) / nums.length;
   const avgBottom = Math.max(0, Math.min(84, (avg / max) * 84));
-  container.innerHTML = `<div class="mini-avg-line ${kind === 'interest' ? 'interest' : ''}" style="bottom:${avgBottom}px"></div>` + nums.map(v => {
+  const label = formatter ? formatter(avg) : Math.round(avg).toLocaleString();
+  container.innerHTML = `<div class="mini-avg-line ${kind === 'interest' ? 'interest' : ''}" style="bottom:${avgBottom}px"></div><div class="mini-avg-label" style="bottom:${avgBottom}px">평균 ${label}</div>` + nums.map(v => {
     const h = Math.max(3, Math.round(((v ?? 0) / max) * 84));
     return `<div class="mini-bar ${kind === 'interest' ? 'interest' : ''}" style="height:${h}px"></div>`;
   }).join('');
@@ -814,8 +830,8 @@ function renderPanel(data, key){
   caution.textContent = buildCaution(summary);
   const series = monthlySeries[key]?.series || [];
   if (series.length) {
-    const avgCount = renderBars(countChart, series.map(s => s.count), data.badgeClass);
-    const avgMedian = renderBars(medianChart, series.map(s => s.median), data.badgeClass);
+    const avgCount = renderBars(countChart, series.map(s => s.count), data.badgeClass, (v) => `${Math.round(v).toLocaleString()}건`);
+    const avgMedian = renderBars(medianChart, series.map(s => s.median), data.badgeClass, (v) => formatPrice(Math.round(v)));
     const nonzeroMonths = series.filter(s => s.count > 0).length;
     countCaption.textContent = `${series[0].month} ~ ${series[series.length - 1].month} 월별 거래 건수 · 거래월 ${nonzeroMonths}개월 · 평균 ${Math.round(avgCount).toLocaleString()}건`;
     medianCaption.textContent = `${series[0].month} ~ ${series[series.length - 1].month} 월별 중위 실거래가(만원) · 평균 ${Math.round(avgMedian).toLocaleString()}만원`;
