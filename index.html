@@ -736,6 +736,27 @@
       line-height: 1.5;
     }
 
+
+    .philosophy {
+      max-width: 720px;
+      margin: 0 auto 40px;
+      padding: 32px 0;
+      text-align: center;
+    }
+    .philosophy blockquote {
+      margin: 0;
+      padding: 0;
+      font-size: clamp(18px, 2.6vw, 24px);
+      line-height: 1.65;
+      color: var(--ink);
+      letter-spacing: -.01em;
+    }
+    .philosophy .ph-source {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
     .trade-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -937,6 +958,18 @@
   </header>
 
   <main>
+    <div class="container">
+      <div class="philosophy">
+        <blockquote>
+          수도권 부동산에는 수많은 서비스와 관심이 몰리지만,<br>
+          인구감소지역의 시장을 체계적으로 보여주는 곳은 많지 않습니다.<br>
+          세컨드홈, 정주지원, 도시계획 특례까지 — 정책이 이미 움직이고 있다면,<br>
+          그 지역의 시장도 함께 읽어볼 가치가 있지 않을까요.
+        </blockquote>
+        <div class="ph-source">이 사이트는 그 읽기를 돕기 위해 만들어졌습니다.</div>
+      </div>
+    </div>
+
     <section id="specials">
       <div class="container">
         <div class="section-head">
