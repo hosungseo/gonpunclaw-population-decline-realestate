@@ -322,6 +322,44 @@
     }
     
 
+
+    .secondhome-feature {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      gap: 28px;
+      align-items: start;
+      margin-top: 28px;
+    }
+    .secondhome-copy {
+      padding-top: 8px;
+    }
+    .secondhome-copy h3 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.04;
+      letter-spacing: -.03em;
+    }
+    .secondhome-copy p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .secondhome-points {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+      display: grid;
+      gap: 10px;
+    }
+    .secondhome-points li {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(32,79,63,.05);
+      border: 1px solid rgba(32,79,63,.10);
+      font-size: 14px;
+    }
+
     .law-list { display: grid; gap: 18px; margin-top: 30px; }
     .law-row {
       display: grid;
@@ -939,6 +977,7 @@
       .map-node { width: 26px; height: 26px; }
 
       .special-grid { grid-template-columns: 1fr 1fr; }
+      .secondhome-feature { grid-template-columns: 1fr; gap: 22px; }
       .map-layout { grid-template-columns: 1fr; }
       .trade-card { margin-top: 20px; }
       .hero-inner { grid-template-columns: 1fr; padding: 60px 0 36px; }
@@ -1017,28 +1056,28 @@
       </div>
     </div>
 
-    <section id="specials">
+    <section id="secondhome-overview">
       <div class="container">
         <div class="section-head">
-          <div class="section-kicker">Specials</div>
+          <div class="section-kicker">Second Home</div>
           <div>
-            <h2 class="section-title">그래서 무엇이 달라지나</h2>
-            <p class="section-desc">조문 이름보다 중요한 건 내게 무슨 의미가 있느냐입니다. 세금, 주거, 개발 가능성, 관심지역 제도를 사용자 질문 기준으로 다시 묶었습니다.</p>
+            <h2 class="section-title">세컨드홈은 이 프로젝트의 핵심 입구입니다</h2>
+            <p class="section-desc">인구감소지역 부동산을 이해할 때 많은 사람이 가장 먼저 묻는 질문은 “집을 하나 더 사면 바로 2주택 중과가 되는가”입니다. 세컨드홈 특례는 바로 그 불안과 판단의 문턱을 낮추는 제도입니다.</p>
           </div>
         </div>
-
-        <div class="section-desc" style="margin-top: 20px; max-width: 920px; color: var(--ink);">
-          <strong>핵심은 두 가지입니다.</strong> 첫째, 이 지역에 집을 사거나 옮겨갈 때 받을 수 있는 세금·주거 특례가 무엇인지. 둘째, 인구감소관심지역까지 정책 범위가 어떻게 확장됐는지입니다.
-        </div>
-
-        <div class="special-grid">
-          <div class="special-item">
-            <h3>세금이 얼마나 줄어드나</h3>
-            <div class="card-summary">1주택자가 인구감소지역에 주택을 추가 취득해도 1세대 1주택 세제특례를 유지할 수 있는 '세컨드홈' 제도입니다.</div>
-            <p><strong>핵심 효과</strong> 양도세 비과세(12억 이하), 종부세 기본공제 12억, 재산세 특례세율이 유지됩니다. 2025년 8월 이후에는 인구감소관심지역(비수도권)까지 확대되고, 인구감소지역의 가액 제한도 완화됐습니다.</p>
-            <p><strong>누구에게 유리한가</strong> 수도권 등에 1주택을 보유하면서 지방 인구감소지역에 세컨드홈을 검토하는 사람</p>
-            <div class="tax-example">
-              <p class="tax-lead"><strong>세컨드홈은</strong> 기존 1주택자가 인구감소지역 등에 주택을 추가로 취득하더라도 일정 요건 아래에서는 2주택 중과 대신 1주택 특례 흐름으로 보게 해주는 제도입니다.</p>
+        <div class="secondhome-feature">
+          <div class="secondhome-copy">
+            <h3>기존 1주택자가<br />정책 대상 지역에 집을 하나 더 사더라도,<br />항상 같은 의미의 2주택은 아닙니다.</h3>
+            <p>세컨드홈 특례는 기존 1주택자가 인구감소지역 등 정책 대상 지역에서 일정 요건의 주택을 추가로 취득할 때, 양도세·종부세·재산세 해석에서 일반적인 다주택 중과와 다른 흐름으로 보게 해주는 제도입니다.</p>
+            <p>즉 이 사이트는 단순히 “어디가 싸다”를 보여주려는 것이 아니라, <strong>왜 어떤 지역의 거래를 정책과 함께 읽어야 하는지</strong>를 설명하려는 사이트입니다.</p>
+            <ul class="secondhome-points">
+              <li><strong>핵심 질문</strong> 집을 하나 더 사면 바로 불리해지는가?</li>
+              <li><strong>핵심 답</strong> 인구감소지역 등에서는 일정 요건 아래 예외적 특례가 작동할 수 있습니다.</li>
+              <li><strong>읽는 방식</strong> 그래서 이 사이트는 가격보다 먼저 특례와 근거 법령을 보여줍니다.</li>
+            </ul>
+          </div>
+          <div class="tax-example">
+              
                   <h5>세컨드홈 세부담 경감 예시</h5>
                   <div class="tax-timeline">
                     <div class="tl-step">
@@ -1061,6 +1100,31 @@
                   </div>
                   <div class="tax-note">* 기존 주택 30년 보유·거주 및 만 65세 이상인 경우(고령자, 장기보유 최대한도 가정)<br>* 출처: 관계부처 합동 '인구감소지역 부활 3종 프로젝트' (2024.4.15, 정책브리핑)<br>* 이 예시는 2024년 4월 정부 발표 시점 기준이며, 이후 가액 제한 완화(4억→9억/12억) 등 제도 변경으로 현행 세부담은 달라질 수 있습니다. 정확한 계산은 세무 전문가 확인을 권합니다.</div>
                 </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="specials">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Specials</div>
+          <div>
+            <h2 class="section-title">그래서 무엇이 달라지나</h2>
+            <p class="section-desc">조문 이름보다 중요한 건 내게 무슨 의미가 있느냐입니다. 세금, 주거, 개발 가능성, 관심지역 제도를 사용자 질문 기준으로 다시 묶었습니다.</p>
+          </div>
+        </div>
+
+        <div class="section-desc" style="margin-top: 20px; max-width: 920px; color: var(--ink);">
+          <strong>핵심은 두 가지입니다.</strong> 첫째, 이 지역에 집을 사거나 옮겨갈 때 받을 수 있는 세금·주거 특례가 무엇인지. 둘째, 인구감소관심지역까지 정책 범위가 어떻게 확장됐는지입니다.
+        </div>
+
+        <div class="special-grid">
+          <div class="special-item">
+            <h3>세금이 얼마나 줄어드나</h3>
+            <div class="card-summary">1주택자가 인구감소지역에 주택을 추가 취득해도 1세대 1주택 세제특례를 유지할 수 있는 '세컨드홈' 제도입니다.</div>
+            <p><strong>핵심 효과</strong> 양도세 비과세(12억 이하), 종부세 기본공제 12억, 재산세 특례세율이 유지됩니다. 2025년 8월 이후에는 인구감소관심지역(비수도권)까지 확대되고, 인구감소지역의 가액 제한도 완화됐습니다.</p>
+            <p><strong>누구에게 유리한가</strong> 수도권 등에 1주택을 보유하면서 지방 인구감소지역에 세컨드홈을 검토하는 사람</p>
+            
             <details class="card-detail">
               <summary>더 알아보기</summary>
               <div class="detail-inner">
@@ -1389,6 +1453,54 @@
         <div class="ph-source">이 사이트는 그 가능성을 실험하는 공픈클로 프로젝트의 일부입니다.</div>
       </div>
     </div>
+
+    <section id="secondhome-overview">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Second Home</div>
+          <div>
+            <h2 class="section-title">세컨드홈은 이 프로젝트의 핵심 입구입니다</h2>
+            <p class="section-desc">인구감소지역 부동산을 이해할 때 많은 사람이 가장 먼저 묻는 질문은 “집을 하나 더 사면 바로 2주택 중과가 되는가”입니다. 세컨드홈 특례는 바로 그 불안과 판단의 문턱을 낮추는 제도입니다.</p>
+          </div>
+        </div>
+        <div class="secondhome-feature">
+          <div class="secondhome-copy">
+            <h3>기존 1주택자가<br />정책 대상 지역에 집을 하나 더 사더라도,<br />항상 같은 의미의 2주택은 아닙니다.</h3>
+            <p>세컨드홈 특례는 기존 1주택자가 인구감소지역 등 정책 대상 지역에서 일정 요건의 주택을 추가로 취득할 때, 양도세·종부세·재산세 해석에서 일반적인 다주택 중과와 다른 흐름으로 보게 해주는 제도입니다.</p>
+            <p>즉 이 사이트는 단순히 “어디가 싸다”를 보여주려는 것이 아니라, <strong>왜 어떤 지역의 거래를 정책과 함께 읽어야 하는지</strong>를 설명하려는 사이트입니다.</p>
+            <ul class="secondhome-points">
+              <li><strong>핵심 질문</strong> 집을 하나 더 사면 바로 불리해지는가?</li>
+              <li><strong>핵심 답</strong> 인구감소지역 등에서는 일정 요건 아래 예외적 특례가 작동할 수 있습니다.</li>
+              <li><strong>읽는 방식</strong> 그래서 이 사이트는 가격보다 먼저 특례와 근거 법령을 보여줍니다.</li>
+            </ul>
+          </div>
+          <div class="tax-example">
+              
+                  <h5>세컨드홈 세부담 경감 예시</h5>
+                  <div class="tax-timeline">
+                    <div class="tl-step">
+                      <span class="tl-label">기존 주택 취득</span>
+                      <div class="tl-box existing"><strong>기존 주택</strong><br>(실거래가 9억원)</div>
+                    </div>
+                    <div class="tl-step">
+                      <span class="tl-label">인구감소지역 주택 취득</span>
+                      <div class="tl-box decline-region"><strong>인구감소지역 주택</strong><br>(공시가격 4억원)</div>
+                    </div>
+                    <div class="tl-step">
+                      <span class="tl-label">과세시점</span>
+                      <div class="tl-box result"><strong>기존 주택</strong><br>공시가격 9억원<br>실거래가 13억원에 양도</div>
+                    </div>
+                  </div>
+                  <div class="tax-savings">
+                    <div class="tax-row"><span class="tax-name">❶ 재산세</span><span class="tax-calc">305만원 → 211만원 <strong>△94만원 절감</strong></span></div>
+                    <div class="tax-row"><span class="tax-name">❷ 종부세</span><span class="tax-calc">75만원 → 4만원 <strong>△71만원 절감</strong></span></div>
+                    <div class="tax-row"><span class="tax-name">❸ 양도세</span><span class="tax-calc">8,551만원 → 22만원 <strong>△8,529만원 절감</strong></span></div>
+                  </div>
+                  <div class="tax-note">* 기존 주택 30년 보유·거주 및 만 65세 이상인 경우(고령자, 장기보유 최대한도 가정)<br>* 출처: 관계부처 합동 '인구감소지역 부활 3종 프로젝트' (2024.4.15, 정책브리핑)<br>* 이 예시는 2024년 4월 정부 발표 시점 기준이며, 이후 가액 제한 완화(4억→9억/12억) 등 제도 변경으로 현행 세부담은 달라질 수 있습니다. 정확한 계산은 세무 전문가 확인을 권합니다.</div>
+                </div>
+        </div>
+      </div>
+    </section>
 
     <section id="specials">
       <div class="container">
