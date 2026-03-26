@@ -543,6 +543,94 @@
       color: var(--muted);
       font-size: 12px;
     }
+
+    .onboarding {
+      margin-bottom: 18px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: rgba(32,79,63,.06);
+      border: 1px solid rgba(32,79,63,.10);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .onboarding strong { color: var(--accent); }
+    .compare-table-wrap {
+      margin-top: 28px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(255,255,255,.72);
+    }
+    .compare-table-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .compare-table-header h4 { margin: 0; font-size: 16px; }
+    .compare-table-header select {
+      min-height: 36px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.9);
+      color: var(--ink);
+      font: inherit;
+      font-size: 13px;
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .compare-table th {
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .compare-table th:hover { color: var(--ink); }
+    .compare-table th .sort-arrow { margin-left: 4px; font-size: 11px; }
+    .compare-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .compare-table tr:last-child td { border-bottom: 0; }
+    .compare-table tr:hover { background: rgba(32,79,63,.03); }
+    .compare-table .type-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .compare-table .type-badge.decline { background: rgba(32,79,63,.12); color: var(--decline); }
+    .compare-table .type-badge.interest { background: rgba(102,80,31,.12); color: var(--interest); }
+    .data-source {
+      margin-top: 18px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: rgba(29,27,24,.03);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .policy-link-box {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(32,79,63,.05);
+      font-size: 13px;
+    }
+    .policy-link-box a { color: var(--accent); font-weight: 650; }
+
     .trade-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -904,6 +992,9 @@
           <p class="section-desc">위의 특례가 실제로 어떤 지역에서 읽히는지 보려면 아래 지도를 보면 됩니다. 전국 지도에서 인구감소지역과 인구감소관심지역만 활성화했고, 지정된 지역을 누르면 최근 2년 거래 흐름을 함께 읽을 수 있습니다.</p>
         </div>
 
+        <div class="onboarding">
+          <strong>사용법</strong> 시도를 먼저 골라 해당 권역을 확대한 뒤, 지역 점이나 아래 리스트를 눌러보세요. 오른쪽 패널에서 최근 2년 거래 흐름과 정책 정보를 함께 읽을 수 있습니다.
+        </div>
         <div class="map-layout">
           <div class="map-stage">
             <div class="map-legend">
@@ -965,6 +1056,37 @@
             <div class="insight-line" id="panel-insight">최근 24개월 흐름을 간단히 해석한 문장이 여기에 표시됩니다.</div>
             <div class="caution-line" id="panel-caution">실거래가가 적은 지역은 월별 변동성이 크게 보일 수 있습니다.</div>
           </article>
+        </div>
+
+        
+        <div class="compare-table-wrap" id="compare-section">
+          <div class="compare-table-header">
+            <h4>지역 비교 테이블</h4>
+            <select id="table-province-filter">
+              <option value="all">시도 전체</option>
+            </select>
+          </div>
+          <div style="overflow-x: auto;">
+            <table class="compare-table" id="compare-table">
+              <thead>
+                <tr>
+                  <th data-col="province">시도 <span class="sort-arrow"></span></th>
+                  <th data-col="name">지역 <span class="sort-arrow"></span></th>
+                  <th data-col="regionType">유형 <span class="sort-arrow"></span></th>
+                  <th data-col="totalCount24m">거래건수 <span class="sort-arrow"></span></th>
+                  <th data-col="median24m">중위가격 <span class="sort-arrow"></span></th>
+                  <th data-col="priceMin24m">최저가 <span class="sort-arrow"></span></th>
+                  <th data-col="priceMax24m">최고가 <span class="sort-arrow"></span></th>
+                  <th data-col="monthsWithTrades">거래월수 <span class="sort-arrow"></span></th>
+                </tr>
+              </thead>
+              <tbody id="compare-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="data-source">
+          <strong>데이터 출처</strong> 국토교통부 실거래가 공개자료 API · 아파트 매매 기준 · 조회 기간 2024.01~2025.12 (24개월) · 중위가격은 해당 월 거래의 중앙값 · 거래 건수가 적은 지역은 월별 변동이 크게 보일 수 있음 · 이 사이트는 투자 권유가 아니라 정책·시장 안내용입니다.
         </div>
       </div>
     </section>
@@ -1141,8 +1263,8 @@ function genericData(point, summary){
       ['데이터 메모', total > 0 ? '국토부 실거래가 공개자료 기반' : '최근 24개월 거래 미확인', total > 0 ? `LAWD_CD ${point.lawdCd}` : '표본 부족 지역']
     ],
     policy: point.regionType === 'interest'
-      ? '적용 특례 예시 · 관심지역 대응계획 수립 · 세컨드홈 세제특례 확대 범위 · 정책 변화 모니터링 필요'
-      : '적용 특례 예시 · 주거특례 · 정주 인센티브 · 양도세·종부세 특례 · 빈집·개보수 지원 검토 가능'
+      ? '적용 특례 예시 · 관심지역 대응계획 수립 · 세컨드홈 세제특례 확대 범위 · 정책 변화 모니터링 필요 · ↑ 이 지역의 특례를 챕터 1에서 확인하세요'
+      : '적용 특례 예시 · 주거특례 · 정주 인센티브 · 양도세·종부세 특례 · 빈집·개보수 지원 검토 가능 · ↑ 이 지역의 특례를 챕터 1에서 확인하세요'
   };
 }
 const PROVINCE_ZOOM = {
@@ -1256,6 +1378,56 @@ Promise.all([
       if(node) node.click();
     }
   });
+
+  // Compare table
+  const tbody = document.getElementById('compare-tbody');
+  const tableFilter = document.getElementById('table-province-filter');
+  const tableEl = document.getElementById('compare-table');
+  let sortCol = 'totalCount24m';
+  let sortAsc = false;
+
+  function renderTable(){
+    const prov = tableFilter.value;
+    let data = marketSummary.filter(s => prov === 'all' || s.province === prov);
+    data.sort((a,b) => {
+      let va = a[sortCol] ?? 0, vb = b[sortCol] ?? 0;
+      if (typeof va === 'string') { va = va.toLowerCase(); vb = (vb||'').toLowerCase(); }
+      return sortAsc ? (va > vb ? 1 : -1) : (va < vb ? 1 : -1);
+    });
+    tbody.innerHTML = data.map(s => {
+      const typeBadge = s.regionType === 'interest' ? '<span class="type-badge interest">관심</span>' : '<span class="type-badge decline">감소</span>';
+      return `<tr style="cursor:pointer" data-key="${s.key}"><td>${s.province}</td><td>${s.name}</td><td>${typeBadge}</td><td>${(s.totalCount24m||0).toLocaleString()}</td><td>${s.median24m != null ? formatPrice(Math.round(s.median24m)) : '-'}</td><td>${s.priceMin24m != null ? formatPrice(s.priceMin24m) : '-'}</td><td>${s.priceMax24m != null ? formatPrice(s.priceMax24m) : '-'}</td><td>${s.monthsWithTrades||0}/24</td></tr>`;
+    }).join('');
+    tbody.querySelectorAll('tr').forEach(tr => {
+      tr.addEventListener('click', () => {
+        const key = tr.dataset.key;
+        const point = points.find(p => p.key === key);
+        if(point){
+          const node = allNodes.find(n => n.title === `${point.province} ${point.name}`);
+          if(node) node.click();
+          document.getElementById('region-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  }
+  // populate table province filter
+  provinces.forEach(province => {
+    const opt = document.createElement('option');
+    opt.value = province;
+    opt.textContent = province;
+    tableFilter.appendChild(opt);
+  });
+  tableFilter.addEventListener('change', renderTable);
+  tableEl.querySelectorAll('th[data-col]').forEach(th => {
+    th.addEventListener('click', () => {
+      const col = th.dataset.col;
+      if (sortCol === col) sortAsc = !sortAsc;
+      else { sortCol = col; sortAsc = false; }
+      renderTable();
+    });
+  });
+  renderTable();
+
   const initial = points.find(p => p.name === '해남군');
   if(initial){
     const node = allNodes.find(n => n.title === `${initial.province} ${initial.name}`);
