@@ -254,6 +254,14 @@
       width: min(100%, 760px);
       aspect-ratio: 520 / 394;
       margin: 18px auto 0;
+      overflow: hidden;
+      border-radius: 18px;
+    }
+    .map-viewport {
+      position: absolute;
+      inset: 0;
+      transform-origin: center center;
+      transition: transform .28s ease;
     }
     .map-korea img {
       width: 100%;
@@ -362,6 +370,26 @@
     .map-overlay {
       position: absolute;
       inset: 0;
+    }
+    .map-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      gap: 12px;
+      position: relative;
+      z-index: 2;
+    }
+    .map-zoom-note { color: var(--muted); font-size: 12px; }
+    .map-reset {
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.88);
+      color: var(--ink);
+      font: inherit;
+      cursor: pointer;
     }
     .map-node.dim { opacity: .42; }
     .map-node.active .map-dot { box-shadow: 0 0 0 5px rgba(255,255,255,.85), 0 0 0 10px rgba(31,95,74,.16); }
@@ -669,8 +697,14 @@
             </div>
             <div class="map-note">지도 포인트는 인구감소지역·인구감소관심지역 기초지자체만 표시합니다. 거래가 적은 지역은 해석에 주의가 필요합니다.</div>
             <div class="map-korea">
-              <img src="./assets/korea-provinces.svg" alt="대한민국 지도" />
-              <div class="map-overlay" id="map-overlay"></div>
+              <div class="map-viewport" id="map-viewport">
+                <img src="./assets/korea-provinces.svg" alt="대한민국 지도" />
+                <div class="map-overlay" id="map-overlay"></div>
+              </div>
+            </div>
+            <div class="map-actions">
+              <div class="map-zoom-note" id="map-zoom-note">전국 보기 상태입니다. 시도를 고르면 해당 권역을 확대합니다.</div>
+              <button type="button" class="map-reset" id="map-reset">전국 보기</button>
             </div>
           </div>
 
@@ -761,6 +795,7 @@ const REGION_DATA = {
     policy: "적용 특례 예시 · 세컨드홈 세제특례 확대 · 관심지역 대응계획 수립 · 지방세 지원 확대 흐름"
   }
 };
+const mapViewport = document.getElementById('map-viewport');
 const overlay = document.getElementById('map-overlay');
 const provinceFilter = document.getElementById('province-filter');
 const typeFilter = document.getElementById('type-filter');
@@ -779,6 +814,8 @@ const medianCaption = document.getElementById('median-caption');
 const insight = document.getElementById('panel-insight');
 const caution = document.getElementById('panel-caution');
 const tooltip = document.getElementById('map-tooltip');
+const zoomNote = document.getElementById('map-zoom-note');
+const mapReset = document.getElementById('map-reset');
 let monthlySeries = {};
 let marketSummary = [];
 let allNodes = [];
@@ -877,6 +914,32 @@ function genericData(point, summary){
       : '적용 특례 예시 · 주거특례 · 정주 인센티브 · 양도세·종부세 특례 · 빈집·개보수 지원 검토 가능'
   };
 }
+const PROVINCE_ZOOM = {
+  '강원특별자치도': { scale: 1.75, x: -18, y: -8 },
+  '경기도': { scale: 2.05, x: 8, y: -8 },
+  '경상남도': { scale: 1.95, x: -12, y: -28 },
+  '경상북도': { scale: 1.9, x: -6, y: -16 },
+  '광주광역시': { scale: 2.8, x: 34, y: -42 },
+  '대구광역시': { scale: 2.6, x: -6, y: -20 },
+  '대전광역시': { scale: 2.7, x: 10, y: -8 },
+  '부산광역시': { scale: 2.8, x: -26, y: -34 },
+  '인천광역시': { scale: 2.7, x: 28, y: 2 },
+  '전라남도': { scale: 1.95, x: 22, y: -34 },
+  '전북특별자치도': { scale: 2.15, x: 16, y: -20 },
+  '충청남도': { scale: 2.0, x: 16, y: -12 },
+  '충청북도': { scale: 2.15, x: 6, y: -10 }
+};
+function applyProvinceZoom(province){
+  if (!province || province === 'all' || !PROVINCE_ZOOM[province]) {
+    mapViewport.style.transform = 'translate(0%, 0%) scale(1)';
+    zoomNote.textContent = '전국 보기 상태입니다. 시도를 고르면 해당 권역을 확대합니다.';
+    return;
+  }
+  const z = PROVINCE_ZOOM[province];
+  mapViewport.style.transform = `translate(${z.x}%, ${z.y}%) scale(${z.scale})`;
+  zoomNote.textContent = `${province} 확대 보기 상태입니다. 점 클릭이 더 쉬워집니다.`;
+}
+
 function applyFilters(points){
   const province = provinceFilter.value;
   const type = typeFilter.value;
@@ -885,7 +948,8 @@ function applyFilters(points){
     const matchType = type === 'all' || node.dataset.type === type;
     node.style.display = matchProvince && matchType ? 'inline-flex' : 'none';
   });
-  select.innerHTML = '<option value="">지역 선택</option>';
+  applyProvinceZoom(province);
+  select.innerHTML = '<option value="">지역 선택</option>'; 
   points.filter(point => (province === 'all' || point.province === province) && (type === 'all' || point.regionType === type))
     .forEach(point => {
       const opt = document.createElement('option');
@@ -936,6 +1000,7 @@ Promise.all([
   });
   applyFilters(points);
   provinceFilter.addEventListener('change', () => applyFilters(points));
+  mapReset.addEventListener('click', () => { provinceFilter.value = 'all'; applyFilters(points); });
   typeFilter.addEventListener('change', () => applyFilters(points));
   select.addEventListener('change', () => {
     const point = points.find(p => p.key === select.value);
