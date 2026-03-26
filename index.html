@@ -380,6 +380,36 @@
       position: relative;
       z-index: 2;
     }
+    .map-region-list {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      position: relative;
+      z-index: 2;
+    }
+    .region-pill {
+      min-height: 32px;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.92);
+      color: var(--ink);
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .region-pill.active {
+      background: rgba(32,79,63,.1);
+      border-color: rgba(32,79,63,.28);
+      color: var(--decline);
+      font-weight: 700;
+    }
+    .region-pill.interest.active {
+      background: rgba(181,122,42,.12);
+      border-color: rgba(181,122,42,.28);
+      color: var(--interest);
+    }
     .map-zoom-note { color: var(--muted); font-size: 12px; }
     .map-reset {
       min-height: 34px;
@@ -706,6 +736,7 @@
               <div class="map-zoom-note" id="map-zoom-note">전국 보기 상태입니다. 시도를 고르면 해당 권역을 확대합니다.</div>
               <button type="button" class="map-reset" id="map-reset">전국 보기</button>
             </div>
+            <div class="map-region-list" id="map-region-list"></div>
           </div>
 
           <article class="trade-card" id="region-panel">
@@ -816,6 +847,7 @@ const caution = document.getElementById('panel-caution');
 const tooltip = document.getElementById('map-tooltip');
 const zoomNote = document.getElementById('map-zoom-note');
 const mapReset = document.getElementById('map-reset');
+const regionList = document.getElementById('map-region-list');
 let monthlySeries = {};
 let marketSummary = [];
 let allNodes = [];
@@ -949,14 +981,27 @@ function applyFilters(points){
     node.style.display = matchProvince && matchType ? 'inline-flex' : 'none';
   });
   applyProvinceZoom(province);
-  select.innerHTML = '<option value="">지역 선택</option>'; 
-  points.filter(point => (province === 'all' || point.province === province) && (type === 'all' || point.regionType === type))
-    .forEach(point => {
-      const opt = document.createElement('option');
-      opt.value = point.key;
-      opt.textContent = `${point.province} ${point.name}`;
-      select.appendChild(opt);
-    });
+  select.innerHTML = '<option value="">지역 선택</option>';
+  regionList.innerHTML = '';
+  const filtered = points.filter(point => (province === 'all' || point.province === province) && (type === 'all' || point.regionType === type));
+  filtered.forEach(point => {
+    const opt = document.createElement('option');
+    opt.value = point.key;
+    opt.textContent = `${point.province} ${point.name}`;
+    select.appendChild(opt);
+    if (province !== 'all') {
+      const pill = document.createElement('button');
+      pill.type = 'button';
+      pill.className = `region-pill ${point.regionType}`;
+      pill.textContent = point.name;
+      pill.dataset.key = point.key;
+      pill.addEventListener('click', () => {
+        select.value = point.key;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+      regionList.appendChild(pill);
+    }
+  });
 }
 
 Promise.all([
@@ -994,6 +1039,9 @@ Promise.all([
       const summary = marketSummary.find(s => s.key === point.key);
       renderPanel(specific || genericData(point, summary), point.key);
       select.value = point.key;
+      Array.from(regionList.children).forEach(p => p.classList.remove('active'));
+      const pill = regionList.querySelector(`[data-key="${point.key}"]`);
+      if (pill) pill.classList.add('active');
     });
     overlay.appendChild(btn);
     allNodes.push(btn);
