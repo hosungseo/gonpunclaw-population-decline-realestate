@@ -37,9 +37,9 @@
       display: grid;
       align-items: end;
       background:
-        linear-gradient(180deg, rgba(16,18,17,.08), rgba(16,18,17,.42)),
-        radial-gradient(circle at 78% 24%, rgba(181,122,42,.22), transparent 26%),
-        linear-gradient(135deg, #d9d1c3 0%, #bac3b8 42%, #788a82 100%);
+        linear-gradient(180deg, rgba(10,12,12,.24), rgba(10,12,12,.58)),
+        radial-gradient(circle at 78% 24%, rgba(181,122,42,.14), transparent 24%),
+        linear-gradient(135deg, #c7c0b4 0%, #9aa79e 42%, #576861 100%);
       position: relative;
       overflow: hidden;
     }
@@ -48,10 +48,11 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: linear-gradient(180deg, rgba(0,0,0,.2), rgba(0,0,0,.85));
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(135deg, rgba(10,20,18,.76) 0%, rgba(16,31,28,.82) 48%, rgba(24,40,36,.52) 100%);
+      background-size: 48px 48px, 48px 48px, auto;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,.56), rgba(0,0,0,.96));
       pointer-events: none;
     }
     .hero::after {
@@ -95,8 +96,9 @@
     .eyebrow {
       display: inline-block;
       padding: 8px 14px;
-      border: 1px solid rgba(255,255,255,.28);
-      color: #fff;
+      border: 1px solid rgba(255,255,255,.24);
+      color: rgba(255,255,255,.96);
+      background: rgba(255,255,255,.06);
       border-radius: 999px;
       font-size: 13px;
       letter-spacing: .04em;
@@ -116,13 +118,14 @@
     .hero-copy {
       margin-top: 22px;
       max-width: 560px;
-      color: rgba(255,255,255,.92);
+      color: rgba(255,255,255,.95);
       font-size: clamp(17px, 2.2vw, 21px);
+      line-height: 1.68;
       animation: rise 1s ease .12s both;
     }
     .hero-meta {
       margin-top: 16px;
-      color: rgba(255,255,255,.74);
+      color: rgba(255,255,255,.82);
       font-size: 14px;
       animation: rise 1.05s ease .18s both;
     }
@@ -162,15 +165,20 @@
     .metric-strip {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+      gap: 14px;
       margin-top: 26px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255,255,255,.22);
       animation: rise 1.16s ease .28s both;
+    }
+    .metric-strip > div {
+      padding: 14px 14px 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 14px;
+      background: rgba(255,255,255,.07);
+      backdrop-filter: blur(8px);
     }
     .metric-strip strong {
       display: block;
-      font-size: clamp(24px, 4vw, 34px);
+      font-size: clamp(26px, 4vw, 36px);
       line-height: 1;
       color: #fff;
       letter-spacing: -.03em;
@@ -178,7 +186,7 @@
     }
     .metric-strip span {
       display: block;
-      color: rgba(255,255,255,.72);
+      color: rgba(255,255,255,.88);
       font-size: 12px;
     }
 
@@ -878,8 +886,28 @@
 
     @media (max-width: 560px) {
       .special-grid { grid-template-columns: 1fr; }
-      h1 { font-size: 36px; }
+      .hero { min-height: auto; }
+      .hero::before {
+        background:
+          linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(11,24,22,.90) 0%, rgba(15,31,28,.94) 58%, rgba(24,40,36,.72) 100%);
+        background-size: 52px 52px, 52px 52px, auto;
+      }
+      h1 {
+        font-size: 32px;
+        line-height: 1.04;
+        max-width: 8ch;
+        letter-spacing: -.04em;
+      }
+      .hero-copy {
+        font-size: 15px;
+        line-height: 1.62;
+        color: rgba(255,255,255,.9);
+      }
+      .hero-meta { color: rgba(255,255,255,.84); }
       .metric-strip { grid-template-columns: 1fr; gap: 10px; }
+      .metric-strip > div { padding: 12px 14px; }
       .trade-stat { flex-direction: column; gap: 10px; }
       .mini-chart { height: 64px; }
       .compare-table-header { flex-direction: column; gap: 8px; align-items: flex-start; }
@@ -901,7 +929,11 @@
       .map-layout { grid-template-columns: 1fr; }
       .trade-card { margin-top: 20px; }
       .hero-inner { grid-template-columns: 1fr; padding: 60px 0 36px; }
-      .hero-aside { justify-self: start; }
+      .hero-aside {
+        justify-self: start;
+        width: min(520px, 100%);
+        border-top-color: rgba(255,255,255,.22);
+      }
       .law-row { grid-template-columns: 1fr; gap: 8px; }
       .section-head { grid-template-columns: 1fr; gap: 8px; }
       .compare-table { font-size: 12px; }
@@ -911,10 +943,14 @@
     }
     @media (max-width: 720px) {
       .container { width: min(var(--max), calc(100vw - 28px)); }
-      .hero-inner { padding-top: 84px; }
+      .hero-inner { padding-top: 76px; }
       .cta-row, .trade-intro, .cta-panel { flex-direction: column; align-items: stretch; }
       .trade-card h3 { font-size: 26px; }
       .section-title { font-size: 32px; }
+      .brand-name { font-size: 15px; }
+      .eyebrow { font-size: 12px; }
+      h1 { font-size: 38px; max-width: 8.8ch; }
+      .hero-copy { font-size: 16px; }
     }
   </style>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -929,7 +965,7 @@
           <span class="brand-name">인구감소지역 부동산</span>
         </div>
         <div class="eyebrow">인구감소지역 · 인구감소관심지역 특례 안내</div>
-        <h1>특례가 있는 지역의 시장은<br />그 근거와 함께 읽어야 합니다</h1>
+        <h1>특례가 있는 지역의 시장은<br />근거와 함께<br />읽어야 합니다</h1>
         <p class="hero-copy">
           인구감소지역·인구감소관심지역의 법적 특례와 실제 부동산 거래를 함께 보여주는 공공형 부동산 안내 서비스.
           가격보다 먼저, 왜 이 지역이 정책적으로 중요한지부터 보여줍니다.
@@ -1300,7 +1336,7 @@
           <span class="brand-name">인구감소지역 부동산</span>
         </div>
         <div class="eyebrow">인구감소지역 · 인구감소관심지역 특례 안내</div>
-        <h1>특례가 있는 지역의 시장은<br />그 근거와 함께 읽어야 합니다</h1>
+        <h1>특례가 있는 지역의 시장은<br />근거와 함께<br />읽어야 합니다</h1>
         <p class="hero-copy">
           인구감소지역·인구감소관심지역의 법적 특례와 실제 부동산 거래를 함께 보여주는 공공형 부동산 안내 서비스.
           가격보다 먼저, 왜 이 지역이 정책적으로 중요한지부터 보여줍니다.
