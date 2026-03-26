@@ -756,6 +756,14 @@
       font-size: 14px;
     }
 
+    @media (max-width: 560px) {
+      .special-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 36px; }
+      .metric-strip { grid-template-columns: 1fr; gap: 10px; }
+      .trade-stat { flex-direction: column; gap: 10px; }
+      .mini-chart { height: 64px; }
+      .compare-table-header { flex-direction: column; gap: 8px; align-items: flex-start; }
+    }
     @keyframes rise {
       from { opacity: 0; transform: translateY(18px); }
       to { opacity: 1; transform: translateY(0); }
@@ -765,9 +773,21 @@
       .hero-inner, .section-head, .law-row, .trade-grid, .special-grid, .map-layout { grid-template-columns: 1fr; }
       .hero-aside { justify-self: start; }
       .law-row { gap: 8px; }
-      .map-stage { min-height: 560px; }
+      .map-stage { min-height: 480px; }
       .map-korea { width: min(100%, 680px); }
-      .map-node { width: 24px; height: 24px; }
+      .map-node { width: 26px; height: 26px; }
+
+      .special-grid { grid-template-columns: 1fr 1fr; }
+      .map-layout { grid-template-columns: 1fr; }
+      .trade-card { margin-top: 20px; }
+      .hero-inner { grid-template-columns: 1fr; padding: 60px 0 36px; }
+      .hero-aside { justify-self: start; }
+      .law-row { grid-template-columns: 1fr; gap: 8px; }
+      .section-head { grid-template-columns: 1fr; gap: 8px; }
+      .compare-table { font-size: 12px; }
+      .compare-table th, .compare-table td { padding: 8px 10px; }
+      .onboarding { font-size: 14px; }
+
     }
     @media (max-width: 720px) {
       .container { width: min(var(--max), calc(100vw - 28px)); }
@@ -1112,41 +1132,7 @@
 
   <div class="map-tooltip" id="map-tooltip"></div>
 <script>
-const REGION_DATA = {
-  haenam: {
-    badgeClass: "decline", badge: "선택 지역 · 인구감소지역", title: "해남군",
-    sub: "전라남도 · 특례와 실제 거래가 자연스럽게 연결되는 1차 시범 지역",
-    stat1: "최근 2년 59건+", stat2: "1.2억~4.3억",
-    deals: [
-      ["해남코아루더베스트1단지아파트", "116.75㎡ · 2019년 · 영빈로", "4억 3,000만원"],
-      ["해남파크사이드2차아파트", "75.52㎡ · 2019년 · 구교3길", "3억 1,000만원"],
-      ["세영스위트", "84.60㎡ · 2017년 · 남부길", "2억 4,500만원"]
-    ],
-    policy: "적용 특례 예시 · 노후주택 개보수 지원 · 공공임대 우선 공급 · 양도세·종부세 특례"
-  },
-  yeongju: {
-    badgeClass: "decline", badge: "선택 지역 · 인구감소지역", title: "영주시",
-    sub: "경상북도 · 정착지원과 지역 생활권 중심의 거래가 꾸준히 확인되는 사례",
-    stat1: "최근 2년 139건+", stat2: "9,200만~3.1억",
-    deals: [
-      ["세영리첼", "84.45㎡ · 2011년 · 대동로", "3억 1,000만원"],
-      ["영주가흥사랑으로부영", "59.93㎡ · 2016년 · 대동로", "2억 5,400만원"],
-      ["화성리버빌2", "59.45㎡ · 2002년 · 대학로142번길", "1억 5,800만원"]
-    ],
-    policy: "적용 특례 예시 · 청년·중장년 정착 지원 · 생활인구 확대 시책 · 양도세·종부세 특례"
-  },
-  gyeongju: {
-    badgeClass: "interest", badge: "선택 지역 · 인구감소관심지역", title: "경주시",
-    sub: "경상북도 · 관심지역으로 확장된 세제특례와 실제 거래 밀도가 함께 보이는 사례",
-    stat1: "최근 2년 516건+", stat2: "5,000만~4.09억",
-    deals: [
-      ["두산위브트레지움", "84.89㎡ · 2020년 · 유림로", "4억 900만원"],
-      ["현진에버빌1차", "132.41㎡ · 2009년 · 광중길", "3억 8,900만원"],
-      ["경주두산위브", "84.97㎡ · 2017년 · 진현로", "3억 1,500만원"]
-    ],
-    policy: "적용 특례 예시 · 세컨드홈 세제특례 확대 · 관심지역 대응계획 수립 · 지방세 지원 확대 흐름"
-  }
-};
+const REGION_DATA = {};
 const mapViewport = document.getElementById('map-viewport');
 const overlay = document.getElementById('map-overlay');
 const provinceFilter = document.getElementById('province-filter');
