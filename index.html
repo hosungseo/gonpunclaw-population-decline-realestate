@@ -232,7 +232,7 @@
     }
     .map-stage {
       position: relative;
-      min-height: 720px;
+      min-height: 560px;
       padding: 26px;
       border: 1px solid var(--line);
       background: linear-gradient(180deg, rgba(255,255,255,.84), rgba(246,242,234,.96));
@@ -252,8 +252,8 @@
     .map-korea {
       position: relative;
       width: min(100%, 640px);
-      height: 620px;
-      margin: 20px auto 0;
+      aspect-ratio: 520 / 394;
+      margin: 24px auto 0;
     }
     .map-korea img {
       width: 100%;
@@ -387,8 +387,8 @@
       .hero-inner, .section-head, .law-row, .trade-grid, .special-grid, .map-layout { grid-template-columns: 1fr; }
       .hero-aside { justify-self: start; }
       .law-row { gap: 8px; }
-      .map-stage { min-height: 620px; }
-      .map-korea { height: 520px; }
+      .map-stage { min-height: 520px; }
+      .map-korea { width: min(100%, 620px); }
     }
     @media (max-width: 720px) {
       .container { width: min(var(--max), calc(100vw - 28px)); }
