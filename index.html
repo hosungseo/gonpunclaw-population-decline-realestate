@@ -369,16 +369,16 @@
     }
     .secondhome-points li {
       display: grid;
-      grid-template-columns: 78px 1fr;
+      grid-template-columns: 82px 1fr;
       gap: 12px;
       align-items: start;
-      padding: 13px 14px;
-      border-radius: 14px;
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(29,27,24,.08);
-      box-shadow: 0 8px 24px rgba(0,0,0,.03);
+      padding: 14px 15px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.80);
+      border: 1px solid rgba(29,27,24,.07);
+      box-shadow: 0 10px 28px rgba(0,0,0,.035);
       font-size: 14px;
-      line-height: 1.55;
+      line-height: 1.58;
     }
     .secondhome-points strong {
       display: inline-flex;
@@ -396,7 +396,7 @@
     .secondhome-diagram {
       padding: 22px;
       border-radius: 22px;
-      background: rgba(255,255,255,.7);
+      background: rgba(255,255,255,.78);
       border: 1px solid rgba(29,27,24,.08);
       box-shadow: var(--shadow);
     }
@@ -717,10 +717,10 @@
 
 
     .tax-example {
-      margin-top: 18px;
+      margin-top: 0;
       padding: 20px;
-      border-radius: 14px;
-      background: rgba(255,255,255,.88);
+      border-radius: 18px;
+      background: rgba(255,255,255,.92);
       border: 1px solid var(--line);
     }
     .tax-lead {
@@ -731,8 +731,10 @@
     }
     .tax-lead strong { color: var(--accent); }
     .tax-example h5 {
-      margin: 0 0 16px;
-      font-size: 15px;
+      margin: 0 0 14px;
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: -.02em;
       color: var(--ink);
     }
     .tax-timeline {
@@ -821,10 +823,10 @@
       font-weight: 700;
     }
     .tax-note {
-      margin-top: 12px;
+      margin-top: 14px;
       color: var(--muted);
       font-size: 11px;
-      line-height: 1.5;
+      line-height: 1.62;
     }
 
 
@@ -1021,8 +1023,47 @@
       .secondhome-feature { grid-template-columns: 1fr; gap: 22px; }
       .secondhome-statement { padding: 16px 16px 14px; border-radius: 16px; }
       .secondhome-copy h3 { max-width: none; }
-      .secondhome-points li { grid-template-columns: 1fr; gap: 8px; }
-      .secondhome-diagram { padding: 16px; border-radius: 18px; }
+      .secondhome-points { gap: 8px; }
+      .secondhome-points li {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 12px 13px;
+        border-radius: 14px;
+      }
+      .secondhome-points strong {
+        justify-content: flex-start;
+        width: fit-content;
+      }
+      .secondhome-diagram { padding: 12px; border-radius: 18px; }
+      .tax-example {
+        padding: 16px 14px;
+        border-radius: 16px;
+      }
+      .tax-example h5 {
+        font-size: 16px;
+        margin-bottom: 12px;
+      }
+      .tax-timeline {
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+      }
+      .tl-box {
+        padding: 8px 8px;
+        font-size: 12px;
+        line-height: 1.35;
+      }
+      .tl-label {
+        font-size: 10px;
+      }
+      .tax-row {
+        grid-template-columns: 72px 1fr;
+        gap: 8px;
+        font-size: 12px;
+      }
+      .tax-note {
+        font-size: 10px;
+        line-height: 1.56;
+      }
       .map-layout { grid-template-columns: 1fr; }
       .trade-card { margin-top: 20px; }
       .hero-inner { grid-template-columns: 1fr; padding: 60px 0 36px; }
