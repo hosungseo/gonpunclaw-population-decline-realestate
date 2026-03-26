@@ -693,60 +693,50 @@ const medianChart = document.getElementById('median-chart');
 const countCaption = document.getElementById('count-caption');
 const medianCaption = document.getElementById('median-caption');
 let monthlySeries = {};
+let marketSummary = [];
 let allNodes = [];
 function slugify(name){ return ({'해남군':'haenam','영주시':'yeongju','경주시':'gyeongju'})[name] || name; }
-function genericData(point){
+function formatPrice(v){
+  if (v == null) return '-';
+  const eok = Math.floor(v / 10000);
+  const man = v % 10000;
+  if (eok > 0 && man > 0) return `${eok}.${String(Math.round(man/100)).padStart(2,'0')}억`;
+  if (eok > 0) return `${eok}억`;
+  return `${v.toLocaleString()}만원`;
+}
+function genericData(point, summary){
   const kind = point.regionType === 'interest' ? '인구감소관심지역' : '인구감소지역';
+  const total = summary?.totalCount24m ?? 0;
+  const months = summary?.monthsWithTrades ?? 0;
+  const latest = summary?.latestTradeMonth ? `${summary.latestTradeMonth.slice(0,4)}-${summary.latestTradeMonth.slice(4,6)}` : '확인 중';
+  const median = summary?.median24m != null ? formatPrice(Math.round(summary.median24m)) : '없음';
+  const range = summary?.priceMin24m != null && summary?.priceMax24m != null
+    ? `${formatPrice(summary.priceMin24m)}~${formatPrice(summary.priceMax24m)}`
+    : '거래 확인 중';
   return {
     badgeClass: point.regionType,
     badge: `선택 지역 · ${kind}`,
     title: point.name,
-    sub: `${point.province} · 정책 대상 지역으로 지정된 기초지방자치단체`,
-    stat1: '최근 2년 데이터 연결 예정',
-    stat2: `LAWD_CD ${point.lawdCd}`,
+    sub: `${point.province} · 최근 24개월 아파트 실거래와 정책 지위를 함께 보는 기본 패널`,
+    stat1: `최근 24개월 ${total.toLocaleString()}건`,
+    stat2: range,
     deals: [
-      ['거래 데이터 준비 중', '전체 107개 지역 구조를 먼저 확장했습니다', '상세 연동 예정'],
-      ['정책 유형', `${kind} · 지도에서 클릭 가능`, '패널 구조 준비 완료'],
-      ['다음 단계', '최근 24개월 거래 요약 자동 수집', '순차 확장']
+      ['최근 거래월', latest, months > 0 ? `${months}개월에서 거래 확인` : '거래 희소'],
+      ['24개월 중위가격', `${median}`, summary?.latestMedian != null ? `최근월 중위 ${formatPrice(Math.round(summary.latestMedian))}` : '최근월 중위 없음'],
+      ['데이터 메모', total > 0 ? '국토부 실거래가 공개자료 기반' : '최근 24개월 거래 미확인', total > 0 ? `LAWD_CD ${point.lawdCd}` : '표본 부족 지역']
     ],
-    policy: point.regionType === 'interest' ? '적용 특례 예시 · 관심지역 대응계획 수립 · 세컨드홈 세제특례 확대 범위 · 정책적 관리 대상' : '적용 특례 예시 · 주거특례 · 도시계획 특례 · 양도세·종부세 특례'
+    policy: point.regionType === 'interest'
+      ? '적용 특례 예시 · 관심지역 대응계획 수립 · 세컨드홈 세제특례 확대 범위 · 정책 변화 모니터링 필요'
+      : '적용 특례 예시 · 주거특례 · 정주 인센티브 · 양도세·종부세 특례 · 빈집·개보수 지원 검토 가능'
   };
-}
-function renderBars(container, values, kind){
-  const nums = values.map(v => v ?? 0);
-  const max = Math.max(...nums, 1);
-  container.innerHTML = nums.map(v => {
-    const h = Math.max(3, Math.round(((v ?? 0) / max) * 84));
-    return `<div class="mini-bar ${kind === 'interest' ? 'interest' : ''}" style="height:${h}px"></div>`;
-  }).join('');
-}
-function renderPanel(data, key){
-  badge.className = 'badge ' + data.badgeClass;
-  badge.textContent = data.badge;
-  title.textContent = data.title;
-  sub.textContent = data.sub;
-  stat1.textContent = data.stat1;
-  stat2.textContent = data.stat2;
-  deals.innerHTML = data.deals.map(item => `<li><div><strong>${item[0]}</strong><small>${item[1]}</small></div><div class="deal-price">${item[2]}</div></li>`).join('');
-  policy.textContent = data.policy;
-  const series = monthlySeries[key]?.series || [];
-  if (series.length) {
-    renderBars(countChart, series.map(s => s.count), data.badgeClass);
-    renderBars(medianChart, series.map(s => s.median), data.badgeClass);
-    countCaption.textContent = `${series[0].month} ~ ${series[series.length - 1].month} 월별 거래 건수`;
-    medianCaption.textContent = `${series[0].month} ~ ${series[series.length - 1].month} 월별 중위 실거래가(만원)`;
-  } else {
-    countChart.innerHTML = '';
-    medianChart.innerHTML = '';
-    countCaption.textContent = '그래프 데이터 연결 예정';
-    medianCaption.textContent = '그래프 데이터 연결 예정';
-  }
 }
 Promise.all([
   fetch('./data/map-points.json').then(r=>r.json()),
-  fetch('./data/monthly-series-24m.json').then(r=>r.json()).catch(() => ({}))
-]).then(([points, seriesData]) => {
+  fetch('./data/monthly-series-24m-all.json').then(r=>r.json()).catch(() => ({})),
+  fetch('./data/region-market-summary-24m.json').then(r=>r.json()).catch(() => ([]))
+]).then(([points, seriesData, summaryData]) => {
   monthlySeries = seriesData || {};
+  marketSummary = summaryData || [];
   points.forEach(point => {
     const btn = document.createElement('button');
     btn.className = `map-node ${point.regionType} dim`;
@@ -759,7 +749,8 @@ Promise.all([
       allNodes.forEach(n => n.classList.add('dim'));
       btn.classList.remove('dim');
       const specific = REGION_DATA[slugify(point.name)];
-      renderPanel(specific || genericData(point), slugify(point.name));
+      const summary = marketSummary.find(s => s.key === point.key);
+      renderPanel(specific || genericData(point, summary), point.key);
       select.value = point.key;
     });
     overlay.appendChild(btn);
