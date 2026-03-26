@@ -325,39 +325,80 @@
 
     .secondhome-feature {
       display: grid;
-      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
-      gap: 28px;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+      gap: 30px;
       align-items: start;
-      margin-top: 28px;
+      margin-top: 30px;
     }
     .secondhome-copy {
-      padding-top: 8px;
+      padding-top: 4px;
     }
     .secondhome-copy h3 {
-      margin: 0 0 12px;
+      margin: 0 0 16px;
       font-size: clamp(28px, 4vw, 44px);
-      line-height: 1.04;
-      letter-spacing: -.03em;
+      line-height: 1.02;
+      letter-spacing: -.04em;
+      max-width: 11ch;
     }
     .secondhome-copy p {
-      margin: 0 0 12px;
+      margin: 0 0 14px;
       color: var(--muted);
       font-size: 15px;
-      line-height: 1.7;
+      line-height: 1.72;
+      max-width: 62ch;
+    }
+    .secondhome-copy p strong {
+      color: var(--ink);
+    }
+    .secondhome-statement {
+      margin: 0 0 18px;
+      padding: 18px 18px 16px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(32,79,63,.06), rgba(32,79,63,.03));
+      border: 1px solid rgba(32,79,63,.10);
+    }
+    .secondhome-statement h3 {
+      margin-bottom: 0;
     }
     .secondhome-points {
       list-style: none;
       padding: 0;
-      margin: 16px 0 0;
+      margin: 18px 0 0;
       display: grid;
       gap: 10px;
     }
     .secondhome-points li {
-      padding: 10px 12px;
-      border-radius: 12px;
-      background: rgba(32,79,63,.05);
-      border: 1px solid rgba(32,79,63,.10);
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 13px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(29,27,24,.08);
+      box-shadow: 0 8px 24px rgba(0,0,0,.03);
       font-size: 14px;
+      line-height: 1.55;
+    }
+    .secondhome-points strong {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: rgba(32,79,63,.08);
+      color: var(--decline);
+      font-size: 12px;
+      letter-spacing: -.01em;
+      white-space: nowrap;
+    }
+    .secondhome-diagram {
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(29,27,24,.08);
+      box-shadow: var(--shadow);
     }
 
     .law-list { display: grid; gap: 18px; margin-top: 30px; }
@@ -978,6 +1019,10 @@
 
       .special-grid { grid-template-columns: 1fr 1fr; }
       .secondhome-feature { grid-template-columns: 1fr; gap: 22px; }
+      .secondhome-statement { padding: 16px 16px 14px; border-radius: 16px; }
+      .secondhome-copy h3 { max-width: none; }
+      .secondhome-points li { grid-template-columns: 1fr; gap: 8px; }
+      .secondhome-diagram { padding: 16px; border-radius: 18px; }
       .map-layout { grid-template-columns: 1fr; }
       .trade-card { margin-top: 20px; }
       .hero-inner { grid-template-columns: 1fr; padding: 60px 0 36px; }
@@ -1067,7 +1112,9 @@
         </div>
         <div class="secondhome-feature">
           <div class="secondhome-copy">
+            <div class="secondhome-statement">
             <h3>기존 1주택자가<br />정책 대상 지역에 집을 하나 더 사더라도,<br />항상 같은 의미의 2주택은 아닙니다.</h3>
+            </div>
             <p>세컨드홈 특례는 기존 1주택자가 인구감소지역 등 정책 대상 지역에서 일정 요건의 주택을 추가로 취득할 때, 양도세·종부세·재산세 해석에서 일반적인 다주택 중과와 다른 흐름으로 보게 해주는 제도입니다.</p>
             <p>즉 이 사이트는 단순히 “어디가 싸다”를 보여주려는 것이 아니라, <strong>왜 어떤 지역의 거래를 정책과 함께 읽어야 하는지</strong>를 설명하려는 사이트입니다.</p>
             <ul class="secondhome-points">
@@ -1076,7 +1123,8 @@
               <li><strong>읽는 방식</strong> 그래서 이 사이트는 가격보다 먼저 특례와 근거 법령을 보여줍니다.</li>
             </ul>
           </div>
-          <div class="tax-example">
+          <div class="secondhome-diagram">
+            <div class="tax-example">
               
                   <h5>세컨드홈 세부담 경감 예시</h5>
                   <div class="tax-timeline">
@@ -1100,6 +1148,7 @@
                   </div>
                   <div class="tax-note">* 기존 주택 30년 보유·거주 및 만 65세 이상인 경우(고령자, 장기보유 최대한도 가정)<br>* 출처: 관계부처 합동 '인구감소지역 부활 3종 프로젝트' (2024.4.15, 정책브리핑)<br>* 이 예시는 2024년 4월 정부 발표 시점 기준이며, 이후 가액 제한 완화(4억→9억/12억) 등 제도 변경으로 현행 세부담은 달라질 수 있습니다. 정확한 계산은 세무 전문가 확인을 권합니다.</div>
                 </div>
+          </div>
         </div>
       </div>
     </section>
