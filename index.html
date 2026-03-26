@@ -224,6 +224,93 @@
       align-items: end;
       margin-bottom: 22px;
     }
+    .map-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+    .map-stage {
+      position: relative;
+      min-height: 720px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(31,95,74,.08), transparent 25%),
+        linear-gradient(180deg, rgba(255,255,255,.82), rgba(246,242,234,.92));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .map-stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(29,27,24,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(29,27,24,.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+    .map-korea {
+      position: relative;
+      width: min(100%, 640px);
+      height: 620px;
+      margin: 20px auto 0;
+      background: linear-gradient(180deg, rgba(32,79,63,.06), rgba(32,79,63,.02));
+      clip-path: polygon(50% 2%, 58% 7%, 62% 15%, 67% 20%, 66% 29%, 71% 39%, 69% 50%, 73% 61%, 70% 74%, 63% 83%, 58% 96%, 47% 98%, 41% 90%, 33% 84%, 27% 73%, 28% 63%, 23% 51%, 26% 39%, 24% 28%, 31% 20%, 35% 10%, 44% 4%);
+      border: 1px solid rgba(29,27,24,.08);
+    }
+    .map-label {
+      position: absolute;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: .02em;
+    }
+    .map-node {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+    }
+    .map-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,.9);
+      box-shadow: 0 8px 18px rgba(0,0,0,.12);
+    }
+    .map-node.decline .map-dot { background: var(--decline); }
+    .map-node.interest .map-dot { background: var(--interest); }
+    .map-chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(29,27,24,.08);
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .map-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .legend-swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+    }
     .trade-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -298,9 +385,11 @@
     }
 
     @media (max-width: 1100px) {
-      .hero-inner, .section-head, .law-row, .trade-grid, .special-grid { grid-template-columns: 1fr; }
+      .hero-inner, .section-head, .law-row, .trade-grid, .special-grid, .map-layout { grid-template-columns: 1fr; }
       .hero-aside { justify-self: start; }
       .law-row { gap: 8px; }
+      .map-stage { min-height: 620px; }
+      .map-korea { height: 520px; }
     }
     @media (max-width: 720px) {
       .container { width: min(var(--max), calc(100vw - 28px)); }
@@ -427,55 +516,63 @@
         <div class="trade-intro">
           <div>
             <div class="section-kicker">Markets</div>
-            <h2 class="section-title">그래서 실제 거래는 어떤가</h2>
+            <h2 class="section-title">정책 대상 지역의 시장은 어떻게 움직였나</h2>
           </div>
-          <p class="section-desc">이런 특례가 있는 지역은 실제로도 거래가 일어납니다. 2025년 1월 실거래가 샘플을 기준으로 먼저 보여줍니다.</p>
+          <p class="section-desc">전국 지도에서 인구감소지역과 인구감소관심지역만 활성화했습니다. 지정된 지역을 눌러 최근 2년 거래 흐름을 읽는 구조로 확장할 예정이며, 지금은 1차 시범 지역을 먼저 보여줍니다.</p>
         </div>
 
-        <div class="trade-grid">
+        <div class="map-layout">
+          <div class="map-stage">
+            <div class="map-legend">
+              <span class="legend-item"><span class="legend-swatch" style="background: var(--decline);"></span> 인구감소지역</span>
+              <span class="legend-item"><span class="legend-swatch" style="background: var(--interest);"></span> 인구감소관심지역</span>
+              <span class="legend-item"><span class="legend-swatch" style="background: rgba(29,27,24,.18);"></span> 일반 지역(비활성)</span>
+            </div>
+            <div class="map-korea">
+              <div class="map-label" style="left: 22%; top: 24%;">수도권</div>
+              <div class="map-label" style="left: 61%; top: 22%;">강원권</div>
+              <div class="map-label" style="left: 53%; top: 48%;">충청·경북권</div>
+              <div class="map-label" style="left: 34%; top: 72%;">호남권</div>
+              <div class="map-label" style="left: 69%; top: 76%;">영남권</div>
+
+              <div class="map-node decline" style="left: 33%; top: 78%;">
+                <span class="map-dot"></span><span class="map-chip">해남군</span>
+              </div>
+              <div class="map-node decline" style="left: 59%; top: 46%;">
+                <span class="map-dot"></span><span class="map-chip">영주시</span>
+              </div>
+              <div class="map-node interest" style="left: 66%; top: 64%;">
+                <span class="map-dot"></span><span class="map-chip">경주시</span>
+              </div>
+              <div class="map-node decline" style="left: 39%; top: 72%; opacity:.8;">
+                <span class="map-dot"></span><span class="map-chip">강진군</span>
+              </div>
+              <div class="map-node decline" style="left: 43%; top: 82%; opacity:.8;">
+                <span class="map-dot"></span><span class="map-chip">완도군</span>
+              </div>
+              <div class="map-node decline" style="left: 60%; top: 51%; opacity:.8;">
+                <span class="map-dot"></span><span class="map-chip">문경시</span>
+              </div>
+              <div class="map-node interest" style="left: 63%; top: 74%; opacity:.8;">
+                <span class="map-dot"></span><span class="map-chip">통영시</span>
+              </div>
+            </div>
+          </div>
+
           <article class="trade-card">
-            <div class="badge decline">인구감소지역</div>
+            <div class="badge decline">선택 지역 · 인구감소지역</div>
             <h3>해남군</h3>
-            <div class="trade-sub">전라남도 · 주거특례와 정주 인센티브가 직접 연결되는 대표 사례</div>
+            <div class="trade-sub">전라남도 · 특례와 실제 거래가 자연스럽게 연결되는 1차 시범 지역</div>
             <div class="trade-stat">
-              <div><strong>10건</strong><span>샘플 거래</span></div>
-              <div><strong>1.2억~4.3억</strong><span>거래가 범위</span></div>
+              <div><strong>최근 2년 59건+</strong><span>확인된 거래 흐름(표본 기준)</span></div>
+              <div><strong>1.2억~4.3억</strong><span>2025년 1월 샘플 거래가 범위</span></div>
             </div>
             <ul class="deal-list">
               <li><div><strong>해남코아루더베스트1단지아파트</strong><small>116.75㎡ · 2019년 · 영빈로</small></div><div class="deal-price">4억 3,000만원</div></li>
               <li><div><strong>해남파크사이드2차아파트</strong><small>75.52㎡ · 2019년 · 구교3길</small></div><div class="deal-price">3억 1,000만원</div></li>
               <li><div><strong>세영스위트</strong><small>84.60㎡ · 2017년 · 남부길</small></div><div class="deal-price">2억 4,500만원</div></li>
             </ul>
-          </article>
-
-          <article class="trade-card">
-            <div class="badge decline">인구감소지역</div>
-            <h3>영주시</h3>
-            <div class="trade-sub">경상북도 · 정착지원과 지역 생활권 중심의 거래가 꾸준히 확인되는 사례</div>
-            <div class="trade-stat">
-              <div><strong>10건</strong><span>샘플 거래</span></div>
-              <div><strong>9,200만~3.1억</strong><span>거래가 범위</span></div>
-            </div>
-            <ul class="deal-list">
-              <li><div><strong>세영리첼</strong><small>84.45㎡ · 2011년 · 대동로</small></div><div class="deal-price">3억 1,000만원</div></li>
-              <li><div><strong>영주가흥사랑으로부영</strong><small>59.93㎡ · 2016년 · 대동로</small></div><div class="deal-price">2억 5,400만원</div></li>
-              <li><div><strong>화성리버빌2</strong><small>59.45㎡ · 2002년 · 대학로142번길</small></div><div class="deal-price">1억 5,800만원</div></li>
-            </ul>
-          </article>
-
-          <article class="trade-card">
-            <div class="badge interest">인구감소관심지역</div>
-            <h3>경주시</h3>
-            <div class="trade-sub">경상북도 · 관심지역으로 확장된 세제특례와 실제 거래 밀도가 함께 보이는 사례</div>
-            <div class="trade-stat">
-              <div><strong>10건</strong><span>샘플 거래</span></div>
-              <div><strong>5,000만~4.09억</strong><span>거래가 범위</span></div>
-            </div>
-            <ul class="deal-list">
-              <li><div><strong>두산위브트레지움</strong><small>84.89㎡ · 2020년 · 유림로</small></div><div class="deal-price">4억 900만원</div></li>
-              <li><div><strong>현진에버빌1차</strong><small>132.41㎡ · 2009년 · 광중길</small></div><div class="deal-price">3억 8,900만원</div></li>
-              <li><div><strong>경주두산위브</strong><small>84.97㎡ · 2017년 · 진현로</small></div><div class="deal-price">3억 1,500만원</div></li>
-            </ul>
+            <div class="trade-sub" style="margin-top:18px; margin-bottom:0;">적용 특례 예시 · 노후주택 개보수 지원 · 공공임대 우선 공급 · 양도세·종부세 특례</div>
           </article>
         </div>
       </div>
