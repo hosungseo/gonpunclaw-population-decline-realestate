@@ -693,6 +693,7 @@
     </div>
   </footer>
 
+  <div class="map-tooltip" id="map-tooltip"></div>
 <script>
 const REGION_DATA = {
   haenam: {
@@ -771,6 +772,41 @@ function buildCaution(summary){
 }
 function showTooltip(text, x, y){ tooltip.textContent = text; tooltip.style.left = x + 'px'; tooltip.style.top = y + 'px'; tooltip.classList.add('show'); }
 function hideTooltip(){ tooltip.classList.remove('show'); }
+
+function renderBars(container, values, kind){
+  const nums = values.map(v => v ?? 0);
+  const max = Math.max(...nums, 1);
+  container.innerHTML = nums.map(v => {
+    const h = Math.max(3, Math.round(((v ?? 0) / max) * 84));
+    return `<div class="mini-bar ${kind === 'interest' ? 'interest' : ''}" style="height:${h}px"></div>`;
+  }).join('');
+}
+function renderPanel(data, key){
+  badge.className = 'badge ' + data.badgeClass;
+  badge.textContent = data.badge;
+  title.textContent = data.title;
+  sub.textContent = data.sub;
+  stat1.textContent = data.stat1;
+  stat2.textContent = data.stat2;
+  deals.innerHTML = data.deals.map(item => `<li><div><strong>${item[0]}</strong><small>${item[1]}</small></div><div class="deal-price">${item[2]}</div></li>`).join('');
+  policy.textContent = data.policy;
+  const summary = marketSummary.find(s => s.key === key);
+  insight.textContent = buildInsight({ regionType: data.badgeClass }, summary);
+  caution.textContent = buildCaution(summary);
+  const series = monthlySeries[key]?.series || [];
+  if (series.length) {
+    renderBars(countChart, series.map(s => s.count), data.badgeClass);
+    renderBars(medianChart, series.map(s => s.median), data.badgeClass);
+    const nonzeroMonths = series.filter(s => s.count > 0).length;
+    countCaption.textContent = `${series[0].month} ~ ${series[series.length - 1].month} 월별 거래 건수 · 거래월 ${nonzeroMonths}개월`;
+    medianCaption.textContent = `${series[0].month} ~ ${series[series.length - 1].month} 월별 중위 실거래가(만원)`;
+  } else {
+    countChart.innerHTML = '';
+    medianChart.innerHTML = '';
+    countCaption.textContent = '그래프 데이터 연결 예정';
+    medianCaption.textContent = '그래프 데이터 연결 예정';
+  }
+}
 
 function formatPrice(v){
   if (v == null) return '-';
@@ -880,6 +916,5 @@ Promise.all([
   }
 });
 </script>
-  <div class="map-tooltip" id="map-tooltip"></div>
 </body>
 </html>
