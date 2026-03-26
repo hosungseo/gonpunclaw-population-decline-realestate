@@ -200,7 +200,39 @@
       padding-top: 18px;
       border-top: 2px solid var(--ink);
     }
-    .special-item h3 { margin: 0 0 12px; font-size: 20px; }
+    .special-item h3 { margin: 0 0 6px; font-size: 20px; }
+    .special-item .card-summary {
+      margin: 0 0 12px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(181,122,42,.08);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .special-item .card-detail {
+      margin-top: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+    .special-item .card-detail summary {
+      list-style: none;
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+    .special-item .card-detail summary::-webkit-details-marker { display: none; }
+    .special-item .card-detail summary::after { content: "＋"; font-weight: 700; }
+    .special-item .card-detail[open] summary::after { content: "－"; }
+    .special-item .card-detail .detail-inner {
+      margin-top: 14px;
+      display: grid;
+      gap: 16px;
+    }
     .special-item p { margin: 0 0 10px; color: var(--muted); }
     .special-item p strong { color: var(--ink); }
     .special-item a { display: inline-block; margin-top: 12px; color: var(--accent); font-weight: 650; }
@@ -277,15 +309,7 @@
       min-width: 72px;
       color: var(--ink);
     }
-    .special-summary {
-      margin-top: 12px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      background: rgba(181,122,42,.08);
-      color: var(--ink);
-      font-size: 14px;
-      line-height: 1.5;
-    }
+    
 
     .law-list { display: grid; gap: 18px; margin-top: 30px; }
     .law-row {
@@ -717,125 +741,126 @@
         <div class="special-grid">
           <div class="special-item">
             <h3>세금이 얼마나 줄어드나</h3>
-            <p><strong>핵심 축</strong> 조세특례제한법 · 지방세특례제한법</p>
+            <div class="card-summary">지방 주택 매입의 세금 부담을 낮춰 생활인구와 거래를 되살리려는 장치입니다.</div>
             <p><strong>핵심 효과</strong> 인구감소지역 주택 취득 시 양도세·종부세 특례가 적용되고, 비수도권 인구감소관심지역까지 세컨드홈 특례가 확대됩니다.</p>
             <p><strong>누구에게 유리한가</strong> 1주택자 추가 취득, 세컨드홈 검토자, 지방 주택 매입 부담을 줄이고 싶은 사람</p>
-            <div class="special-explain">
-              <div><strong>왜 생겼나</strong> 지방 주택 수요와 생활인구를 늘리고, 수도권과 지역의 주택시장 격차를 완화하려는 목적이 큽니다.</div>
-              <div><strong>적용 조건</strong> 인구감소지역 주택 취득 특례와 비수도권 인구감소관심지역 세컨드홈 특례는 적용 범위와 시점, 주택가액, 1주택 여부를 함께 확인해야 합니다.</div>
-              <div><strong>주의점</strong> 세제특례는 제도 취지와 별도로 세부 요건이 중요하므로 실제 취득 전 최신 법령과 시행시점을 꼭 다시 확인해야 합니다.</div>
-            </div>
-            <div class="special-summary"><strong>한 문장 요약</strong> 지방 주택 매입의 세금 부담을 낮춰 생활인구와 거래를 되살리려는 장치입니다.</div>
-            <details class="law-toggle">
-              <summary>법률상 근거 보기</summary>
-              <div class="law-panel">
-                <ul>
-                  <li><strong>조세특례제한법</strong><span>인구감소지역 주택 취득 관련 국세 특례와 비수도권 인구감소관심지역까지 확장된 세컨드홈 세제지원의 근거 축입니다.</span></li>
-                  <li><strong>지방세특례제한법</strong><span>취득세·재산세 등 지방세 측면의 감면 흐름과 인구감소지역 지원 확대의 근거 축입니다.</span></li>
-                </ul>
+            <details class="card-detail">
+              <summary>더 알아보기</summary>
+              <div class="detail-inner">
+                <div class="special-explain">
+                  <div><strong>왜 생겼나</strong> 지방 주택 수요와 생활인구를 늘리고, 수도권과 지역의 주택시장 격차를 완화하려는 목적이 큽니다.</div>
+                  <div><strong>적용 조건</strong> 인구감소지역 주택 취득 특례와 비수도권 인구감소관심지역 세컨드홈 특례는 적용 범위와 시점, 주택가액, 1주택 여부를 함께 확인해야 합니다.</div>
+                  <div><strong>주의점</strong> 세제특례는 제도 취지와 별도로 세부 요건이 중요하므로 실제 취득 전 최신 법령과 시행시점을 꼭 다시 확인해야 합니다.</div>
+                </div>
+                <div class="law-panel">
+                  <ul>
+                    <li><strong>조세특례제한법</strong><span>인구감소지역 주택 취득 관련 국세 특례와 비수도권 인구감소관심지역까지 확장된 세컨드홈 세제지원의 근거 축입니다.</span></li>
+                    <li><strong>지방세특례제한법</strong><span>취득세·재산세 등 지방세 측면의 감면 흐름과 인구감소지역 지원 확대의 근거 축입니다.</span></li>
+                  </ul>
+                </div>
+                <div class="related-news">
+                  <strong>관련 정책뉴스</strong>
+                  <ul>
+                    <li><a href="https://www.korea.kr/news/policyNewsView.do?newsId=148947601" target="_blank" rel="noreferrer">세컨드 홈·지방 미분양주택에 세제 혜택…"지방 건설경기 활력"</a><small>세컨드홈 세제지원이 왜 확장되는지 이해할 수 있는 기사</small></li>
+                    <li><a href="https://www.korea.kr/news/policyNewsView.do?newsId=148948341" target="_blank" rel="noreferrer">인구감소지역에 더 높은 세제 감면율 적용…"지역 균형발전 촉진"</a><small>세제특례가 지역 균형발전 장치라는 정부 설명</small></li>
+                  </ul>
+                </div>
               </div>
             </details>
-            <details class="law-toggle">
-              <summary>법률상 근거 보기</summary>
-              <div class="law-panel">
-                <ul>
-                  <li><strong>인구감소지역 지원 특별법 제24조</strong><span>공공임대주택 우선 공급, 노후주택 개보수·철거 지원, 공유지 우선 매각·대부 등 정주 지원 장치를 두는 핵심 조항입니다.</span></li>
-                  <li><strong>인구감소지역 지원 특별법 제15조·제17조</strong><span>생활인구 확대, 정착 지원과 함께 읽으면 '왜 주거지원이 필요한지' 정책 흐름이 더 잘 보입니다.</span></li>
-                </ul>
-              </div>
-            </details>
-            <details class="law-toggle">
-              <summary>법률상 근거 보기</summary>
-              <div class="law-panel">
-                <ul>
-                  <li><strong>인구감소지역 지원 특별법 제24조의2</strong><span>지방소멸대응기금과 연계한 기반시설 설치 시 건폐율·용적률을 120% 범위에서 완화할 수 있게 한 도시계획 특례 조항입니다.</span></li>
-                  <li><strong>국토의 계획 및 이용에 관한 법률 특례 연계</strong><span>단순 재정지원이 아니라 실제 공간계획·정주환경 개선으로 이어질 수 있게 만드는 연결 고리입니다.</span></li>
-                </ul>
-              </div>
-            </details>
-            <details class="law-toggle">
-              <summary>법률상 근거 보기</summary>
-              <div class="law-panel">
-                <ul>
-                  <li><strong>인구감소지역 지원 특별법 제34조</strong><span>인구감소관심지역 지정과 대응기본계획·시행계획 수립 근거를 두는 조항입니다.</span></li>
-                  <li><strong>조세특례제한법 최근 개정 흐름</strong><span>비수도권 인구감소관심지역까지 세컨드홈 세제특례 범위를 넓힌 정책 변화와 함께 읽어야 합니다.</span></li>
-                </ul>
-              </div>
-            </details>
-            <div class="related-news">
-              <strong>이 특례를 이해하게 해주는 정책뉴스</strong>
-              <ul>
-                <li><a href="https://www.korea.kr/news/policyNewsView.do?newsId=148947601" target="_blank" rel="noreferrer">세컨드 홈·지방 미분양주택에 세제 혜택…"지방 건설경기 활력"</a><small>인구감소지역에서 비수도권 관심지역까지 세컨드홈 세제지원이 왜 확장되는지 이해할 수 있는 기사</small></li>
-                <li><a href="https://www.korea.kr/news/policyNewsView.do?newsId=148948341" target="_blank" rel="noreferrer">인구감소지역에 더 높은 세제 감면율 적용…"지역 균형발전 촉진"</a><small>세제특례가 단순 감면이 아니라 지역 균형발전 장치라는 정부 설명</small></li>
-                <li><a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156713653" target="_blank" rel="noreferrer">「지방중심 건설투자 보강방안」 발표</a><small>인구감소지역 세컨드홈 특례 확대가 어떤 정책 묶음 안에서 나왔는지 보여주는 보도자료</small></li>
-              </ul>
-            </div>
             <a href="#laws">조세특례 근거 보기</a>
           </div>
           <div class="special-item">
             <h3>집을 고치거나 정착할 수 있나</h3>
-            <p><strong>핵심 축</strong> 인구감소지역 지원 특별법 제24조</p>
+            <div class="card-summary">살러 오는 사람의 실제 정착 장벽을 낮추기 위해 주거와 생활 기반을 지원하는 장치입니다.</div>
             <p><strong>핵심 효과</strong> 공공임대주택 우선 공급, 노후주택 신축·개보수·철거 비용 일부 지원, 수도권 이전자 대상 공유지 우선 매각·대부가 가능합니다.</p>
             <p><strong>누구에게 유리한가</strong> 실제 이주를 고민하는 사람, 오래된 집을 손봐서 살고 싶은 사람, 귀촌·정착 수요자</p>
-            <div class="special-explain">
-              <div><strong>왜 생겼나</strong> 인구감소지역은 단순히 집값이 싼 것이 아니라, 실제로 살 수 있는 주거 여건이 부족한 경우가 많기 때문입니다.</div>
-              <div><strong>적용 조건</strong> 공공임대 우선 공급, 노후주택 지원, 공유지 우선 매각·대부 등은 지자체 시행계획과 개별 사업 공고 단계에서 구체화됩니다.</div>
-              <div><strong>주의점</strong> 법에 조항이 있어도 모든 지역에서 즉시 같은 방식으로 실행되는 것은 아니므로 해당 지자체 사업 여부를 함께 봐야 합니다.</div>
-            </div>
-            <div class="special-summary"><strong>한 문장 요약</strong> 살러 오는 사람의 실제 정착 장벽을 낮추기 위해 주거와 생활 기반을 지원하는 장치입니다.</div>
-            <div class="related-news">
-              <strong>이 특례를 이해하게 해주는 정책뉴스</strong>
-              <ul>
-                <li><a href="https://www.korea.kr/news/policyNewsView.do?newsId=148960588" target="_blank" rel="noreferrer">인구감소지역에 사람들이 왔다…상점 문 열고, 푸드코트 손님 맞이</a><small>정주여건 개선과 생활서비스 회복이 왜 핵심인지 현장감 있게 보여주는 기사</small></li>
-                <li><a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156729998" target="_blank" rel="noreferrer">제2의 거주지에서 지역 맞춤형 지원받으세요! '생활인구 등록제' 도입</a><small>정주인구뿐 아니라 생활인구까지 늘리려는 정책 흐름을 이해하는 데 유용한 자료</small></li>
-                <li><a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156730046" target="_blank" rel="noreferrer">소멸에서 희망으로, 인구감소지역의 내일을 함께 설계하다!</a><small>인구감소지역 지원을 단순 재정지원이 아니라 정착·유입 전략으로 보는 정부 시각</small></li>
-              </ul>
-            </div>
+            <details class="card-detail">
+              <summary>더 알아보기</summary>
+              <div class="detail-inner">
+                <div class="special-explain">
+                  <div><strong>왜 생겼나</strong> 인구감소지역은 단순히 집값이 싼 것이 아니라, 실제로 살 수 있는 주거 여건이 부족한 경우가 많기 때문입니다.</div>
+                  <div><strong>적용 조건</strong> 공공임대 우선 공급, 노후주택 지원, 공유지 우선 매각·대부 등은 지자체 시행계획과 개별 사업 공고 단계에서 구체화됩니다.</div>
+                  <div><strong>주의점</strong> 법에 조항이 있어도 모든 지역에서 즉시 같은 방식으로 실행되는 것은 아니므로 해당 지자체 사업 여부를 함께 봐야 합니다.</div>
+                </div>
+                <div class="law-panel">
+                  <ul>
+                    <li><strong>인구감소지역 지원 특별법 제24조</strong><span>공공임대 우선 공급, 노후주택 개보수·철거 지원, 공유지 우선 매각·대부 등 정주 지원의 핵심 조항입니다.</span></li>
+                    <li><strong>인구감소지역 지원 특별법 제15조·제17조</strong><span>생활인구 확대, 정착 지원과 함께 읽으면 정주지원의 정책 흐름이 더 잘 보입니다.</span></li>
+                  </ul>
+                </div>
+                <div class="related-news">
+                  <strong>관련 정책뉴스</strong>
+                  <ul>
+                    <li><a href="https://www.korea.kr/news/policyNewsView.do?newsId=148960588" target="_blank" rel="noreferrer">인구감소지역에 사람들이 왔다…상점 문 열고, 푸드코트 손님 맞이</a><small>정주여건 개선이 왜 핵심인지 현장감 있게 보여주는 기사</small></li>
+                    <li><a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156729998" target="_blank" rel="noreferrer">생활인구 등록제 도입</a><small>정주인구뿐 아니라 생활인구까지 늘리려는 정책 흐름을 이해하는 자료</small></li>
+                  </ul>
+                </div>
+              </div>
+            </details>
             <a href="#laws">주거특례 근거 보기</a>
           </div>
           <div class="special-item">
             <h3>지역이 더 개발될 여지가 있나</h3>
-            <p><strong>핵심 축</strong> 인구감소지역 지원 특별법 제24조의2</p>
+            <div class="card-summary">정주환경 개선 사업을 실제로 밀어붙일 수 있게 해주는 제도적 레버입니다.</div>
             <p><strong>핵심 효과</strong> 지방소멸대응기금을 활용한 기반시설 설치 시 건폐율·용적률을 120% 범위에서 완화할 수 있어 정주환경 개선 여지가 생깁니다.</p>
             <p><strong>누구에게 유리한가</strong> 단순 현재 시세보다 향후 정비·개발 가능성을 함께 보는 사람</p>
-            <div class="special-explain">
-              <div><strong>왜 생겼나</strong> 인구감소지역은 기반시설·정주환경 개선 사업을 추진할 제도적 여지가 부족하면 투자도 생활도 따라붙기 어렵기 때문입니다.</div>
-              <div><strong>적용 조건</strong> 지방소멸대응기금과 연계된 기반시설 설치 사업, 계획 수립, 용적률·건폐율 완화 가능 여부를 함께 봐야 합니다.</div>
-              <div><strong>주의점</strong> 도시계획 특례는 자동으로 개발이 된다는 뜻이 아니라, 사업을 추진할 수 있는 제도적 레버가 생긴다는 의미에 가깝습니다.</div>
-            </div>
-            <div class="special-summary"><strong>한 문장 요약</strong> 정주환경 개선 사업을 실제로 밀어붙일 수 있게 해주는 제도적 레버입니다.</div>
-            <div class="related-news">
-              <strong>이 특례를 이해하게 해주는 정책뉴스</strong>
-              <ul>
-                <li><a href="https://www.korea.kr/news/policyNewsView.do?newsId=148955792" target="_blank" rel="noreferrer">내년 지방소멸대응기금, 인구유입 효과 있는 사업에 투입</a><small>기반시설만 짓는 것이 아니라 실제 인구유입 효과가 있는 사업에 기금을 쓰겠다는 방향</small></li>
-                <li><a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156732898" target="_blank" rel="noreferrer">2026년 지방소멸대응기금 1조, 시설이 아닌 '사람 중심'으로 쓰입니다</a><small>도시계획 특례와 기금 운용이 사람 중심 정주환경 개선과 연결된다는 설명</small></li>
-                <li><a href="https://www.korea.kr/news/policyNewsView.do?newsId=148954351" target="_blank" rel="noreferrer">지역의 시간을 되돌리는 열쇠, 인구감소지역 특례</a><small>정주여건 개선, 생활인구 확대, 제도 특례가 함께 작동하는 구조를 설명하는 기사</small></li>
-              </ul>
-            </div>
+            <details class="card-detail">
+              <summary>더 알아보기</summary>
+              <div class="detail-inner">
+                <div class="special-explain">
+                  <div><strong>왜 생겼나</strong> 인구감소지역은 기반시설·정주환경 개선 사업을 추진할 제도적 여지가 부족하면 투자도 생활도 따라붙기 어렵기 때문입니다.</div>
+                  <div><strong>적용 조건</strong> 지방소멸대응기금과 연계된 기반시설 설치 사업, 계획 수립, 용적률·건폐율 완화 가능 여부를 함께 봐야 합니다.</div>
+                  <div><strong>주의점</strong> 도시계획 특례는 자동으로 개발이 된다는 뜻이 아니라, 사업을 추진할 수 있는 제도적 레버가 생긴다는 의미에 가깝습니다.</div>
+                </div>
+                <div class="law-panel">
+                  <ul>
+                    <li><strong>인구감소지역 지원 특별법 제24조의2</strong><span>지방소멸대응기금과 연계한 기반시설 설치 시 건폐율·용적률을 120% 범위에서 완화할 수 있게 한 도시계획 특례 조항입니다.</span></li>
+                    <li><strong>국토의 계획 및 이용에 관한 법률 특례 연계</strong><span>단순 재정지원이 아니라 실제 공간계획·정주환경 개선으로 이어질 수 있게 만드는 연결 고리입니다.</span></li>
+                  </ul>
+                </div>
+                <div class="related-news">
+                  <strong>관련 정책뉴스</strong>
+                  <ul>
+                    <li><a href="https://www.korea.kr/news/policyNewsView.do?newsId=148955792" target="_blank" rel="noreferrer">내년 지방소멸대응기금, 인구유입 효과 있는 사업에 투입</a><small>기금이 시설이 아니라 인구유입 효과에 쓰인다는 방향</small></li>
+                    <li><a href="https://www.korea.kr/news/policyNewsView.do?newsId=148954351" target="_blank" rel="noreferrer">지역의 시간을 되돌리는 열쇠, 인구감소지역 특례</a><small>정주여건·생활인구·제도 특례가 함께 작동하는 구조 설명</small></li>
+                  </ul>
+                </div>
+              </div>
+            </details>
             <a href="#laws">도시계획 특례 보기</a>
           </div>
           <div class="special-item">
             <h3>관심지역도 의미가 있나</h3>
-            <p><strong>핵심 축</strong> 인구감소지역 지원 특별법 제34조 · 조세특례제한법 최근 개정</p>
+            <div class="card-summary">인구감소지역으로 넘어가기 전에 먼저 대응하게 하는 선제적 안전장치입니다.</div>
             <p><strong>핵심 효과</strong> 관심지역도 대응기본계획·시행계획을 세울 수 있고, 비수도권 관심지역은 세컨드홈 세제특례 범위에 포함됩니다.</p>
             <p><strong>누구에게 유리한가</strong> 인구감소지역만이 아니라 확장 대상 지역까지 비교하며 보는 사람</p>
-            <div class="special-explain">
-              <div><strong>왜 생겼나</strong> 위기가 깊어진 뒤에만 대응하면 늦기 때문에, 인구감소관심지역 단계부터 선제적으로 관리하겠다는 취지입니다.</div>
-              <div><strong>적용 조건</strong> 관심지역은 지정 고시, 대응기본계획·시행계획, 비수도권 여부와 세제특례 범위 등을 함께 봐야 의미가 분명해집니다.</div>
-              <div><strong>주의점</strong> 관심지역은 인구감소지역과 동일한 제도는 아니므로, 모든 특례가 똑같이 적용된다고 보면 안 됩니다.</div>
-            </div>
-            <div class="special-summary"><strong>한 문장 요약</strong> 인구감소지역으로 넘어가기 전에 먼저 대응하게 하는 선제적 안전장치입니다.</div>
-            <div class="related-news">
-              <strong>이 특례를 이해하게 해주는 정책뉴스</strong>
-              <ul>
-                <li><a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156737445" target="_blank" rel="noreferrer">인구감소관심지역 18곳 지정, 인구 위기 '관심단계'부터 체계적으로 지원한다</a><small>관심지역 제도가 왜 새로 생겼는지, 어떤 단계부터 대응하려는지 이해하는 핵심 자료</small></li>
-                <li><a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156734084" target="_blank" rel="noreferrer">한눈에 보는 생활인구, 시각화 데이터로 지역인구정책 해답 찾는다</a><small>경주·익산·통영 등 관심지역 데이터를 따로 공개하는 이유를 보여주는 자료</small></li>
-                <li><a href="https://www.korea.kr/news/policyNewsView.do?newsId=148947601" target="_blank" rel="noreferrer">세컨드 홈·지방 미분양주택에 세제 혜택…"지방 건설경기 활력"</a><small>관심지역까지 세제특례 범위가 넓어진 정책 맥락을 같이 읽을 수 있는 기사</small></li>
-              </ul>
-            </div>
+            <details class="card-detail">
+              <summary>더 알아보기</summary>
+              <div class="detail-inner">
+                <div class="special-explain">
+                  <div><strong>왜 생겼나</strong> 위기가 깊어진 뒤에만 대응하면 늦기 때문에, 인구감소관심지역 단계부터 선제적으로 관리하겠다는 취지입니다.</div>
+                  <div><strong>적용 조건</strong> 관심지역은 지정 고시, 대응기본계획·시행계획, 비수도권 여부와 세제특례 범위 등을 함께 봐야 의미가 분명해집니다.</div>
+                  <div><strong>주의점</strong> 관심지역은 인구감소지역과 동일한 제도는 아니므로, 모든 특례가 똑같이 적용된다고 보면 안 됩니다.</div>
+                </div>
+                <div class="law-panel">
+                  <ul>
+                    <li><strong>인구감소지역 지원 특별법 제34조</strong><span>인구감소관심지역 지정과 대응기본계획·시행계획 수립 근거를 두는 조항입니다.</span></li>
+                    <li><strong>조세특례제한법 최근 개정 흐름</strong><span>비수도권 인구감소관심지역까지 세컨드홈 세제특례 범위를 넓힌 정책 변화와 함께 읽어야 합니다.</span></li>
+                  </ul>
+                </div>
+                <div class="related-news">
+                  <strong>관련 정책뉴스</strong>
+                  <ul>
+                    <li><a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156737445" target="_blank" rel="noreferrer">인구감소관심지역 18곳 지정</a><small>관심지역 제도가 왜 새로 생겼는지 이해하는 핵심 자료</small></li>
+                    <li><a href="https://www.korea.kr/briefing/pressReleaseView.do?newsId=156734084" target="_blank" rel="noreferrer">한눈에 보는 생활인구, 시각화 데이터로 해답 찾는다</a><small>관심지역 데이터를 따로 공개하는 이유를 보여주는 자료</small></li>
+                  </ul>
+                </div>
+              </div>
+            </details>
             <a href="#laws">관심지역 근거 보기</a>
           </div>
         </div>
+      </div>
       </div>
     </section>
 
