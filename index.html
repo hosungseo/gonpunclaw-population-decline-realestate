@@ -314,6 +314,29 @@
       height: 10px;
       border-radius: 999px;
     }
+
+    .map-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      position: relative;
+      z-index: 2;
+    }
+    .map-select {
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.9);
+      color: var(--ink);
+      font: inherit;
+    }
+    .map-overlay {
+      position: absolute;
+      inset: 0;
+    }
+    .map-node.dim { opacity: .52; }
     .trade-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -531,30 +554,14 @@
               <span class="legend-item"><span class="legend-swatch" style="background: var(--interest);"></span> 인구감소관심지역</span>
               <span class="legend-item"><span class="legend-swatch" style="background: rgba(29,27,24,.18);"></span> 일반 지역(비활성)</span>
             </div>
+            <div class="map-controls">
+              <select id="region-select" class="map-select">
+                <option value="">지역 선택</option>
+              </select>
+            </div>
             <div class="map-korea">
               <img src="./assets/korea-provinces.svg" alt="대한민국 지도" />
-
-              <button class="map-node decline" data-region="haenam" style="left: 33%; top: 78%;">
-                <span class="map-dot"></span><span class="map-chip">해남군</span>
-              </button>
-              <button class="map-node decline" data-region="yeongju" style="left: 59%; top: 46%;">
-                <span class="map-dot"></span><span class="map-chip">영주시</span>
-              </button>
-              <button class="map-node interest" data-region="gyeongju" style="left: 66%; top: 64%;">
-                <span class="map-dot"></span><span class="map-chip">경주시</span>
-              </button>
-              <div class="map-node decline" style="left: 39%; top: 72%; opacity:.8;">
-                <span class="map-dot"></span><span class="map-chip">강진군</span>
-              </div>
-              <div class="map-node decline" style="left: 43%; top: 82%; opacity:.8;">
-                <span class="map-dot"></span><span class="map-chip">완도군</span>
-              </div>
-              <div class="map-node decline" style="left: 60%; top: 51%; opacity:.8;">
-                <span class="map-dot"></span><span class="map-chip">문경시</span>
-              </div>
-              <div class="map-node interest" style="left: 63%; top: 74%; opacity:.8;">
-                <span class="map-dot"></span><span class="map-chip">통영시</span>
-              </div>
+              <div class="map-overlay" id="map-overlay"></div>
             </div>
           </div>
 
@@ -599,12 +606,9 @@
 <script>
 const REGION_DATA = {
   haenam: {
-    badgeClass: "decline",
-    badge: "선택 지역 · 인구감소지역",
-    title: "해남군",
+    badgeClass: "decline", badge: "선택 지역 · 인구감소지역", title: "해남군",
     sub: "전라남도 · 특례와 실제 거래가 자연스럽게 연결되는 1차 시범 지역",
-    stat1: "최근 2년 59건+",
-    stat2: "1.2억~4.3억",
+    stat1: "최근 2년 59건+", stat2: "1.2억~4.3억",
     deals: [
       ["해남코아루더베스트1단지아파트", "116.75㎡ · 2019년 · 영빈로", "4억 3,000만원"],
       ["해남파크사이드2차아파트", "75.52㎡ · 2019년 · 구교3길", "3억 1,000만원"],
@@ -613,12 +617,9 @@ const REGION_DATA = {
     policy: "적용 특례 예시 · 노후주택 개보수 지원 · 공공임대 우선 공급 · 양도세·종부세 특례"
   },
   yeongju: {
-    badgeClass: "decline",
-    badge: "선택 지역 · 인구감소지역",
-    title: "영주시",
+    badgeClass: "decline", badge: "선택 지역 · 인구감소지역", title: "영주시",
     sub: "경상북도 · 정착지원과 지역 생활권 중심의 거래가 꾸준히 확인되는 사례",
-    stat1: "최근 2년 139건+",
-    stat2: "9,200만~3.1억",
+    stat1: "최근 2년 139건+", stat2: "9,200만~3.1억",
     deals: [
       ["세영리첼", "84.45㎡ · 2011년 · 대동로", "3억 1,000만원"],
       ["영주가흥사랑으로부영", "59.93㎡ · 2016년 · 대동로", "2억 5,400만원"],
@@ -627,12 +628,9 @@ const REGION_DATA = {
     policy: "적용 특례 예시 · 청년·중장년 정착 지원 · 생활인구 확대 시책 · 양도세·종부세 특례"
   },
   gyeongju: {
-    badgeClass: "interest",
-    badge: "선택 지역 · 인구감소관심지역",
-    title: "경주시",
+    badgeClass: "interest", badge: "선택 지역 · 인구감소관심지역", title: "경주시",
     sub: "경상북도 · 관심지역으로 확장된 세제특례와 실제 거래 밀도가 함께 보이는 사례",
-    stat1: "최근 2년 516건+",
-    stat2: "5,000만~4.09억",
+    stat1: "최근 2년 516건+", stat2: "5,000만~4.09억",
     deals: [
       ["두산위브트레지움", "84.89㎡ · 2020년 · 유림로", "4억 900만원"],
       ["현진에버빌1차", "132.41㎡ · 2009년 · 광중길", "3억 8,900만원"],
@@ -641,7 +639,8 @@ const REGION_DATA = {
     policy: "적용 특례 예시 · 세컨드홈 세제특례 확대 · 관심지역 대응계획 수립 · 지방세 지원 확대 흐름"
   }
 };
-const nodes = document.querySelectorAll('.map-node[data-region]');
+const overlay = document.getElementById('map-overlay');
+const select = document.getElementById('region-select');
 const badge = document.getElementById('panel-badge');
 const title = document.getElementById('panel-title');
 const sub = document.getElementById('panel-sub');
@@ -649,22 +648,71 @@ const stat1 = document.getElementById('panel-stat-1');
 const stat2 = document.getElementById('panel-stat-2');
 const deals = document.getElementById('panel-deals');
 const policy = document.getElementById('panel-policy');
-function renderRegion(key){
-  const d = REGION_DATA[key]; if(!d) return;
-  badge.className = 'badge ' + d.badgeClass;
-  badge.textContent = d.badge;
-  title.textContent = d.title;
-  sub.textContent = d.sub;
-  stat1.textContent = d.stat1;
-  stat2.textContent = d.stat2;
-  deals.innerHTML = d.deals.map(item => `<li><div><strong>${item[0]}</strong><small>${item[1]}</small></div><div class="deal-price">${item[2]}</div></li>`).join('');
-  policy.textContent = d.policy;
-  nodes.forEach(n => n.style.filter = '');
-  nodes.forEach(n => n.style.zIndex = '1');
-  const active = document.querySelector(`.map-node[data-region="${key}"]`);
-  if(active){ active.style.filter = 'brightness(1.08)'; active.style.zIndex = '3'; }
+let allNodes = [];
+function slugify(name){ return ({'해남군':'haenam','영주시':'yeongju','경주시':'gyeongju'})[name] || name; }
+function genericData(point){
+  const kind = point.regionType === 'interest' ? '인구감소관심지역' : '인구감소지역';
+  return {
+    badgeClass: point.regionType,
+    badge: `선택 지역 · ${kind}`,
+    title: point.name,
+    sub: `${point.province} · 정책 대상 지역으로 지정된 기초지방자치단체`,
+    stat1: '최근 2년 데이터 연결 예정',
+    stat2: `LAWD_CD ${point.lawdCd}`,
+    deals: [
+      ['거래 데이터 준비 중', '전체 107개 지역 구조를 먼저 확장했습니다', '상세 연동 예정'],
+      ['정책 유형', `${kind} · 지도에서 클릭 가능`, '패널 구조 준비 완료'],
+      ['다음 단계', '최근 24개월 거래 요약 자동 수집', '순차 확장']
+    ],
+    policy: point.regionType === 'interest' ? '적용 특례 예시 · 관심지역 대응계획 수립 · 세컨드홈 세제특례 확대 범위 · 정책적 관리 대상' : '적용 특례 예시 · 주거특례 · 도시계획 특례 · 양도세·종부세 특례'
+  };
 }
-nodes.forEach(node => node.addEventListener('click', () => renderRegion(node.dataset.region)));
+function renderPanel(data){
+  badge.className = 'badge ' + data.badgeClass;
+  badge.textContent = data.badge;
+  title.textContent = data.title;
+  sub.textContent = data.sub;
+  stat1.textContent = data.stat1;
+  stat2.textContent = data.stat2;
+  deals.innerHTML = data.deals.map(item => `<li><div><strong>${item[0]}</strong><small>${item[1]}</small></div><div class="deal-price">${item[2]}</div></li>`).join('');
+  policy.textContent = data.policy;
+}
+fetch('./data/map-points.json').then(r=>r.json()).then(points => {
+  points.forEach(point => {
+    const btn = document.createElement('button');
+    btn.className = `map-node ${point.regionType} dim`;
+    btn.dataset.region = slugify(point.name);
+    btn.style.left = point.x + '%';
+    btn.style.top = point.y + '%';
+    btn.innerHTML = `<span class="map-dot"></span>`;
+    btn.title = `${point.province} ${point.name}`;
+    btn.addEventListener('click', () => {
+      allNodes.forEach(n => n.classList.add('dim'));
+      btn.classList.remove('dim');
+      const specific = REGION_DATA[slugify(point.name)];
+      renderPanel(specific || genericData(point));
+      select.value = point.key;
+    });
+    overlay.appendChild(btn);
+    allNodes.push(btn);
+    const opt = document.createElement('option');
+    opt.value = point.key;
+    opt.textContent = `${point.province} ${point.name}`;
+    select.appendChild(opt);
+  });
+  select.addEventListener('change', () => {
+    const point = points.find(p => p.key === select.value);
+    if(point){
+      const node = allNodes.find(n => n.title === `${point.province} ${point.name}`);
+      if(node) node.click();
+    }
+  });
+  const initial = points.find(p => p.name === '해남군');
+  if(initial){
+    const node = allNodes.find(n => n.title === `${initial.province} ${initial.name}`);
+    if(node) node.click();
+  }
+});
 </script>
 </body>
 </html>
