@@ -44,6 +44,10 @@
 - 시범 지역 선정 기준
 - 데이터 필드 설계
 
+## 배포
+
+- GitHub Pages: https://hosungseo.github.io/gonpunclaw-population-decline-realestate/
+
 ## 상태
 
-기획 시작 단계.
+정적 MVP 배포 시작 단계.
