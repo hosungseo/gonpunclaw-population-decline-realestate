@@ -1,0 +1,383 @@
+{
+  "haenam": {
+    "province": "전라남도",
+    "name": "해남군",
+    "lawdCd": "46820",
+    "series": [
+      {
+        "month": "202401",
+        "count": 26,
+        "median": 10550.0
+      },
+      {
+        "month": "202402",
+        "count": 21,
+        "median": 17000
+      },
+      {
+        "month": "202403",
+        "count": 31,
+        "median": 13500
+      },
+      {
+        "month": "202404",
+        "count": 26,
+        "median": 14350.0
+      },
+      {
+        "month": "202405",
+        "count": 25,
+        "median": 18000
+      },
+      {
+        "month": "202406",
+        "count": 20,
+        "median": 19400.0
+      },
+      {
+        "month": "202407",
+        "count": 26,
+        "median": 12589.5
+      },
+      {
+        "month": "202408",
+        "count": 20,
+        "median": 15100.0
+      },
+      {
+        "month": "202409",
+        "count": 16,
+        "median": 14150.0
+      },
+      {
+        "month": "202410",
+        "count": 24,
+        "median": 11350.0
+      },
+      {
+        "month": "202411",
+        "count": 22,
+        "median": 22000.0
+      },
+      {
+        "month": "202412",
+        "count": 22,
+        "median": 10200.0
+      },
+      {
+        "month": "202501",
+        "count": 15,
+        "median": 24500
+      },
+      {
+        "month": "202502",
+        "count": 17,
+        "median": 10800
+      },
+      {
+        "month": "202503",
+        "count": 25,
+        "median": 12000
+      },
+      {
+        "month": "202504",
+        "count": 24,
+        "median": 6255.0
+      },
+      {
+        "month": "202505",
+        "count": 16,
+        "median": 13450.0
+      },
+      {
+        "month": "202506",
+        "count": 17,
+        "median": 11900
+      },
+      {
+        "month": "202507",
+        "count": 22,
+        "median": 14150.0
+      },
+      {
+        "month": "202508",
+        "count": 16,
+        "median": 10750.0
+      },
+      {
+        "month": "202509",
+        "count": 16,
+        "median": 12300.0
+      },
+      {
+        "month": "202510",
+        "count": 13,
+        "median": 24800
+      },
+      {
+        "month": "202511",
+        "count": 16,
+        "median": 10950.0
+      },
+      {
+        "month": "202512",
+        "count": 17,
+        "median": 13300
+      }
+    ]
+  },
+  "yeongju": {
+    "province": "경상북도",
+    "name": "영주시",
+    "lawdCd": "47210",
+    "series": [
+      {
+        "month": "202401",
+        "count": 51,
+        "median": 15000
+      },
+      {
+        "month": "202402",
+        "count": 68,
+        "median": 10975.0
+      },
+      {
+        "month": "202403",
+        "count": 74,
+        "median": 12950.0
+      },
+      {
+        "month": "202404",
+        "count": 65,
+        "median": 11800
+      },
+      {
+        "month": "202405",
+        "count": 54,
+        "median": 11400.0
+      },
+      {
+        "month": "202406",
+        "count": 56,
+        "median": 13550.0
+      },
+      {
+        "month": "202407",
+        "count": 42,
+        "median": 13000.0
+      },
+      {
+        "month": "202408",
+        "count": 45,
+        "median": 13350
+      },
+      {
+        "month": "202409",
+        "count": 42,
+        "median": 12400.0
+      },
+      {
+        "month": "202410",
+        "count": 55,
+        "median": 11200
+      },
+      {
+        "month": "202411",
+        "count": 55,
+        "median": 14000
+      },
+      {
+        "month": "202412",
+        "count": 44,
+        "median": 10900.0
+      },
+      {
+        "month": "202501",
+        "count": 40,
+        "median": 13800.0
+      },
+      {
+        "month": "202502",
+        "count": 47,
+        "median": 12500
+      },
+      {
+        "month": "202503",
+        "count": 61,
+        "median": 14800
+      },
+      {
+        "month": "202504",
+        "count": 68,
+        "median": 12950.0
+      },
+      {
+        "month": "202505",
+        "count": 53,
+        "median": 10500
+      },
+      {
+        "month": "202506",
+        "count": 45,
+        "median": 12500
+      },
+      {
+        "month": "202507",
+        "count": 51,
+        "median": 13900
+      },
+      {
+        "month": "202508",
+        "count": 66,
+        "median": 12500.0
+      },
+      {
+        "month": "202509",
+        "count": 65,
+        "median": 14600
+      },
+      {
+        "month": "202510",
+        "count": 71,
+        "median": 13000
+      },
+      {
+        "month": "202511",
+        "count": 69,
+        "median": 16900
+      },
+      {
+        "month": "202512",
+        "count": 70,
+        "median": 14250.0
+      }
+    ]
+  },
+  "gyeongju": {
+    "province": "경상북도",
+    "name": "경주시",
+    "lawdCd": "47130",
+    "series": [
+      {
+        "month": "202401",
+        "count": 195,
+        "median": 15700
+      },
+      {
+        "month": "202402",
+        "count": 193,
+        "median": 14900
+      },
+      {
+        "month": "202403",
+        "count": 236,
+        "median": 13000.0
+      },
+      {
+        "month": "202404",
+        "count": 195,
+        "median": 13700
+      },
+      {
+        "month": "202405",
+        "count": 186,
+        "median": 13650.0
+      },
+      {
+        "month": "202406",
+        "count": 160,
+        "median": 13775.0
+      },
+      {
+        "month": "202407",
+        "count": 176,
+        "median": 17100.0
+      },
+      {
+        "month": "202408",
+        "count": 168,
+        "median": 16000.0
+      },
+      {
+        "month": "202409",
+        "count": 145,
+        "median": 15000
+      },
+      {
+        "month": "202410",
+        "count": 172,
+        "median": 15700.0
+      },
+      {
+        "month": "202411",
+        "count": 214,
+        "median": 15250.0
+      },
+      {
+        "month": "202412",
+        "count": 146,
+        "median": 15050.0
+      },
+      {
+        "month": "202501",
+        "count": 156,
+        "median": 15900.0
+      },
+      {
+        "month": "202502",
+        "count": 184,
+        "median": 15000.0
+      },
+      {
+        "month": "202503",
+        "count": 223,
+        "median": 16000
+      },
+      {
+        "month": "202504",
+        "count": 197,
+        "median": 14200
+      },
+      {
+        "month": "202505",
+        "count": 159,
+        "median": 15500
+      },
+      {
+        "month": "202506",
+        "count": 178,
+        "median": 16000.0
+      },
+      {
+        "month": "202507",
+        "count": 160,
+        "median": 16500.0
+      },
+      {
+        "month": "202508",
+        "count": 184,
+        "median": 16150.0
+      },
+      {
+        "month": "202509",
+        "count": 354,
+        "median": 27000.0
+      },
+      {
+        "month": "202510",
+        "count": 176,
+        "median": 14935.0
+      },
+      {
+        "month": "202511",
+        "count": 181,
+        "median": 17300
+      },
+      {
+        "month": "202512",
+        "count": 175,
+        "median": 15900
+      }
+    ]
+  }
+}

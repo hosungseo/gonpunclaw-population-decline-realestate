@@ -375,6 +375,36 @@
     .trade-stat div { min-width: 0; }
     .trade-stat strong { display: block; font-size: 24px; letter-spacing: -.03em; }
     .trade-stat span { display: block; font-size: 12px; color: var(--muted); }
+    .chart-block {
+      margin: 18px 0 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+    .chart-block h4 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: -.01em;
+    }
+    .mini-chart {
+      display: grid;
+      grid-template-columns: repeat(24, minmax(0, 1fr));
+      gap: 4px;
+      align-items: end;
+      height: 88px;
+    }
+    .mini-bar {
+      background: linear-gradient(180deg, rgba(31,95,74,.35), rgba(31,95,74,.9));
+      border-radius: 4px 4px 0 0;
+      min-height: 3px;
+    }
+    .mini-bar.interest {
+      background: linear-gradient(180deg, rgba(181,122,42,.35), rgba(181,122,42,.95));
+    }
+    .chart-caption {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
     .deal-list { list-style: none; padding: 0; margin: 0; }
     .deal-list li {
       padding: 12px 0;
@@ -573,6 +603,16 @@
               <div><strong id="panel-stat-1">최근 2년 59건+</strong><span>확인된 거래 흐름(표본 기준)</span></div>
               <div><strong id="panel-stat-2">1.2억~4.3억</strong><span>2025년 1월 샘플 거래가 범위</span></div>
             </div>
+            <div class="chart-block">
+              <h4>최근 24개월 거래 건수 추이</h4>
+              <div class="mini-chart" id="count-chart"></div>
+              <div class="chart-caption" id="count-caption">월별 거래 건수를 보여줍니다.</div>
+            </div>
+            <div class="chart-block">
+              <h4>최근 24개월 중위가격 추이</h4>
+              <div class="mini-chart" id="median-chart"></div>
+              <div class="chart-caption" id="median-caption">월별 중위 실거래가(만원) 기준입니다.</div>
+            </div>
             <ul class="deal-list" id="panel-deals">
               <li><div><strong>해남코아루더베스트1단지아파트</strong><small>116.75㎡ · 2019년 · 영빈로</small></div><div class="deal-price">4억 3,000만원</div></li>
               <li><div><strong>해남파크사이드2차아파트</strong><small>75.52㎡ · 2019년 · 구교3길</small></div><div class="deal-price">3억 1,000만원</div></li>
@@ -648,6 +688,11 @@ const stat1 = document.getElementById('panel-stat-1');
 const stat2 = document.getElementById('panel-stat-2');
 const deals = document.getElementById('panel-deals');
 const policy = document.getElementById('panel-policy');
+const countChart = document.getElementById('count-chart');
+const medianChart = document.getElementById('median-chart');
+const countCaption = document.getElementById('count-caption');
+const medianCaption = document.getElementById('median-caption');
+let monthlySeries = {};
 let allNodes = [];
 function slugify(name){ return ({'해남군':'haenam','영주시':'yeongju','경주시':'gyeongju'})[name] || name; }
 function genericData(point){
@@ -667,7 +712,15 @@ function genericData(point){
     policy: point.regionType === 'interest' ? '적용 특례 예시 · 관심지역 대응계획 수립 · 세컨드홈 세제특례 확대 범위 · 정책적 관리 대상' : '적용 특례 예시 · 주거특례 · 도시계획 특례 · 양도세·종부세 특례'
   };
 }
-function renderPanel(data){
+function renderBars(container, values, kind){
+  const nums = values.map(v => v ?? 0);
+  const max = Math.max(...nums, 1);
+  container.innerHTML = nums.map(v => {
+    const h = Math.max(3, Math.round(((v ?? 0) / max) * 84));
+    return `<div class="mini-bar ${kind === 'interest' ? 'interest' : ''}" style="height:${h}px"></div>`;
+  }).join('');
+}
+function renderPanel(data, key){
   badge.className = 'badge ' + data.badgeClass;
   badge.textContent = data.badge;
   title.textContent = data.title;
@@ -676,8 +729,24 @@ function renderPanel(data){
   stat2.textContent = data.stat2;
   deals.innerHTML = data.deals.map(item => `<li><div><strong>${item[0]}</strong><small>${item[1]}</small></div><div class="deal-price">${item[2]}</div></li>`).join('');
   policy.textContent = data.policy;
+  const series = monthlySeries[key]?.series || [];
+  if (series.length) {
+    renderBars(countChart, series.map(s => s.count), data.badgeClass);
+    renderBars(medianChart, series.map(s => s.median), data.badgeClass);
+    countCaption.textContent = `${series[0].month} ~ ${series[series.length - 1].month} 월별 거래 건수`;
+    medianCaption.textContent = `${series[0].month} ~ ${series[series.length - 1].month} 월별 중위 실거래가(만원)`;
+  } else {
+    countChart.innerHTML = '';
+    medianChart.innerHTML = '';
+    countCaption.textContent = '그래프 데이터 연결 예정';
+    medianCaption.textContent = '그래프 데이터 연결 예정';
+  }
 }
-fetch('./data/map-points.json').then(r=>r.json()).then(points => {
+Promise.all([
+  fetch('./data/map-points.json').then(r=>r.json()),
+  fetch('./data/monthly-series-24m.json').then(r=>r.json()).catch(() => ({}))
+]).then(([points, seriesData]) => {
+  monthlySeries = seriesData || {};
   points.forEach(point => {
     const btn = document.createElement('button');
     btn.className = `map-node ${point.regionType} dim`;
@@ -690,7 +759,7 @@ fetch('./data/map-points.json').then(r=>r.json()).then(points => {
       allNodes.forEach(n => n.classList.add('dim'));
       btn.classList.remove('dim');
       const specific = REGION_DATA[slugify(point.name)];
-      renderPanel(specific || genericData(point));
+      renderPanel(specific || genericData(point), slugify(point.name));
       select.value = point.key;
     });
     overlay.appendChild(btn);
