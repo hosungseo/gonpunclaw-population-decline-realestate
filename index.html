@@ -631,6 +631,111 @@
     }
     .policy-link-box a { color: var(--accent); font-weight: 650; }
 
+
+    .tax-example {
+      margin-top: 18px;
+      padding: 20px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.88);
+      border: 1px solid var(--line);
+    }
+    .tax-example h5 {
+      margin: 0 0 16px;
+      font-size: 15px;
+      color: var(--ink);
+    }
+    .tax-timeline {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+    }
+    .tax-timeline::before {
+      content: "";
+      position: absolute;
+      top: 18px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--ink);
+    }
+    .tax-timeline::after {
+      content: "→";
+      position: absolute;
+      top: 10px;
+      right: -4px;
+      font-size: 16px;
+      color: var(--ink);
+    }
+    .tl-step {
+      flex: 1;
+      position: relative;
+      padding-top: 28px;
+      text-align: center;
+    }
+    .tl-step::before {
+      content: "▼";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      color: var(--muted);
+    }
+    .tl-label {
+      font-size: 11px;
+      color: var(--muted);
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+    .tl-box {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.4;
+      text-align: center;
+    }
+    .tl-box.existing { background: rgba(220,230,255,.5); border: 1px solid rgba(140,170,220,.4); }
+    .tl-box.decline-region { background: rgba(200,240,220,.5); border: 1px solid rgba(100,180,140,.4); }
+    .tl-box.result { background: rgba(240,220,255,.5); border: 1px solid rgba(180,140,220,.4); }
+    .tax-savings {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+    .tax-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+    }
+    .tax-row .tax-name {
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .tax-row .tax-calc {
+      color: var(--muted);
+    }
+    .tax-row .tax-calc strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .tax-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
     .trade-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -875,6 +980,30 @@
                     <li><a href="https://www.korea.kr/news/policyNewsView.do?newsId=148928166" target="_blank" rel="noreferrer">인구감소지역 내 4억 원 이하 주택 추가 취득, '1주택자'로 인정 (2024.4)</a><small>세컨드홈 제도가 처음 구체화된 기사. 83곳 적용, 6곳 제외, 접경지역 예외 포함 구분이 나옵니다.</small></li>
                     <li><a href="https://www.korea.kr/news/policyNewsView.do?newsId=148947601" target="_blank" rel="noreferrer">세컨드 홈·지방 미분양주택에 세제 혜택…"지방 건설경기 활력" (2025.8)</a><small>관심지역 확대, 인구감소지역 가액 제한 완화(4억→9억/12억), 미분양 주택 세부담 완화가 함께 나옵니다.</small></li>
                   </ul>
+                </div>
+
+                <div class="tax-example">
+                  <h5>세컨드홈 세부담 경감 예시</h5>
+                  <div class="tax-timeline">
+                    <div class="tl-step">
+                      <span class="tl-label">기존 주택 취득</span>
+                      <div class="tl-box existing"><strong>기존 주택</strong><br>(실거래가 9억원)</div>
+                    </div>
+                    <div class="tl-step">
+                      <span class="tl-label">인구감소지역 주택 취득</span>
+                      <div class="tl-box decline-region"><strong>인구감소지역 주택</strong><br>(공시가격 4억원)</div>
+                    </div>
+                    <div class="tl-step">
+                      <span class="tl-label">과세시점</span>
+                      <div class="tl-box result"><strong>기존 주택</strong><br>공시가격 9억원<br>실거래가 13억원에 양도</div>
+                    </div>
+                  </div>
+                  <div class="tax-savings">
+                    <div class="tax-row"><span class="tax-name">❶ 재산세</span><span class="tax-calc">305만원 → 211만원 <strong>△94만원 절감</strong></span></div>
+                    <div class="tax-row"><span class="tax-name">❷ 종부세</span><span class="tax-calc">75만원 → 4만원 <strong>△71만원 절감</strong></span></div>
+                    <div class="tax-row"><span class="tax-name">❸ 양도세</span><span class="tax-calc">8,551만원 → 22만원 <strong>△8,529만원 절감</strong></span></div>
+                  </div>
+                  <div class="tax-note">* 기존 주택 30년 보유·거주 및 만 65세 이상인 경우(고령자, 장기보유 최대한도 가정)<br>* 출처: 관계부처 합동 '인구감소지역 부활 3종 프로젝트' (2024.4.15, 정책브리핑)</div>
                 </div>
               </div>
             </details>
