@@ -50,8 +50,14 @@ TEMPLATE = """<!doctype html>
   <title>{title}</title>
   <meta name="description" content="{description}" />
   <link rel="canonical" href="{canonical}" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,480;7..72,560;7..72,650&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../../assets/css/site.css" />
   <link rel="stylesheet" href="../../assets/css/explore.css" />
+  <link rel="stylesheet" href="../../assets/css/design-upgrade.css" />
 </head>
 <body>
   <header class="hero" style="min-height:auto">
