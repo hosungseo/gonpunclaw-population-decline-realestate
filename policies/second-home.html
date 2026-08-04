@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>세컨드홈 확인 순서 · 인구감소지역 부동산</title>
+  <meta name="description" content="세컨드홈 특례를 확정 판정하지 않고, 확인해야 할 조건과 공식 근거로 연결합니다." />
+  <link rel="stylesheet" href="../assets/css/site.css" />
+  <link rel="stylesheet" href="../assets/css/explore.css" />
+</head>
+<body>
+  <main class="container explore-main">
+    <a class="back-link" href="./index.html">← 특례 목록</a>
+    <div class="eyebrow" style="border-color:var(--line);color:var(--ink)">Second Home</div>
+    <h1>세컨드홈 확인 순서</h1>
+    <p class="muted" id="disclaimer"></p>
+    <div class="warn-box">답변은 브라우저에만 잠시 쓰이며 서버에 저장하지 않습니다. 결과는 세무 확정이 아닙니다.</div>
+
+    <div id="steps" class="steps"></div>
+    <div id="result" class="result-box" hidden></div>
+
+    <h2>공식 확인처</h2>
+    <ul id="official-links"></ul>
+    <p><a href="../sources.html">출처 매니페스트에서 관련 근거 상태 확인 →</a></p>
+  </main>
+  <footer><div class="container"><a href="../index.html">홈</a> · <a href="../region/">지역</a> · <a href="./timeline.html">타임라인</a></div></footer>
+  <script src="../assets/js/explore.js"></script>
+  <script>ExplorePage.initSecondHome();</script>
+</body>
+</html>

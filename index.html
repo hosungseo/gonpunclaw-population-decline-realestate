@@ -6,6 +6,7 @@
   <title>인구감소지역 부동산 — 특례와 실제 거래를 함께 보는 안내서</title>
   <meta name="description" content="인구감소지역·인구감소관심지역의 법적 특례와 실제 부동산 거래를 함께 보여주는 공공형 부동산 안내 서비스" />
   <link rel="stylesheet" href="./assets/css/site.css" />
+  <link rel="stylesheet" href="./assets/css/explore.css" />
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -27,8 +28,10 @@
         <div class="hero-meta">실거래가 · 세제특례 · 정주지원 · 도시계획 특례를 한 번에 확인</div>
         <div class="freshness-bar" id="freshness-bar" aria-live="polite">데이터 기준일을 불러오는 중…</div>
         <div class="cta-row">
-          <a class="btn primary" href="#specials">특례 먼저 보기</a>
-          <a class="btn secondary" href="#markets">실제 거래 보기</a>
+          <a class="btn primary" href="#markets">지역 탐색</a>
+          <a class="btn secondary" href="#specials">특례 보기</a>
+          <a class="btn secondary" href="./compare.html">지역 비교</a>
+          <a class="btn secondary" href="./policies/second-home.html">세컨드홈 확인</a>
         </div>
         <div class="metric-strip">
           <div><strong>89</strong><span>인구감소지역</span></div>
@@ -298,7 +301,10 @@
         </div>
 
         <div class="onboarding">
-          <strong>사용법</strong> 시도를 먼저 골라 해당 권역을 확대한 뒤, 지역 점이나 아래 리스트를 눌러보세요. 오른쪽 패널에서 최근 2년 거래 흐름과 정책 정보를 함께 읽을 수 있습니다.
+          <strong>사용법</strong> 모바일에서는 검색으로 먼저 지역을 찾고, 데스크톱에서는 시도 필터와 지도를 함께 쓰면 됩니다. 패널에서 비교함에 담아 2~3곳을 나란히 볼 수 있습니다.
+        </div>
+        <div class="mobile-search-first">
+          <label class="muted" for="region-search-mobile">지역 검색</label>
         </div>
         <div class="map-layout">
           <div class="map-stage">
@@ -307,7 +313,8 @@
               <span class="legend-item"><span class="legend-swatch" style="background: var(--interest);"></span> 인구감소관심지역</span>
               <span class="legend-item"><span class="legend-swatch" style="background: rgba(29,27,24,.18);"></span> 일반 지역(비활성)</span>
             </div>
-            <div class="map-controls">
+            <div class="map-controls" style="flex-wrap:wrap;gap:8px">
+              <input id="region-search" class="map-select wide" type="search" placeholder="지역명·시도·코드 검색 (예: 해남)" autocomplete="off" style="min-width:min(100%,220px)" />
               <select id="province-filter" class="map-select">
                 <option value="all">시도 전체</option>
               </select>
@@ -316,11 +323,21 @@
                 <option value="decline">인구감소지역</option>
                 <option value="interest">인구감소관심지역</option>
               </select>
+              <select id="trade-volume-filter" class="map-select">
+                <option value="all">거래량 전체</option>
+                <option value="recent">거래 있는 곳</option>
+                <option value="zero">무거래</option>
+                <option value="low">표본 얇음(&lt;80)</option>
+                <option value="mid">중간(80~399)</option>
+                <option value="high">두꺼움(400+)</option>
+              </select>
               <select id="region-select" class="map-select wide">
                 <option value="">지역 선택</option>
               </select>
             </div>
-            <div class="map-note">지도 포인트는 인구감소지역·인구감소관심지역 기초지자체만 표시합니다. 거래가 적은 지역은 해석에 주의가 필요합니다.</div>
+            <div id="search-suggest" class="suggest-list" hidden style="margin:8px 0 0"></div>
+            <div class="map-note">지도는 인구감소지역·관심지역만 표시합니다. <span id="filter-count">표시 107곳</span> · 표본이 얇으면 가격보다 지정 근거를 먼저 보세요.</div>
+            <div class="compare-tray" id="compare-tray"></div>
             <div id="leaflet-map" style="width:100%; height:520px; border-radius:18px; z-index:1; position:relative;"></div>
             <div class="map-actions">
               <div class="map-zoom-note" id="map-zoom-note">전국 보기 상태입니다. 시도를 고르면 해당 권역을 확대합니다.</div>
@@ -368,9 +385,13 @@
           <div class="compare-table-wrap">
           <div class="compare-table-header">
             <h4>지역 비교 테이블</h4>
-            <select id="table-province-filter">
-              <option value="all">시도 전체</option>
-            </select>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+              <select id="table-province-filter">
+                <option value="all">시도 전체</option>
+              </select>
+              <button type="button" class="btn secondary" id="btn-download-table" style="padding:8px 12px;font-size:13px">CSV 다운로드</button>
+              <a class="btn secondary" href="./compare.html" style="padding:8px 12px;font-size:13px">2~3곳 비교</a>
+            </div>
           </div>
           <div style="overflow-x: auto;">
             <table class="compare-table" id="compare-table">
@@ -381,6 +402,7 @@
                   <th data-col="regionType">유형 <span class="sort-arrow"></span></th>
                   <th data-col="totalCount24m">거래건수 <span class="sort-arrow"></span></th>
                   <th data-col="median24m">중위가격 <span class="sort-arrow"></span></th>
+                  <th data-col="medianPricePerSqm">㎡당 <span class="sort-arrow"></span></th>
                   <th data-col="priceMin24m">최저가 <span class="sort-arrow"></span></th>
                   <th data-col="priceMax24m">최고가 <span class="sort-arrow"></span></th>
                   <th data-col="monthsWithTrades">거래월수 <span class="sort-arrow"></span></th>
@@ -402,11 +424,13 @@
         <div class="cta-panel">
           <div>
             <h3>특례만 보지 말고, 실제 지역을 비교해보세요</h3>
-            <p>107개 지역 상세 페이지와 출처 매니페스트가 준비됐습니다. 기준일과 표본 품질을 함께 확인하세요.</p>
+            <p>검색·비교·세컨드홈 확인 순서·정책 타임라인·CSV 다운로드까지 연결했습니다. 기준일과 표본 품질을 함께 확인하세요.</p>
           </div>
           <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <a class="btn primary" href="./region/">지역 상세 목록</a>
-            <a class="btn secondary" href="./sources.html">출처·방법론</a>
+            <a class="btn primary" href="./region/">지역 상세</a>
+            <a class="btn secondary" href="./compare.html">비교</a>
+            <a class="btn secondary" href="./policies/">특례</a>
+            <a class="btn secondary" href="./sources.html">출처</a>
           </div>
         </div>
       </div>
@@ -415,7 +439,7 @@
 
   <footer>
     <div class="container">
-      인구감소지역 부동산 · 법제처 국가법령정보 · 국토교통부 실거래가 · <a href="./sources.html">출처·방법론</a> · <a href="./region/">지역 상세</a>
+      인구감소지역 부동산 · <a href="./sources.html">출처</a> · <a href="./region/">지역</a> · <a href="./compare.html">비교</a> · <a href="./policies/">특례</a>
       <div class="freshness-inline" id="footer-freshness"></div>
     </div>
   </footer>

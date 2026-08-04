@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-08-04",
+  "policy": "출처·기준일·관리주체가 확인된 공개 지도만 연결한다. 미검증 링크는 노출하지 않는다.",
+  "project": {
+    "name": "K-PolicyMap",
+    "url": "https://github.com/hosungseo/k-policymap",
+    "status": "reference",
+    "note": "현장 시설·사업 지도의 발행처. 지역별 공개 지도가 검증되면 지역 상세에 연결한다."
+  },
+  "regions": {}
+}

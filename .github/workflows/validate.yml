@@ -15,6 +15,8 @@ jobs:
           python-version: "3.12"
       - name: Rebuild catalog metadata
         run: python3 scripts/build_catalog.py
+      - name: Enrich sqm + search index
+        run: python3 scripts/enrich_from_deals.py
       - name: Validate data gate
         run: python3 scripts/validate_data.py
       - name: Build region pages

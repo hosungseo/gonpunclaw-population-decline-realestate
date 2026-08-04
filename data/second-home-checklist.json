@@ -1,0 +1,129 @@
+{
+  "version": "1.0",
+  "lastReviewedAt": "2026-08-04",
+  "disclaimer": "확정 세무판단이 아닙니다. 결과는 확인 순서 안내이며, 취득 시점 법령·국세청·세무 전문가 확인이 필요합니다.",
+  "officialLinks": [
+    {
+      "label": "국가법령정보센터",
+      "url": "https://www.law.go.kr"
+    },
+    {
+      "label": "국세법령정보시스템",
+      "url": "https://taxlaw.nts.go.kr"
+    },
+    {
+      "label": "정책브리핑",
+      "url": "https://www.korea.kr"
+    }
+  ],
+  "sourceIds": [
+    "src-second-home-briefing-2024-04",
+    "src-special-act",
+    "src-decline-notice-2024-15",
+    "src-interest-notice-2025-78"
+  ],
+  "steps": [
+    {
+      "id": "housing_count",
+      "question": "현재 보유 주택 수는 어떻게 되나요?",
+      "help": "세컨드홈 특례 논의의 출발점은 기존 1주택자 여부인 경우가 많습니다.",
+      "options": [
+        {
+          "id": "0",
+          "label": "무주택",
+          "score": "out_of_scope"
+        },
+        {
+          "id": "1",
+          "label": "1주택",
+          "score": "possible"
+        },
+        {
+          "id": "2plus",
+          "label": "2주택 이상",
+          "score": "extra_check"
+        }
+      ]
+    },
+    {
+      "id": "target_region",
+      "question": "추가로 취득하려는 주택의 지역은?",
+      "help": "인구감소지역·인구감소관심지역 여부를 먼저 확인하세요.",
+      "options": [
+        {
+          "id": "decline",
+          "label": "인구감소지역",
+          "score": "possible"
+        },
+        {
+          "id": "interest",
+          "label": "인구감소관심지역",
+          "score": "extra_check"
+        },
+        {
+          "id": "other",
+          "label": "그 외 지역",
+          "score": "out_of_scope"
+        }
+      ]
+    },
+    {
+      "id": "timing",
+      "question": "취득(예정) 시점은?",
+      "help": "특례 적용은 취득 시점의 법령·시행령이 기준입니다.",
+      "options": [
+        {
+          "id": "after_2024",
+          "label": "2024년 이후(특례 확대 논의 이후)",
+          "score": "possible"
+        },
+        {
+          "id": "before_2024",
+          "label": "2024년 이전",
+          "score": "extra_check"
+        },
+        {
+          "id": "unsure",
+          "label": "아직 모름",
+          "score": "extra_check"
+        }
+      ]
+    },
+    {
+      "id": "price",
+      "question": "추가 취득 주택의 가액(공시·실거래) 확인은?",
+      "help": "가액 한도는 제도 변경이 있을 수 있어 공식 원문 확인이 필수입니다.",
+      "options": [
+        {
+          "id": "within",
+          "label": "안내된 가액 한도 이내로 보임",
+          "score": "possible"
+        },
+        {
+          "id": "over",
+          "label": "한도를 넘을 수 있음",
+          "score": "extra_check"
+        },
+        {
+          "id": "unknown",
+          "label": "가액을 아직 모름",
+          "score": "extra_check"
+        }
+      ]
+    }
+  ],
+  "resultRules": {
+    "out_of_scope": {
+      "label": "현재 안내 범위 밖",
+      "detail": "이 체크리스트의 핵심 전제(기존 1주택 + 정책 대상 지역 추가 취득)와 맞지 않거나, 특례 대상이 아닐 가능성이 큽니다. 공식 원문과 전문가 확인을 권합니다."
+    },
+    "extra_check": {
+      "label": "추가 확인 필요",
+      "detail": "특례 가능성이 열려 있을 수 있으나, 가액·시점·주택 수·지역 지정 상태를 법령과 과세관청 기준으로 더 확인해야 합니다."
+    },
+    "possible": {
+      "label": "대상 가능성 있음",
+      "detail": "체크 항목상 세컨드홈 특례를 검토할 여지가 있습니다. 다만 확정이 아니며, 취득 전 법령·국세청·세무 전문가 확인이 필요합니다."
+    }
+  }
+}

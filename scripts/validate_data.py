@@ -45,6 +45,10 @@ def main() -> int:
         "map-points.json",
         "population-region-index-with-codes.json",
         "representative-deals.json",
+        "region-search-index.json",
+        "policy-timeline.json",
+        "second-home-checklist.json",
+        "policymap-links.json",
     ]
     for name in required:
         if not (DATA / name).exists():
@@ -202,6 +206,25 @@ def main() -> int:
     # deals optional completeness
     if len(deals) < EXPECTED_REGIONS:
         r.warn(f"representative-deals rows={len(deals)} < {EXPECTED_REGIONS}")
+
+    search = load("region-search-index.json")
+    if (search.get("count") or len(search.get("regions") or [])) != EXPECTED_REGIONS:
+        r.err(f"search index count != {EXPECTED_REGIONS}")
+
+    timeline = load("policy-timeline.json")
+    if not (timeline.get("events") or []):
+        r.err("policy-timeline has no events")
+
+    second = load("second-home-checklist.json")
+    if not (second.get("steps") or []):
+        r.err("second-home checklist empty")
+    if "disclaimer" not in second:
+        r.err("second-home checklist missing disclaimer")
+
+    # sqm coverage soft check
+    with_sqm = sum(1 for m in market if m.get("medianPricePerSqm") is not None)
+    if with_sqm < 50:
+        r.warn(f"medianPricePerSqm filled only {with_sqm}/107")
 
     return finish(r, status_counts)
 

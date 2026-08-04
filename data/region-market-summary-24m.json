@@ -18,7 +18,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 633.91,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "강원특별자치도-고성군",
@@ -39,7 +41,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 337.76,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "강원특별자치도-동해시",
@@ -60,7 +64,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 253.03,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "강원특별자치도-삼척시",
@@ -81,7 +87,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 291.18,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "강원특별자치도-속초시",
@@ -102,7 +110,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 494.12,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "강원특별자치도-양구군",
@@ -123,7 +133,9 @@
     "zeroTransactionMonthCount": 1,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 250.0,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "강원특별자치도-양양군",
@@ -144,7 +156,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 354.02,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "강원특별자치도-영월군",
@@ -165,7 +179,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 367.16,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "강원특별자치도-인제군",
@@ -186,7 +202,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 332.5,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "강원특별자치도-정선군",
@@ -207,7 +225,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 294.59,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "강원특별자치도-철원군",
@@ -228,7 +248,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 326.0,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "강원특별자치도-태백시",
@@ -249,7 +271,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 238.46,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "강원특별자치도-평창군",
@@ -270,7 +294,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 268.28,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "강원특별자치도-홍천군",
@@ -291,7 +317,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 260.67,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "강원특별자치도-화천군",
@@ -312,7 +340,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "limited",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 392.45,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "강원특별자치도-횡성군",
@@ -333,7 +363,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 393.71,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경기도-가평군",
@@ -354,7 +386,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 423.98,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경기도-동두천시",
@@ -375,7 +409,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 310.52,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경기도-연천군",
@@ -396,7 +432,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 341.18,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경기도-포천시",
@@ -417,7 +455,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 467.62,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상남도-거창군",
@@ -438,7 +478,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 400.16,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상남도-고성군",
@@ -459,7 +501,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 228.92,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상남도-남해군",
@@ -480,7 +524,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 170.0,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상남도-밀양시",
@@ -501,7 +547,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 364.74,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상남도-사천시",
@@ -522,7 +570,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 336.2,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상남도-산청군",
@@ -543,7 +593,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 202.82,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상남도-의령군",
@@ -564,7 +616,9 @@
     "zeroTransactionMonthCount": 1,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 366.22,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상남도-창녕군",
@@ -585,7 +639,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 241.37,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상남도-통영시",
@@ -606,7 +662,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 259.76,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상남도-하동군",
@@ -627,7 +685,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 222.74,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상남도-함안군",
@@ -648,7 +708,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 340.03,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상남도-함양군",
@@ -669,7 +731,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 264.3,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상남도-합천군",
@@ -690,7 +754,9 @@
     "zeroTransactionMonthCount": 1,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 294.88,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상북도-경주시",
@@ -711,7 +777,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 196.46,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상북도-고령군",
@@ -732,7 +800,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 338.58,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상북도-김천시",
@@ -753,7 +823,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 437.36,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상북도-문경시",
@@ -774,7 +846,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 432.04,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상북도-봉화군",
@@ -795,7 +869,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 283.37,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상북도-상주시",
@@ -816,7 +892,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 318.15,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상북도-성주군",
@@ -837,7 +915,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 305.62,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상북도-안동시",
@@ -858,7 +938,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 521.42,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상북도-영덕군",
@@ -879,7 +961,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 341.58,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상북도-영양군",
@@ -900,7 +984,9 @@
     "zeroTransactionMonthCount": 9,
     "dataStatus": "ok",
     "sampleQuality": "limited",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": null,
+    "medianPricePerSqmMethod": null,
+    "medianPricePerSqmNote": "면적 정보 부족"
   },
   {
     "key": "경상북도-영주시",
@@ -921,7 +1007,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 383.79,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상북도-영천시",
@@ -942,7 +1030,9 @@
     "zeroTransactionMonthCount": 24,
     "dataStatus": "no_transactions",
     "sampleQuality": "none",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": null,
+    "medianPricePerSqmMethod": null,
+    "medianPricePerSqmNote": "면적 정보 부족"
   },
   {
     "key": "경상북도-울릉군",
@@ -963,7 +1053,9 @@
     "zeroTransactionMonthCount": 15,
     "dataStatus": "ok",
     "sampleQuality": "limited",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": null,
+    "medianPricePerSqmMethod": null,
+    "medianPricePerSqmNote": "면적 정보 부족"
   },
   {
     "key": "경상북도-울진군",
@@ -984,7 +1076,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 422.7,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상북도-의성군",
@@ -1005,7 +1099,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 272.27,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상북도-청도군",
@@ -1026,7 +1122,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 323.8,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "경상북도-청송군",
@@ -1047,7 +1145,9 @@
     "zeroTransactionMonthCount": 3,
     "dataStatus": "ok",
     "sampleQuality": "limited",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 197.43,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "광주광역시-동구",
@@ -1068,7 +1168,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 738.73,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "대구광역시-군위군",
@@ -1089,7 +1191,9 @@
     "zeroTransactionMonthCount": 15,
     "dataStatus": "ok",
     "sampleQuality": "limited",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": null,
+    "medianPricePerSqmMethod": null,
+    "medianPricePerSqmNote": "면적 정보 부족"
   },
   {
     "key": "대구광역시-남구",
@@ -1110,7 +1214,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 436.67,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "대구광역시-서구",
@@ -1131,7 +1237,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 741.42,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "대전광역시-대덕구",
@@ -1152,7 +1260,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 543.53,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "대전광역시-동구",
@@ -1173,7 +1283,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 500.07,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "대전광역시-중구",
@@ -1194,7 +1306,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 500.09,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "부산광역시-금정구",
@@ -1215,7 +1329,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 1222.81,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "부산광역시-동구",
@@ -1236,7 +1352,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 650.74,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "부산광역시-서구",
@@ -1257,7 +1375,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 653.33,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "부산광역시-영도구",
@@ -1278,7 +1398,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 443.5,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "부산광역시-중구",
@@ -1299,7 +1421,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 352.79,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "인천광역시-강화군",
@@ -1320,7 +1444,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 416.7,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "인천광역시-동구",
@@ -1341,7 +1467,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 426.49,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "인천광역시-옹진군",
@@ -1362,7 +1490,9 @@
     "zeroTransactionMonthCount": 24,
     "dataStatus": "no_transactions",
     "sampleQuality": "none",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": null,
+    "medianPricePerSqmMethod": null,
+    "medianPricePerSqmNote": "면적 정보 부족"
   },
   {
     "key": "전라남도-강진군",
@@ -1383,7 +1513,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 312.09,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전라남도-고흥군",
@@ -1404,7 +1536,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 382.56,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전라남도-곡성군",
@@ -1425,7 +1559,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 226.29,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전라남도-구례군",
@@ -1446,7 +1582,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 242.51,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전라남도-담양군",
@@ -1467,7 +1605,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 353.05,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전라남도-보성군",
@@ -1488,7 +1628,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 261.74,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전라남도-신안군",
@@ -1509,7 +1651,9 @@
     "zeroTransactionMonthCount": 14,
     "dataStatus": "ok",
     "sampleQuality": "limited",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": null,
+    "medianPricePerSqmMethod": null,
+    "medianPricePerSqmNote": "면적 정보 부족"
   },
   {
     "key": "전라남도-영광군",
@@ -1530,7 +1674,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 100.65,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전라남도-영암군",
@@ -1551,7 +1697,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 227.0,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전라남도-완도군",
@@ -1572,7 +1720,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 321.41,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전라남도-장성군",
@@ -1593,7 +1743,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 283.15,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전라남도-장흥군",
@@ -1614,7 +1766,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 337.74,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전라남도-진도군",
@@ -1635,7 +1789,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 253.15,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전라남도-함평군",
@@ -1656,7 +1812,9 @@
     "zeroTransactionMonthCount": 3,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 329.96,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전라남도-해남군",
@@ -1677,7 +1835,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 362.0,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전라남도-화순군",
@@ -1698,7 +1858,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 447.73,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전북특별자치도-고창군",
@@ -1719,7 +1881,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 291.84,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전북특별자치도-김제시",
@@ -1740,7 +1904,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 323.1,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전북특별자치도-남원시",
@@ -1761,7 +1927,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 410.97,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전북특별자치도-무주군",
@@ -1782,7 +1950,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 224.59,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전북특별자치도-부안군",
@@ -1803,7 +1973,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 312.12,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전북특별자치도-순창군",
@@ -1824,7 +1996,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 359.4,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전북특별자치도-익산시",
@@ -1845,7 +2019,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 367.82,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전북특별자치도-임실군",
@@ -1866,7 +2042,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 190.62,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전북특별자치도-장수군",
@@ -1887,7 +2065,9 @@
     "zeroTransactionMonthCount": 9,
     "dataStatus": "ok",
     "sampleQuality": "limited",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": null,
+    "medianPricePerSqmMethod": null,
+    "medianPricePerSqmNote": "면적 정보 부족"
   },
   {
     "key": "전북특별자치도-정읍시",
@@ -1908,7 +2088,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 479.73,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "전북특별자치도-진안군",
@@ -1929,7 +2111,9 @@
     "zeroTransactionMonthCount": 2,
     "dataStatus": "ok",
     "sampleQuality": "limited",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 247.45,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "충청남도-공주시",
@@ -1950,7 +2134,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 495.53,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "충청남도-금산군",
@@ -1971,7 +2157,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 345.67,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "충청남도-논산시",
@@ -1992,7 +2180,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 349.78,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "충청남도-보령시",
@@ -2013,7 +2203,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 248.39,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "충청남도-부여군",
@@ -2034,7 +2226,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 394.33,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "충청남도-서천군",
@@ -2055,7 +2249,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 388.29,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "충청남도-예산군",
@@ -2076,7 +2272,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 294.81,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "충청남도-청양군",
@@ -2097,7 +2295,9 @@
     "zeroTransactionMonthCount": 2,
     "dataStatus": "ok",
     "sampleQuality": "limited",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 261.09,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "충청남도-태안군",
@@ -2118,7 +2318,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 391.99,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "충청북도-괴산군",
@@ -2139,7 +2341,9 @@
     "zeroTransactionMonthCount": 1,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 262.48,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "충청북도-단양군",
@@ -2160,7 +2364,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 202.22,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "충청북도-보은군",
@@ -2181,7 +2387,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 264.73,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "충청북도-영동군",
@@ -2202,7 +2410,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 282.44,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "충청북도-옥천군",
@@ -2223,7 +2433,9 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 325.47,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   },
   {
     "key": "충청북도-제천시",
@@ -2244,6 +2456,8 @@
     "zeroTransactionMonthCount": 0,
     "dataStatus": "ok",
     "sampleQuality": "normal",
-    "medianPricePerSqm": null
+    "medianPricePerSqm": 311.82,
+    "medianPricePerSqmMethod": "representative_deals_median",
+    "medianPricePerSqmNote": "대표 거래 표본 기반 근사치(전수 집계 전). 표본이 얇으면 해석에 주의."
   }
 ]

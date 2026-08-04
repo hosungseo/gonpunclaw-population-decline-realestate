@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>특례·정책 · 인구감소지역 부동산</title>
+  <link rel="stylesheet" href="../assets/css/site.css" />
+  <link rel="stylesheet" href="../assets/css/explore.css" />
+</head>
+<body>
+  <main class="container explore-main">
+    <a class="back-link" href="../index.html">← 홈</a>
+    <div class="eyebrow" style="border-color:var(--line);color:var(--ink)">Policies</div>
+    <h1>특례와 정책 근거</h1>
+    <p class="muted">투자 추천이 아니라, 지정 유형별로 어떤 정책 신호가 붙는지와 그 출처를 모읍니다.</p>
+    <div class="card-links">
+      <a class="link-card" href="./second-home.html">
+        <strong>세컨드홈 확인 순서</strong>
+        <span>확정 판정 없이, 확인해야 할 조건과 공식 문의처만 안내</span>
+      </a>
+      <a class="link-card" href="./timeline.html">
+        <strong>정책 변화 타임라인</strong>
+        <span>지정·특례·데이터 창의 시행·변경 시점</span>
+      </a>
+      <a class="link-card" href="../sources.html">
+        <strong>출처 매니페스트</strong>
+        <span>법령·고시·실거래 기준일과 상태</span>
+      </a>
+      <a class="link-card" href="../compare.html">
+        <strong>지역 비교</strong>
+        <span>2~3곳 표본·지정 유형 비교</span>
+      </a>
+    </div>
+    <h2>특별법 핵심 조항 (선별)</h2>
+    <div id="policy-list" class="policy-list">불러오는 중…</div>
+  </main>
+  <footer><div class="container"><a href="../index.html">홈</a> · <a href="../region/">지역</a></div></footer>
+  <script>
+    fetch('../data/policy-specials.json').then(r=>r.json()).then(data=>{
+      const el=document.getElementById('policy-list');
+      el.innerHTML=(data.policies||[]).map(p=>`
+        <article class="policy-item">
+          <div class="muted">${p.article} · ${p.category} · ${p.target}</div>
+          <h3>${p.title}</h3>
+          <p>${p.summary}</p>
+          <p class="muted">${p.whyItMatters}</p>
+        </article>`).join('');
+    });
+  </script>
+</body>
+</html>

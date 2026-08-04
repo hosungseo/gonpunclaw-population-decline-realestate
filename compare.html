@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>지역 비교 · 인구감소지역 부동산</title>
+  <meta name="description" content="인구감소지역·관심지역 2~3곳을 거래 표본과 지정 유형 기준으로 비교합니다." />
+  <link rel="stylesheet" href="./assets/css/site.css" />
+  <link rel="stylesheet" href="./assets/css/explore.css" />
+</head>
+<body>
+  <main class="container explore-main">
+    <a class="back-link" href="./index.html">← 홈</a>
+    <div class="eyebrow" style="border-color:var(--line);color:var(--ink)">Compare</div>
+    <h1>지역 비교 (2~3곳)</h1>
+    <p class="muted">가격만 나란히 두지 않습니다. 거래 건수·거래 발생 월·무거래 월·표본 품질을 같은 비중으로 봅니다. 선택 상태는 URL에 저장됩니다.</p>
+
+    <div class="compare-picker">
+      <label>지역 검색·추가
+        <input id="compare-search" type="search" placeholder="예: 해남, 영주, 강릉" autocomplete="off" />
+      </label>
+      <div id="compare-suggest" class="suggest-list" hidden></div>
+      <div id="compare-chips" class="chip-row"></div>
+      <p class="muted" id="compare-hint">최대 3개까지 선택할 수 있습니다.</p>
+    </div>
+
+    <div class="toolbar-row">
+      <button type="button" class="btn secondary" id="btn-copy-url">비교 URL 복사</button>
+      <button type="button" class="btn secondary" id="btn-csv">CSV 다운로드</button>
+      <button type="button" class="btn secondary" id="btn-clear">선택 초기화</button>
+      <a class="btn secondary" href="./sources.html">출처</a>
+    </div>
+
+    <div id="compare-grid" class="compare-grid"></div>
+    <div id="compare-empty" class="empty-box">왼쪽 검색으로 지역을 2개 이상 추가하세요. 같은 시도·같은 지정 유형 후보도 아래에 제안합니다.</div>
+    <div id="suggest-peers" class="peer-box"></div>
+  </main>
+  <footer>
+    <div class="container">인구감소지역 부동산 · 비교 결과는 투자 신호가 아닙니다 · <a href="./region/">지역 목록</a></div>
+  </footer>
+  <script src="./assets/js/explore.js"></script>
+  <script>
+    ExplorePage.initCompare();
+  </script>
+</body>
+</html>

@@ -51,6 +51,7 @@ TEMPLATE = """<!doctype html>
   <meta name="description" content="{description}" />
   <link rel="canonical" href="{canonical}" />
   <link rel="stylesheet" href="../../assets/css/site.css" />
+  <link rel="stylesheet" href="../../assets/css/explore.css" />
 </head>
 <body>
   <header class="hero" style="min-height:auto">
@@ -87,7 +88,13 @@ TEMPLATE = """<!doctype html>
         <p><strong>데이터 상태:</strong> {status_label}</p>
         <p><strong>최근 거래월:</strong> {latest}</p>
         <p><strong>가격 범위:</strong> {price_range}</p>
+        <p><strong>㎡당 중위(참고):</strong> {sqm}</p>
         <p class="caution">{caution}</p>
+        <div class="toolbar-row" style="margin-top:16px">
+          <button type="button" class="btn secondary" id="btn-cite">인용 복사</button>
+          <a class="btn secondary" href="../../compare.html?regions={code}">비교에 넣기</a>
+          <a class="btn secondary" href="../../policies/second-home.html">세컨드홈 확인</a>
+        </div>
         <hr style="border:none;border-top:1px solid var(--line);margin:24px 0" />
         <h3>지정·출처</h3>
         <ul>
@@ -96,7 +103,17 @@ TEMPLATE = """<!doctype html>
           <li>적용 시작: {effective_from}</li>
           <li>적용 종료: {effective_to}</li>
         </ul>
+        {policymap_block}
+        <h3>인용용 텍스트</h3>
+        <pre id="cite-text" style="white-space:pre-wrap;background:#fff;border:1px solid var(--line);padding:12px;border-radius:12px;font-size:13px">{citation}</pre>
         <p class="muted">이 페이지는 투자 권유가 아닙니다. 수치와 특례는 기준일과 공식 원문을 함께 확인하세요.</p>
+        <script>
+          document.getElementById('btn-cite')?.addEventListener('click', async () => {{
+            const t = document.getElementById('cite-text').textContent;
+            try {{ await navigator.clipboard.writeText(t); alert('인용 텍스트를 복사했습니다.'); }}
+            catch {{ prompt('복사하세요', t); }}
+          }});
+        </script>
       </div>
     </div>
   </main>
@@ -106,7 +123,7 @@ TEMPLATE = """<!doctype html>
 """
 
 
-def page_for(region: dict, market: dict | None, meta: dict) -> str:
+def page_for(region: dict, market: dict | None, meta: dict, policymap_links: dict) -> str:
     sm = market or {}
     total = sm.get("totalCount24m") or 0
     months = sm.get("monthsWithTrades") or 0
@@ -144,6 +161,31 @@ def page_for(region: dict, market: dict | None, meta: dict) -> str:
         f"{region['province']} {region['name']} {type_label}. "
         f"최근 24개월 거래 {total}건, 표본 {quality_label(region.get('sampleQuality'))}."
     )
+    sqm_v = sm.get("medianPricePerSqm")
+    sqm = f"{round(sqm_v):,}만원/㎡" if sqm_v is not None else "-"
+    citation = "\n".join([
+        f"{region['province']} {region['name']} ({type_label})",
+        f"거래기간: {period}",
+        f"24개월 거래: {total}건 / 표본: {quality_label(region.get('sampleQuality'))}",
+        f"중위가격: {format_price(sm.get('median24m'))}",
+        f"㎡당 중위(참고): {sqm}",
+        f"수집일: {sm.get('collectedAt') or meta.get('transactionCollectedAt') or '-'}",
+        "출처: 국토교통부 실거래가 공개자료 · 행정안전부 인구감소지역 지정 고시",
+        f"상세: https://hosungseo.github.io/gonpunclaw-population-decline-realestate/region/{region['regionSlug']}/",
+    ])
+    pm = policymap_links.get(region.get("sigunguCode")) or policymap_links.get(region.get("key"))
+    if pm and pm.get("verified") and pm.get("url"):
+        policymap_block = (
+            f"<h3>현장 지도 (PolicyMap)</h3><p><a href=\"{html.escape(pm['url'])}\" target=\"_blank\" rel=\"noopener\">"
+            f"{html.escape(pm.get('title') or '검증된 공개 지도')}</a>"
+            f"<br><span class=\"muted\">기준일 {html.escape(str(pm.get('asOf') or '-'))} · {html.escape(str(pm.get('owner') or ''))}</span></p>"
+        )
+    else:
+        policymap_block = (
+            "<h3>현장 지도 (PolicyMap)</h3>"
+            "<p class=\"muted\">이 지역에 검증된 공개 PolicyMap 연결이 아직 없습니다. "
+            "프로젝트 참고: <a href=\"https://github.com/hosungseo/k-policymap\" target=\"_blank\" rel=\"noopener\">k-policymap</a></p>"
+        )
     return TEMPLATE.format(
         title=html.escape(title),
         description=html.escape(description),
@@ -166,10 +208,14 @@ def page_for(region: dict, market: dict | None, meta: dict) -> str:
         status_label=html.escape(status_label),
         latest=html.escape(ym(sm.get("latestTradeMonth"))),
         price_range=html.escape(price_range),
+        sqm=html.escape(sqm),
         caution=html.escape(caution),
         source_id=html.escape(str(region.get("designationSourceId") or "-")),
         effective_from=html.escape(str(region.get("effectiveFrom") or "-")),
         effective_to=html.escape(str(region.get("effectiveTo") or "해당 없음")),
+        code=html.escape(str(region.get("sigunguCode"))),
+        citation=html.escape(citation),
+        policymap_block=policymap_block,
     )
 
 
@@ -177,13 +223,18 @@ def main() -> None:
     catalog = load("region-catalog.json")
     market = {m["key"]: m for m in load("region-market-summary-24m.json")}
     meta = load("site-meta.json")
+    try:
+        pm = load("policymap-links.json")
+        policymap_links = pm.get("regions") or {}
+    except FileNotFoundError:
+        policymap_links = {}
     OUT.mkdir(exist_ok=True)
     n = 0
     for region in catalog["regions"]:
         slug = region["regionSlug"]
         dest = OUT / slug
         dest.mkdir(parents=True, exist_ok=True)
-        html_doc = page_for(region, market.get(region["key"]), meta)
+        html_doc = page_for(region, market.get(region["key"]), meta, policymap_links)
         (dest / "index.html").write_text(html_doc, encoding="utf-8")
         n += 1
     # index of regions

@@ -1,6 +1,6 @@
 {
   "siteName": "인구감소지역 부동산",
-  "version": "2026-H2-R1",
+  "version": "2026-H2-R3",
   "lastSiteUpdate": "2026-08-04",
   "transactionPeriodStart": "202401",
   "transactionPeriodEnd": "202512",
@@ -15,5 +15,14 @@
     "data/monthly-series-24m-all.json",
     "data/source-manifest.json"
   ],
-  "disclaimer": "투자 권유가 아니라 정책·시장 안내용입니다. 세제 적용은 취득 시점 법령과 관계기관 확인이 필요합니다."
+  "disclaimer": "투자 권유가 아니라 정책·시장 안내용입니다. 세제 적용은 취득 시점 법령과 관계기관 확인이 필요합니다.",
+  "features": [
+    "search",
+    "compare",
+    "second-home-checklist",
+    "policy-timeline",
+    "csv-download",
+    "region-pages",
+    "source-manifest"
+  ]
 }

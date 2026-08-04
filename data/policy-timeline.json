@@ -1,0 +1,79 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-08-04",
+  "events": [
+    {
+      "eventId": "evt-decline-2021",
+      "date": "2021-10-19",
+      "title": "인구감소지역 최초 지정",
+      "category": "designation",
+      "status": "active",
+      "summary": "인구감소지역 지원 특별법에 따른 인구감소지역 지정 체계 시행.",
+      "sourceIds": [
+        "src-special-act",
+        "src-decline-notice-2024-15"
+      ],
+      "affects": [
+        "decline"
+      ]
+    },
+    {
+      "eventId": "evt-decline-2024-15",
+      "date": "2024-02-27",
+      "title": "인구감소지역 지정 변경 고시 (2024-15)",
+      "category": "designation",
+      "status": "active",
+      "summary": "인구감소지역 89개 지정 변경. 군위군 행정구역 변경 반영.",
+      "sourceIds": [
+        "src-decline-notice-2024-15"
+      ],
+      "affects": [
+        "decline"
+      ]
+    },
+    {
+      "eventId": "evt-second-home-2024-04",
+      "date": "2024-04-15",
+      "title": "인구감소지역 부활 3종 프로젝트·세컨드홈 세부담 예시 발표",
+      "category": "tax_special",
+      "status": "review_required",
+      "summary": "세컨드홈 세제 특례 방향과 세부담 경감 예시 공개. 이후 가액 기준 변경 가능.",
+      "sourceIds": [
+        "src-second-home-briefing-2024-04"
+      ],
+      "affects": [
+        "decline",
+        "interest"
+      ]
+    },
+    {
+      "eventId": "evt-interest-2025-78",
+      "date": "2026-01-01",
+      "title": "인구감소관심지역 지정 고시 시행 (2025-78)",
+      "category": "designation",
+      "status": "active",
+      "summary": "관심지역 18개 지정. 유효기간 2026-10-19까지(고시 기준).",
+      "sourceIds": [
+        "src-interest-notice-2025-78"
+      ],
+      "affects": [
+        "interest"
+      ],
+      "effectiveTo": "2026-10-19"
+    },
+    {
+      "eventId": "evt-data-window-202401-202512",
+      "date": "2025-12-01",
+      "title": "실거래 데이터 창: 2024-01 ~ 2025-12",
+      "category": "data",
+      "status": "active",
+      "summary": "사이트에 반영된 아파트 매매 24개월 집계 기간.",
+      "sourceIds": [
+        "src-molit-rtms-apt"
+      ],
+      "affects": [
+        "all"
+      ]
+    }
+  ]
+}
