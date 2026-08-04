@@ -895,13 +895,17 @@
       grid-template-columns: 88px 1fr;
       gap: 12px;
       align-items: start;
-      padding: 14px 8px;
-      margin: 0;
-      border-bottom: 1px solid rgba(29,27,24,.06);
+      padding: 14px 12px;
+      margin: 0 0 8px;
+      border: 0;
+      border-radius: 10px;
+      background: rgba(24, 35, 28, 0.04);
       font-size: 13px;
     }
     .tax-savings {
-      padding: 4px 0 8px;
+      padding: 8px 0 4px;
+      display: grid;
+      gap: 8px;
     }
     .tax-row:last-child {
       border-bottom: 0;
