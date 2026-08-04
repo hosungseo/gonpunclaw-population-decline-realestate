@@ -631,6 +631,8 @@
       z-index: 2;
     }
     .region-pill {
+      display: inline-flex;
+      align-items: center;
       min-height: 32px;
       padding: 0 10px;
       border-radius: 999px;

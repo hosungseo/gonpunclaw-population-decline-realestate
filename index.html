@@ -5,14 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>인구감소지역 부동산 — 특례와 실제 거래를 함께 보는 안내서</title>
   <meta name="description" content="인구감소지역·인구감소관심지역의 법적 특례와 실제 부동산 거래를 함께 보여주는 공공형 부동산 안내 서비스" />
+  <meta name="theme-color" content="#1f5f4a" />
   <link rel="stylesheet" href="./assets/css/site.css" />
   <link rel="stylesheet" href="./assets/css/explore.css" />
-
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
-  <header class="hero">
+  <a class="skip-link" href="#markets">지역 탐색으로 건너뛰기</a>
+  <nav class="site-nav" id="site-nav" aria-label="주요 메뉴">
+    <div class="container site-nav-inner">
+      <a class="site-nav-brand" href="#top">인구감소지역 부동산</a>
+      <div class="site-nav-links">
+        <a href="#specials">특례</a>
+        <a href="#markets">탐색</a>
+        <a href="./compare.html">비교</a>
+        <a href="./policies/second-home.html">세컨드홈</a>
+        <a href="./sources.html">출처</a>
+      </div>
+    </div>
+  </nav>
+  <header class="hero" id="top">
     <div class="container hero-inner">
       <div>
         <div class="brand">
@@ -301,29 +314,26 @@
         </div>
 
         <div class="onboarding">
-          <strong>사용법</strong> 모바일에서는 검색으로 먼저 지역을 찾고, 데스크톱에서는 시도 필터와 지도를 함께 쓰면 됩니다. 패널에서 비교함에 담아 2~3곳을 나란히 볼 수 있습니다.
+          <strong>사용법</strong> 검색 또는 필터로 지역을 좁힌 뒤 목록·지도를 고르세요. 패널의 「비교에 추가」로 2~3곳을 담아 비교 페이지로 넘길 수 있습니다.
         </div>
-        <div class="mobile-search-first">
-          <label class="muted" for="region-search-mobile">지역 검색</label>
-        </div>
-        <div class="map-layout">
-          <div class="map-stage">
-            <div class="map-legend">
-              <span class="legend-item"><span class="legend-swatch" style="background: var(--decline);"></span> 인구감소지역</span>
-              <span class="legend-item"><span class="legend-swatch" style="background: var(--interest);"></span> 인구감소관심지역</span>
-              <span class="legend-item"><span class="legend-swatch" style="background: rgba(29,27,24,.18);"></span> 일반 지역(비활성)</span>
+
+        <div class="explore-shell" id="explore-shell">
+          <div class="explore-toolbar">
+            <div class="search-wrap">
+              <label class="sr-only" for="region-search">지역 검색</label>
+              <input id="region-search" class="map-select search-input" type="search" placeholder="지역명·시도·코드 검색 (예: 해남, 강릉, 46820)" autocomplete="off" />
+              <div id="search-suggest" class="suggest-list" hidden></div>
             </div>
-            <div class="map-controls" style="flex-wrap:wrap;gap:8px">
-              <input id="region-search" class="map-select wide" type="search" placeholder="지역명·시도·코드 검색 (예: 해남)" autocomplete="off" style="min-width:min(100%,220px)" />
-              <select id="province-filter" class="map-select">
+            <div class="map-controls explore-filters">
+              <select id="province-filter" class="map-select" aria-label="시도 필터">
                 <option value="all">시도 전체</option>
               </select>
-              <select id="type-filter" class="map-select">
+              <select id="type-filter" class="map-select" aria-label="지정 유형">
                 <option value="all">유형 전체</option>
                 <option value="decline">인구감소지역</option>
                 <option value="interest">인구감소관심지역</option>
               </select>
-              <select id="trade-volume-filter" class="map-select">
+              <select id="trade-volume-filter" class="map-select" aria-label="거래량 필터">
                 <option value="all">거래량 전체</option>
                 <option value="recent">거래 있는 곳</option>
                 <option value="zero">무거래</option>
@@ -331,50 +341,62 @@
                 <option value="mid">중간(80~399)</option>
                 <option value="high">두꺼움(400+)</option>
               </select>
-              <select id="region-select" class="map-select wide">
+              <select id="region-select" class="map-select wide" aria-label="지역 선택">
                 <option value="">지역 선택</option>
               </select>
+              <button type="button" class="map-reset" id="map-reset">필터 초기화</button>
             </div>
-            <div id="search-suggest" class="suggest-list" hidden style="margin:8px 0 0"></div>
-            <div class="map-note">지도는 인구감소지역·관심지역만 표시합니다. <span id="filter-count">표시 107곳</span> · 표본이 얇으면 가격보다 지정 근거를 먼저 보세요.</div>
-            <div class="compare-tray" id="compare-tray"></div>
-            <div id="leaflet-map" style="width:100%; height:520px; border-radius:18px; z-index:1; position:relative;"></div>
-            <div class="map-actions">
-              <div class="map-zoom-note" id="map-zoom-note">전국 보기 상태입니다. 시도를 고르면 해당 권역을 확대합니다.</div>
-              <button type="button" class="map-reset" id="map-reset">전국 보기</button>
+            <div class="explore-meta-row">
+              <div class="map-legend">
+                <span class="legend-item"><span class="legend-swatch" style="background: var(--decline);"></span> 인구감소지역</span>
+                <span class="legend-item"><span class="legend-swatch" style="background: var(--interest);"></span> 인구감소관심지역</span>
+              </div>
+              <div class="map-note"><span id="filter-count">표시 107곳</span> · <span id="map-zoom-note">전국 보기</span></div>
             </div>
-            <div class="map-region-list" id="map-region-list"></div>
+            <div class="compare-tray" id="compare-tray" aria-live="polite"></div>
           </div>
 
-          <article class="trade-card" id="region-panel">
-            <div class="badge decline" id="panel-badge">선택 지역 · 인구감소지역</div>
-            <h3 id="panel-title">해남군</h3>
-            <div class="trade-sub" id="panel-sub">전라남도 · 특례와 실제 거래가 자연스럽게 연결되는 1차 시범 지역</div>
-            <div class="panel-meta-row" id="panel-meta"></div>
-            <div class="trade-stat">
-              <div><strong id="panel-stat-1">최근 2년 59건+</strong><span>확인된 거래 흐름(표본 기준)</span></div>
-              <div><strong id="panel-stat-2">1.2억~4.3억</strong><span>2025년 1월 샘플 거래가 범위</span></div>
+          <div class="map-layout">
+            <div class="explore-list-col" id="explore-list-col">
+              <div class="list-head">
+                <h3>지역 목록</h3>
+                <span class="muted" id="list-hint">시도·검색으로 좁히면 목록이 열립니다</span>
+              </div>
+              <div class="map-region-list" id="map-region-list"></div>
             </div>
-            <div class="chart-block">
-              <h4>최근 24개월 거래 건수 추이</h4>
-              <div class="mini-chart" id="count-chart"></div>
-              <div class="chart-caption" id="count-caption">월별 거래 건수를 보여줍니다.</div>
+
+            <div class="map-stage" id="map-stage">
+              <div class="map-loading" id="map-loading">지도 데이터를 불러오는 중…</div>
+              <div id="leaflet-map" role="img" aria-label="인구감소지역 전국 지도"></div>
             </div>
-            <div class="chart-block">
-              <h4>최근 24개월 중위가격 추이</h4>
-              <div class="mini-chart" id="median-chart"></div>
-              <div class="chart-caption" id="median-caption">월별 중위 실거래가(만원) 기준입니다.</div>
-            </div>
-            <ul class="deal-list" id="panel-deals">
-              <li><div><strong>해남코아루더베스트1단지아파트</strong><small>116.75㎡ · 2019년 · 영빈로</small></div><div class="deal-price">4억 3,000만원</div></li>
-              <li><div><strong>해남파크사이드2차아파트</strong><small>75.52㎡ · 2019년 · 구교3길</small></div><div class="deal-price">3억 1,000만원</div></li>
-              <li><div><strong>세영스위트</strong><small>84.60㎡ · 2017년 · 남부길</small></div><div class="deal-price">2억 4,500만원</div></li>
-            </ul>
-            <div class="trade-sub" id="panel-policy" style="margin-top:18px; margin-bottom:0;">적용 특례 예시 · 노후주택 개보수 지원 · 공공임대 우선 공급 · 양도세·종부세 특례</div>
-            <div class="insight-line" id="panel-insight">최근 24개월 흐름을 간단히 해석한 문장이 여기에 표시됩니다.</div>
-            <div class="caution-line" id="panel-caution">실거래가가 적은 지역은 월별 변동성이 크게 보일 수 있습니다.</div>
-          </article>
+
+            <article class="trade-card" id="region-panel">
+              <div class="badge decline" id="panel-badge">선택 지역 · 인구감소지역</div>
+              <h3 id="panel-title">해남군</h3>
+              <div class="trade-sub" id="panel-sub">전라남도 · 특례와 실제 거래가 자연스럽게 연결되는 1차 시범 지역</div>
+              <div class="panel-meta-row" id="panel-meta"></div>
+              <div class="trade-stat">
+                <div><strong id="panel-stat-1">—</strong><span>최근 24개월 거래</span></div>
+                <div><strong id="panel-stat-2">—</strong><span>가격 범위 · ㎡당</span></div>
+              </div>
+              <div class="chart-block">
+                <h4>최근 24개월 거래 건수 추이</h4>
+                <div class="mini-chart" id="count-chart" aria-hidden="true"></div>
+                <div class="chart-caption" id="count-caption">월별 거래 건수</div>
+              </div>
+              <div class="chart-block">
+                <h4>최근 24개월 중위가격 추이</h4>
+                <div class="mini-chart" id="median-chart" aria-hidden="true"></div>
+                <div class="chart-caption" id="median-caption">월별 중위 실거래가(만원)</div>
+              </div>
+              <ul class="deal-list" id="panel-deals"></ul>
+              <div class="trade-sub" id="panel-policy" style="margin-top:18px; margin-bottom:0;"></div>
+              <div class="insight-line" id="panel-insight">지역을 선택하면 해석이 표시됩니다.</div>
+              <div class="caution-line" id="panel-caution">실거래가가 적은 지역은 월별 변동성이 크게 보일 수 있습니다.</div>
+            </article>
+          </div>
         </div>
+        <div id="toast" class="toast" hidden role="status"></div>
 
         
         <details class="compare-summary" id="compare-section">

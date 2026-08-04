@@ -43,6 +43,7 @@ const ExplorePage = (() => {
   function initCompare() {
     let regions = [];
     let selected = []; // sigunguCode list
+    const COMPARE_KEY = "pop-decline-compare-v1";
 
     const search = document.getElementById("compare-search");
     const suggest = document.getElementById("compare-suggest");
@@ -55,8 +56,15 @@ const ExplorePage = (() => {
       return regions.find((r) => r.sigunguCode === code || r.regionSlug === code || r.key === code);
     }
 
+    function persistLocal() {
+      try {
+        localStorage.setItem(COMPARE_KEY, JSON.stringify(selected));
+      } catch {}
+    }
+
     function render() {
       writeRegionsParam(selected);
+      persistLocal();
       chips.innerHTML = selected
         .map((code) => {
           const r = byCode(code);
@@ -178,9 +186,18 @@ const ExplorePage = (() => {
 
     loadIndex().then((list) => {
       regions = list;
-      selected = parseRegionsParam()
+      const fromUrl = parseRegionsParam()
         .map((c) => byCode(c)?.sigunguCode)
         .filter(Boolean);
+      let fromLocal = [];
+      try {
+        fromLocal = JSON.parse(localStorage.getItem(COMPARE_KEY) || "[]");
+        if (!Array.isArray(fromLocal)) fromLocal = [];
+      } catch {
+        fromLocal = [];
+      }
+      fromLocal = fromLocal.map((c) => byCode(c)?.sigunguCode).filter(Boolean);
+      selected = (fromUrl.length ? fromUrl : fromLocal).slice(0, 3);
       render();
     });
 
