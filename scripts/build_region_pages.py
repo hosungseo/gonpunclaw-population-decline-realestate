@@ -58,6 +58,7 @@ TEMPLATE = """<!doctype html>
   <link rel="stylesheet" href="../../assets/css/site.css" />
   <link rel="stylesheet" href="../../assets/css/explore.css" />
   <link rel="stylesheet" href="../../assets/css/design-upgrade.css" />
+  <link rel="stylesheet" href="../../assets/css/seed-foundation.css" />
 </head>
 <body>
   <nav class="site-nav" aria-label="주요 메뉴">
@@ -302,6 +303,7 @@ def main() -> None:
   <link rel="stylesheet" href="../assets/css/site.css" />
   <link rel="stylesheet" href="../assets/css/explore.css" />
   <link rel="stylesheet" href="../assets/css/design-upgrade.css" />
+  <link rel="stylesheet" href="../assets/css/seed-foundation.css" />
 </head>
 <body>
   <nav class="site-nav" aria-label="주요 메뉴">

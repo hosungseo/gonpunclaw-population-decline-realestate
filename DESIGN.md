@@ -2,6 +2,17 @@
 
 Guided by [Impeccable](https://impeccable.style): distinctive type, tinted neutrals, no SaaS slop, hierarchy over decoration.
 
+## SEED foundation bridge
+
+The site remains static HTML/CSS/Vanilla JS. It does not bundle SEED React components or pretend to be a React integration. Instead, `assets/css/seed-foundation.css` maps the official SEED foundation model onto the existing interface:
+
+- role-based colors: brand actions are separate from decline/interest/data states
+- semantic layer colors: basement, default, floating, pressed
+- relative typography scale for product UI, while the editorial display face remains in narrative sections
+- shared spacing, radius, elevation, focus, pressed, and reduced-motion tokens
+
+This keeps GitHub Pages simple while making the product surfaces behave consistently with SEED.
+
 ## Direction
 **Editorial civic atlas** — 관보·지도실·정책 브리핑의 차분한 권위. Warm paper field, forest ink, copper signal.
 
