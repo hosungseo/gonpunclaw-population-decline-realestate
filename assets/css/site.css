@@ -895,9 +895,13 @@
       grid-template-columns: 88px 1fr;
       gap: 12px;
       align-items: start;
-      padding: 12px 4px;
+      padding: 14px 8px;
+      margin: 0;
       border-bottom: 1px solid rgba(29,27,24,.06);
       font-size: 13px;
+    }
+    .tax-savings {
+      padding: 4px 0 8px;
     }
     .tax-row:last-child {
       border-bottom: 0;
