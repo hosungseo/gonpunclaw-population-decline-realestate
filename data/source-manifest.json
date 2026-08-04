@@ -80,10 +80,10 @@
       "effectiveTo": "2025-12-28",
       "periodStart": "202401",
       "periodEnd": "202512",
-      "collectedAt": "2026-01-15",
+      "collectedAt": "2026-08-04",
       "lastVerifiedAt": "2026-08-04",
       "status": "active",
-      "notes": "최근 24개월 아파트 매매. 만원 단위 중위·최저·최고 집계.",
+      "notes": "최근 24개월 아파트 매매. 만원 단위 중위·최저·최고 집계. 2026-08-04 전량 재수집. 일부 LAWD_CD(전남 중심) API 0건 → 직전 스냅샷 병합.",
       "usedBy": [
         "region-market-summary-24m",
         "monthly-series-24m-all",

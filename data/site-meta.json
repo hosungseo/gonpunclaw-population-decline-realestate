@@ -1,10 +1,10 @@
 {
   "siteName": "인구감소지역 부동산",
-  "version": "2026-H2-R3",
+  "version": "2026-H2-R1",
   "lastSiteUpdate": "2026-08-04",
   "transactionPeriodStart": "202401",
   "transactionPeriodEnd": "202512",
-  "transactionCollectedAt": "2026-01-15",
+  "transactionCollectedAt": "2026-08-04",
   "policyLastVerifiedAt": "2026-08-04",
   "regionCount": 107,
   "declineCount": 89,
@@ -16,13 +16,5 @@
     "data/source-manifest.json"
   ],
   "disclaimer": "투자 권유가 아니라 정책·시장 안내용입니다. 세제 적용은 취득 시점 법령과 관계기관 확인이 필요합니다.",
-  "features": [
-    "search",
-    "compare",
-    "second-home-checklist",
-    "policy-timeline",
-    "csv-download",
-    "region-pages",
-    "source-manifest"
-  ]
+  "collectionNote": "MOLIT RTMS 실시간 수집 완료. 전남 등 18개 지역은 API 0건 응답으로 직전 검증 스냅샷 유지(api-gap-restored.json 참고)."
 }

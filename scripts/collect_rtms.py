@@ -42,25 +42,24 @@ def months_back(end_yyyymm: str, n: int = 24) -> list[str]:
     return list(reversed(out))
 
 
-def fetch_month(lawd: str, yyyymm: str, key: str) -> list[dict]:
-    params = {
-        "LAWD_CD": lawd,
-        "DEAL_YMD": yyyymm,
-        "serviceKey": key,
-        "pageNo": "1",
-        "numOfRows": "1000",
-    }
-    url = API + "?" + urllib.parse.urlencode(params)
-    with urllib.request.urlopen(url, timeout=60) as resp:
-        raw = resp.read()
-    root = ET.fromstring(raw)
+def normalize_key(key: str) -> str:
+    """Accept Encoding or Decoding form of data.go.kr serviceKey."""
+    key = (key or "").strip().strip("'\"")
+    if not key:
+        return key
+    # If already percent-encoded, decode once so urlencode can re-encode safely.
+    if "%" in key:
+        return urllib.parse.unquote(key)
+    return key
+
+
+def parse_items(root: ET.Element, yyyymm: str) -> list[dict]:
     items = []
     for item in root.findall(".//item"):
-        def t(tag):
+        def t(tag: str):
             el = item.find(tag)
             return el.text.strip() if el is not None and el.text else None
 
-        # amount may contain commas
         amt = t("dealAmount") or t("거래금액")
         if amt:
             amt = amt.replace(",", "").strip()
@@ -79,11 +78,62 @@ def fetch_month(lawd: str, yyyymm: str, key: str) -> list[dict]:
                 "area": area_f,
                 "year": t("buildYear") or t("건축년도"),
                 "name": t("aptNm") or t("아파트"),
-                "road": t("roadNm") or t("도로명"),
+                "road": t("roadNm") or t("도로명") or t("umdNm") or "",
                 "month": yyyymm,
             }
         )
     return items
+
+
+def fetch_month(lawd: str, yyyymm: str, key: str, sleep: float = 0.12) -> list[dict]:
+    """Fetch all pages for one region-month. Retries transient errors."""
+    key = normalize_key(key)
+    all_items: list[dict] = []
+    page = 1
+    page_size = 1000
+    while True:
+        params = {
+            "serviceKey": key,
+            "LAWD_CD": lawd,
+            "DEAL_YMD": yyyymm,
+            "pageNo": str(page),
+            "numOfRows": str(page_size),
+        }
+        url = API + "?" + urllib.parse.urlencode(params)
+        last_err = None
+        root = None
+        for attempt in range(4):
+            try:
+                req = urllib.request.Request(url, headers={"User-Agent": "gonpunclaw-rtms/1.0"})
+                with urllib.request.urlopen(req, timeout=90) as resp:
+                    raw = resp.read()
+                root = ET.fromstring(raw)
+                code = root.findtext(".//resultCode") or ""
+                # 000 / 00 / empty = success on various MOLIT payloads
+                if code and code not in ("000", "00", "0"):
+                    msg = root.findtext(".//resultMsg") or ""
+                    raise RuntimeError(f"API resultCode={code} msg={msg}")
+                break
+            except Exception as e:
+                last_err = e
+                time.sleep(0.8 * (attempt + 1))
+        if root is None:
+            raise RuntimeError(f"fetch failed {lawd} {yyyymm}: {last_err}")
+
+        page_items = parse_items(root, yyyymm)
+        all_items.extend(page_items)
+        total = root.findtext(".//totalCount")
+        try:
+            total_n = int(total) if total is not None else len(all_items)
+        except ValueError:
+            total_n = len(all_items)
+        if len(all_items) >= total_n or len(page_items) < page_size:
+            break
+        page += 1
+        if page > 50:
+            break
+        time.sleep(sleep)
+    return all_items
 
 
 def median(vals: list[float]):
@@ -102,7 +152,7 @@ def main() -> int:
     parser.add_argument("--sleep", type=float, default=0.15)
     args = parser.parse_args()
 
-    key = os.environ.get("MOLIT_RTMS_KEY", "").strip()
+    key = normalize_key(os.environ.get("MOLIT_RTMS_KEY", "").strip())
     catalog = json.loads((DATA / "region-catalog.json").read_text(encoding="utf-8"))
     regions = catalog["regions"]
 
@@ -137,7 +187,7 @@ def main() -> int:
 
         for ym in window:
             try:
-                items = fetch_month(lawd, ym, key)
+                items = fetch_month(lawd, ym, key, sleep=args.sleep)
             except Exception as e:
                 print(f"ERROR {key_name} {ym}: {e}")
                 items = []
