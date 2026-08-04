@@ -60,59 +60,78 @@ TEMPLATE = """<!doctype html>
   <link rel="stylesheet" href="../../assets/css/design-upgrade.css" />
 </head>
 <body>
-  <header class="hero" style="min-height:auto">
-    <div class="container hero-inner" style="grid-template-columns:1fr;padding:48px 0 32px">
+  <nav class="site-nav" aria-label="주요 메뉴">
+    <div class="container site-nav-inner">
+      <a class="site-nav-brand" href="../../index.html">인구감소지역 부동산</a>
+      <div class="site-nav-links">
+        <a href="../../index.html#markets">탐색</a>
+        <a href="../../compare.html">비교</a>
+        <a href="../../policies/second-home.html">세컨드홈</a>
+        <a href="../../sources.html">출처</a>
+      </div>
+    </div>
+  </nav>
+  <header class="region-hero">
+    <div class="container region-hero-inner">
       <div>
-        <div class="brand"><span class="brand-mark"></span><span class="brand-name">인구감소지역 부동산</span></div>
-        <div class="eyebrow">{type_label}</div>
-        <h1 style="font-size:clamp(32px,5vw,48px)">{name}</h1>
-        <p class="hero-copy">{province} · 지정 근거와 최근 24개월 거래 표본</p>
-        <div class="freshness-bar" style="margin-top:16px">
-          <span>거래 기준 {period}</span>
-          <span>수집일 {collected}</span>
-          <span>표본 {quality}</span>
-        </div>
-        <div class="cta-row" style="margin-top:20px">
-          <a class="btn secondary" href="../../index.html#markets">지도로 돌아가기</a>
-          <a class="btn secondary" href="../../sources.html">출처·방법론</a>
-        </div>
+        <a class="region-back" href="../">107개 지역</a>
+        <div class="region-kicker">{province} · {type_label}</div>
+        <h1>{name}</h1>
+        <p>지정 근거와 최근 24개월 아파트 거래 표본을 함께 봅니다.</p>
+      </div>
+      <div class="region-record" aria-label="지역 데이터 레코드">
+        <span>REGION RECORD</span>
+        <strong>{lawd}</strong>
+        <small>거래 {period}<br />수집 {collected}</small>
       </div>
     </div>
   </header>
-  <main>
-    <div class="container" style="padding:32px 0 64px">
-      <div class="panel" style="display:block">
-        <div class="badge {type_class}">{type_label}</div>
-        <h2 style="margin:12px 0 8px">{name}</h2>
-        <p class="muted">{province} · 시군구 코드 {lawd} · slug {slug}</p>
-        <div class="metric-strip" style="margin:20px 0">
-          <div><strong>{total}</strong><span>24개월 거래</span></div>
-          <div><strong>{median}</strong><span>중위가격</span></div>
-          <div><strong>{months}/24</strong><span>거래 발생 월</span></div>
-          <div><strong>{zero}</strong><span>무거래 월</span></div>
+  <main class="region-page">
+    <div class="container region-detail-shell">
+      <section class="region-overview">
+        <div class="region-section-head">
+          <div>
+            <span class="badge {type_class}">{type_label}</span>
+            <h2>시장 표본 요약</h2>
+          </div>
+          <span class="sample-badge {quality_class}">표본 · {quality}</span>
         </div>
-        <p><strong>데이터 상태:</strong> {status_label}</p>
-        <p><strong>최근 거래월:</strong> {latest}</p>
-        <p><strong>가격 범위:</strong> {price_range}</p>
-        <p><strong>㎡당 중위(참고):</strong> {sqm}</p>
-        <p class="caution">{caution}</p>
-        <div class="toolbar-row" style="margin-top:16px">
-          <button type="button" class="btn secondary" id="btn-cite">인용 복사</button>
-          <a class="btn secondary" href="../../compare.html?regions={code}">비교에 넣기</a>
+        <div class="region-metrics">
+          <div><span>24개월 거래</span><strong>{total}<small>건</small></strong></div>
+          <div><span>중위가격</span><strong>{median}</strong></div>
+          <div><span>거래 발생 월</span><strong>{months}<small>/24</small></strong></div>
+          <div><span>무거래 월</span><strong>{zero}<small>개월</small></strong></div>
+        </div>
+        <dl class="region-facts">
+          <div><dt>데이터 상태</dt><dd>{status_label}</dd></div>
+          <div><dt>최근 거래월</dt><dd>{latest}</dd></div>
+          <div><dt>가격 범위</dt><dd>{price_range}</dd></div>
+          <div><dt>㎡당 중위 <small>참고</small></dt><dd>{sqm}</dd></div>
+        </dl>
+        <p class="region-caution">{caution}</p>
+        <div class="region-actions">
+          <a class="btn primary" href="../../compare.html?regions={code}">비교에 넣기</a>
           <a class="btn secondary" href="../../policies/second-home.html">세컨드홈 확인</a>
+          <button type="button" class="btn secondary" id="btn-cite">인용 복사</button>
         </div>
-        <hr style="border:none;border-top:1px solid var(--line);margin:24px 0" />
-        <h3>지정·출처</h3>
-        <ul>
-          <li>지정 유형: {type_label}</li>
-          <li>지정 근거 ID: {source_id}</li>
-          <li>적용 시작: {effective_from}</li>
-          <li>적용 종료: {effective_to}</li>
-        </ul>
+        <details class="region-citation">
+          <summary>인용용 텍스트 보기</summary>
+          <pre id="cite-text">{citation}</pre>
+        </details>
+      </section>
+      <aside class="region-evidence">
+        <div class="region-evidence-label">Designation</div>
+        <h2>지정·출처</h2>
+        <dl>
+          <div><dt>지정 유형</dt><dd>{type_label}</dd></div>
+          <div><dt>시군구 코드</dt><dd>{lawd}</dd></div>
+          <div><dt>지정 근거 ID</dt><dd>{source_id}</dd></div>
+          <div><dt>적용 시작</dt><dd>{effective_from}</dd></div>
+          <div><dt>적용 종료</dt><dd>{effective_to}</dd></div>
+        </dl>
         {policymap_block}
-        <h3>인용용 텍스트</h3>
-        <pre id="cite-text" style="white-space:pre-wrap;background:#fff;border:1px solid var(--line);padding:12px;border-radius:12px;font-size:13px">{citation}</pre>
-        <p class="muted">이 페이지는 투자 권유가 아닙니다. 수치와 특례는 기준일과 공식 원문을 함께 확인하세요.</p>
+        <a class="region-source-link" href="../../sources.html">출처·방법론 전체 보기 →</a>
+      </aside>
         <script>
           document.getElementById('btn-cite')?.addEventListener('click', async () => {{
             const t = document.getElementById('cite-text').textContent;
@@ -120,10 +139,9 @@ TEMPLATE = """<!doctype html>
             catch {{ prompt('복사하세요', t); }}
           }});
         </script>
-      </div>
     </div>
   </main>
-  <footer><div class="container">인구감소지역 부동산 · 정적 지역 상세 (R1 기반 / R2 확장)</div></footer>
+  <footer><div class="container">인구감소지역 부동산 · 투자 권유가 아닌 정책·시장 안내 · <a href="../">지역 목록</a></div></footer>
 </body>
 </html>
 """
@@ -205,6 +223,7 @@ def page_for(region: dict, market: dict | None, meta: dict, policymap_links: dic
         period=html.escape(period),
         collected=html.escape(str(sm.get("collectedAt") or meta.get("transactionCollectedAt") or "-")),
         quality=html.escape(quality_label(region.get("sampleQuality"))),
+        quality_class=html.escape(str(region.get("sampleQuality") or "none")),
         lawd=html.escape(str(region.get("sigunguCode"))),
         slug=html.escape(region["regionSlug"]),
         total=f"{total:,}",
@@ -243,29 +262,105 @@ def main() -> None:
         html_doc = page_for(region, market.get(region["key"]), meta, policymap_links)
         (dest / "index.html").write_text(html_doc, encoding="utf-8")
         n += 1
-    # index of regions
+    # searchable index of regions
     rows = []
+    provinces = sorted({region["province"] for region in catalog["regions"]})
     for region in catalog["regions"]:
+        sm = market.get(region["key"]) or {}
+        designation = region["designationType"]
+        designation_label = "관심지역" if designation == "interest" else "인구감소지역"
+        quality = quality_label(region.get("sampleQuality"))
+        search_text = f'{region["province"]} {region["name"]} {region["sigunguCode"]}'.lower()
         rows.append(
-            f'<li><a href="./{html.escape(region["regionSlug"])}/">'
-            f'{html.escape(region["province"])} {html.escape(region["name"])}</a> '
-            f'<span class="muted">({html.escape(region["designationType"])})</span></li>'
+            f'<a class="region-directory-item" href="./{html.escape(region["regionSlug"])}/" '
+            f'data-search="{html.escape(search_text)}" data-province="{html.escape(region["province"])}" '
+            f'data-type="{html.escape(designation)}">'
+            f'<span class="region-directory-name"><small>{html.escape(region["province"])}</small>'
+            f'<strong>{html.escape(region["name"])}</strong></span>'
+            f'<span class="region-directory-data"><small>24개월 거래</small>'
+            f'<strong>{int(sm.get("totalCount24m") or 0):,}<i>건</i></strong></span>'
+            f'<span class="region-directory-data"><small>표본</small><strong class="quality-text">{html.escape(quality)}</strong></span>'
+            f'<span class="region-type-mark {html.escape(designation)}">{designation_label}</span>'
+            f'<span class="region-directory-arrow" aria-hidden="true">↗</span></a>'
         )
+    province_options = ''.join(
+        f'<option value="{html.escape(province)}">{html.escape(province)}</option>'
+        for province in provinces
+    )
     index_html = f"""<!doctype html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>지역 목록 · 인구감소지역 부동산</title>
+  <meta name="description" content="인구감소지역·관심지역 107곳의 최근 24개월 거래 표본과 상세 페이지를 찾습니다." />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,480;7..72,560;7..72,650&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/site.css" />
+  <link rel="stylesheet" href="../assets/css/explore.css" />
+  <link rel="stylesheet" href="../assets/css/design-upgrade.css" />
 </head>
 <body>
-  <main class="container" style="padding:40px 0 80px">
-    <p><a href="../index.html">← 홈</a></p>
-    <h1>지역 상세 (107)</h1>
-    <p class="muted">R1에서 정적 URL을 확정했습니다. 각 페이지는 지정 유형·표본·기준일을 포함합니다.</p>
-    <ul style="line-height:1.9;columns:2;gap:32px">{''.join(rows)}</ul>
+  <nav class="site-nav" aria-label="주요 메뉴">
+    <div class="container site-nav-inner">
+      <a class="site-nav-brand" href="../index.html">인구감소지역 부동산</a>
+      <div class="site-nav-links">
+        <a href="../index.html#markets">탐색</a>
+        <a href="../compare.html">비교</a>
+        <a href="../policies/second-home.html">세컨드홈</a>
+        <a href="../sources.html">출처</a>
+      </div>
+    </div>
+  </nav>
+  <header class="directory-hero">
+    <div class="container directory-hero-inner">
+      <div>
+        <div class="region-kicker">Region directory · 107</div>
+        <h1>정책 대상 지역 찾기</h1>
+        <p>이름, 시도, 시군구 코드로 지역을 찾고 거래 표본과 지정 근거를 확인하세요.</p>
+      </div>
+      <div class="directory-count"><strong id="directory-count">107</strong><span>표시 지역</span></div>
+    </div>
+  </header>
+  <main class="container directory-main">
+    <div class="directory-toolbar">
+      <label class="directory-search"><span class="sr-only">지역 검색</span><input id="directory-search" type="search" placeholder="지역명·시도·코드 검색" autocomplete="off" /></label>
+      <select id="directory-province" aria-label="시도 선택"><option value="all">시도 전체</option>{province_options}</select>
+      <select id="directory-type" aria-label="지정 유형"><option value="all">유형 전체</option><option value="decline">인구감소지역</option><option value="interest">관심지역</option></select>
+      <button type="button" id="directory-reset">초기화</button>
+    </div>
+    <div class="directory-list" id="directory-list">{''.join(rows)}</div>
+    <div class="directory-empty" id="directory-empty" hidden>조건에 맞는 지역이 없습니다.</div>
   </main>
+  <footer><div class="container">인구감소지역 부동산 · <a href="../index.html#markets">전국 지도</a> · <a href="../sources.html">출처</a></div></footer>
+  <script>
+    const search = document.getElementById('directory-search');
+    const province = document.getElementById('directory-province');
+    const type = document.getElementById('directory-type');
+    const items = [...document.querySelectorAll('.region-directory-item')];
+    const count = document.getElementById('directory-count');
+    const empty = document.getElementById('directory-empty');
+    function filterDirectory() {{
+      const q = search.value.trim().toLowerCase();
+      let visible = 0;
+      items.forEach((item) => {{
+        const show = (!q || item.dataset.search.includes(q)) &&
+          (province.value === 'all' || item.dataset.province === province.value) &&
+          (type.value === 'all' || item.dataset.type === type.value);
+        item.hidden = !show;
+        if (show) visible += 1;
+      }});
+      count.textContent = visible;
+      empty.hidden = visible !== 0;
+    }}
+    [search, province, type].forEach((control) => control.addEventListener('input', filterDirectory));
+    document.getElementById('directory-reset').addEventListener('click', () => {{
+      search.value = ''; province.value = 'all'; type.value = 'all'; filterDirectory(); search.focus();
+    }});
+  </script>
 </body>
 </html>
 """

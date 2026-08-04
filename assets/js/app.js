@@ -22,6 +22,21 @@ const searchSuggest = document.getElementById('search-suggest');
 const tradeVolumeFilter = document.getElementById('trade-volume-filter');
 const listHint = document.getElementById('list-hint');
 const mapLoading = document.getElementById('map-loading');
+const heroSearchForm = document.getElementById('hero-search-form');
+const heroRegionSearch = document.getElementById('hero-region-search');
+
+heroSearchForm?.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const query = heroRegionSearch?.value.trim() || '';
+  document.getElementById('markets')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  window.setTimeout(() => {
+    if (query) {
+      regionSearch.value = query;
+      regionSearch.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+    regionSearch.focus({ preventScroll: true });
+  }, 420);
+});
 
 const COMPARE_KEY = 'pop-decline-compare-v1';
 let monthlySeries = {};
