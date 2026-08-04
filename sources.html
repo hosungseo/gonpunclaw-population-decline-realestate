@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>출처·방법론 · 인구감소지역 부동산</title>
+  <meta name="description" content="인구감소지역 부동산 서비스의 데이터 출처, 기준일, 표본 품질 규칙, 이용 조건" />
+  <link rel="stylesheet" href="./assets/css/site.css" />
+  <style>
+    .sources-main { padding: 40px 0 80px; }
+    .sources-main h1 { font-size: clamp(28px, 4vw, 40px); letter-spacing: -0.03em; margin: 8px 0 12px; }
+    .sources-main h2 { margin-top: 36px; font-size: 22px; }
+    .sources-main table { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--paper); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); }
+    .sources-main th, .sources-main td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .sources-main th { background: rgba(31,95,74,.08); font-size: 13px; }
+    .status-pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+    .status-pill.active { background: #e7f3ee; color: #1f5f4a; }
+    .status-pill.review_required { background: #fff1de; color: #7a4a12; }
+    .status-pill.expired { background: #f8eaea; color: #7a2e2e; }
+    .back-link { display: inline-block; margin-bottom: 12px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="container sources-main">
+    <a class="back-link" href="./index.html">← 홈으로</a>
+    <div class="eyebrow" style="border-color:var(--line);color:var(--ink)">Sources</div>
+    <h1>출처 · 기준일 · 방법론</h1>
+    <p class="muted">모든 핵심 수치와 특례 설명은 출처 매니페스트로 역추적할 수 있어야 합니다. 이 페이지는 그 매니페스트를 사람이 읽기 쉽게 보여 줍니다.</p>
+    <div class="freshness-inline" id="meta-line">불러오는 중…</div>
+
+    <h2>사이트 메타</h2>
+    <div id="meta-cards" class="metric-strip"></div>
+
+    <h2>출처 매니페스트</h2>
+    <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr>
+            <th>출처</th>
+            <th>발행</th>
+            <th>유형</th>
+            <th>시행·기간</th>
+            <th>확인일</th>
+            <th>상태</th>
+          </tr>
+        </thead>
+        <tbody id="source-tbody"></tbody>
+      </table>
+    </div>
+
+    <h2>표본 품질 규칙</h2>
+    <table>
+      <thead><tr><th>상태</th><th>조건</th><th>해석</th></tr></thead>
+      <tbody>
+        <tr><td>거래 없음</td><td>24개월 거래 0건</td><td>무거래로 표시. 수집 오류와 구분</td></tr>
+        <tr><td>표본 매우 적음</td><td>거래 발생 월 ≤ 6</td><td>가격 추세보다 존재 여부 우선</td></tr>
+        <tr><td>표본 제한</td><td>24개월 거래 &lt; 80</td><td>개별 거래 영향 큼</td></tr>
+        <tr><td>일반</td><td>그 외</td><td>흐름 참고 가능, 투자 신호 아님</td></tr>
+      </tbody>
+    </table>
+
+    <h2>이용 조건 · 한계</h2>
+    <ul>
+      <li>이 사이트는 투자 권유·매물 중개·미래 가격 예측을 하지 않습니다.</li>
+      <li>세제·법령 적용은 취득 시점의 공식 원문과 관계기관 확인이 필요합니다.</li>
+      <li>중위가격을 기본으로 쓰며, 표본이 얇을수록 변화율을 약하게 해석합니다.</li>
+      <li>데이터 사전·집계 규칙은 <code>docs/data-schema.md</code>를 따릅니다.</li>
+    </ul>
+  </main>
+  <footer>
+    <div class="container">인구감소지역 부동산 · <a href="./index.html">홈</a> · <a href="./region/">지역 상세</a></div>
+  </footer>
+  <script>
+    function ym(s){
+      if(!s) return '-';
+      s=String(s);
+      if(s.length===6) return s.slice(0,4)+'-'+s.slice(4,6);
+      return s;
+    }
+    Promise.all([
+      fetch('./data/site-meta.json').then(r=>r.json()),
+      fetch('./data/source-manifest.json').then(r=>r.json())
+    ]).then(([meta, manifest])=>{
+      document.getElementById('meta-line').textContent =
+        '사이트 갱신 '+meta.lastSiteUpdate+' · 거래 '+ym(meta.transactionPeriodStart)+' ~ '+ym(meta.transactionPeriodEnd)+
+        ' · 수집 '+meta.transactionCollectedAt+' · 법령 확인 '+meta.policyLastVerifiedAt;
+      document.getElementById('meta-cards').innerHTML =
+        '<div><strong>'+meta.regionCount+'</strong><span>정책 대상 지역</span></div>'+
+        '<div><strong>'+meta.declineCount+'</strong><span>인구감소지역</span></div>'+
+        '<div><strong>'+meta.interestCount+'</strong><span>관심지역</span></div>'+
+        '<div><strong>'+ym(meta.transactionPeriodEnd)+'</strong><span>거래 종료월</span></div>';
+      const tbody=document.getElementById('source-tbody');
+      tbody.innerHTML=(manifest.sources||[]).map(s=>{
+        const period=[ym(s.effectiveFrom), ym(s.effectiveTo||s.periodEnd)].filter(x=>x&&x!=='-').join(' ~ ') || '-';
+        return '<tr>'+
+          '<td><strong>'+s.title+'</strong><br><a href="'+s.url+'" target="_blank" rel="noopener">원문</a>'+
+          (s.notes?'<div class="muted" style="margin-top:6px">'+s.notes+'</div>':'')+
+          '</td>'+
+          '<td>'+s.publisher+'</td>'+
+          '<td>'+s.sourceType+'</td>'+
+          '<td>'+period+'</td>'+
+          '<td>'+(s.lastVerifiedAt||'-')+'</td>'+
+          '<td><span class="status-pill '+s.status+'">'+s.status+'</span></td>'+
+          '</tr>';
+      }).join('');
+    }).catch(err=>{
+      document.getElementById('meta-line').textContent='출처 데이터를 불러오지 못했습니다.';
+      console.error(err);
+    });
+  </script>
+</body>
+</html>

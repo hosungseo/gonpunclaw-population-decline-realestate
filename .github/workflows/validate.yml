@@ -1,0 +1,21 @@
+name: Validate data
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild catalog metadata
+        run: python3 scripts/build_catalog.py
+      - name: Validate data gate
+        run: python3 scripts/validate_data.py
+      - name: Build region pages
+        run: python3 scripts/build_region_pages.py

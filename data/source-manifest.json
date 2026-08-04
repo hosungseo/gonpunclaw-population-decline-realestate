@@ -1,0 +1,131 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-08-04",
+  "reviewPolicy": {
+    "maxAgeDays": 90,
+    "blockDeployOnExpired": true,
+    "warnOnReviewRequired": true
+  },
+  "sources": [
+    {
+      "sourceId": "src-decline-notice-2024-15",
+      "title": "인구감소지역 지정 변경 고시",
+      "publisher": "행정안전부",
+      "sourceType": "notice",
+      "url": "https://www.law.go.kr/admRulLsInfoP.do?admRulSeq=2100000236722",
+      "documentId": "2100000236722",
+      "noticeNo": "2024-15",
+      "publishedAt": "2024-02-27",
+      "effectiveFrom": "2024-02-27",
+      "effectiveTo": null,
+      "baseDate": "2023-07-01",
+      "collectedAt": "2026-08-04",
+      "lastVerifiedAt": "2026-08-04",
+      "status": "active",
+      "notes": "경상북도 군위군이 대구광역시 군위군으로 변경 반영",
+      "usedBy": [
+        "region-catalog",
+        "map",
+        "policy-cards"
+      ]
+    },
+    {
+      "sourceId": "src-interest-notice-2025-78",
+      "title": "인구감소관심지역 지정 고시",
+      "publisher": "행정안전부",
+      "sourceType": "notice",
+      "url": "https://www.law.go.kr/admRulLsInfoP.do?admRulSeq=2100000270632",
+      "documentId": "2100000270632",
+      "noticeNo": "2025-78",
+      "publishedAt": "2025-12-24",
+      "effectiveFrom": "2026-01-01",
+      "effectiveTo": "2026-10-19",
+      "collectedAt": "2026-08-04",
+      "lastVerifiedAt": "2026-08-04",
+      "status": "active",
+      "notes": "지방시대위원회 심의를 거쳐 확정된 인구감소관심지역 18개",
+      "usedBy": [
+        "region-catalog",
+        "map",
+        "policy-cards"
+      ]
+    },
+    {
+      "sourceId": "src-special-act",
+      "title": "인구감소지역 지원 특별법",
+      "publisher": "법제처",
+      "sourceType": "law",
+      "url": "https://www.law.go.kr/법령/인구감소지역지원특별법",
+      "documentId": "271263",
+      "publishedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "collectedAt": "2026-08-04",
+      "lastVerifiedAt": "2026-08-04",
+      "status": "active",
+      "notes": "부동산·정주·지역활력과 직접 연결되는 특례 조항만 선별 정리",
+      "usedBy": [
+        "policy-specials"
+      ]
+    },
+    {
+      "sourceId": "src-molit-rtms-apt",
+      "title": "국토교통부 아파트 매매 실거래가 공개자료",
+      "publisher": "국토교통부",
+      "sourceType": "transaction_data",
+      "url": "https://www.data.go.kr/data/15126470/openapi.do",
+      "documentId": "RTMSDataSvcAptTrade",
+      "publishedAt": null,
+      "effectiveFrom": "2024-01-01",
+      "effectiveTo": "2025-12-28",
+      "periodStart": "202401",
+      "periodEnd": "202512",
+      "collectedAt": "2026-01-15",
+      "lastVerifiedAt": "2026-08-04",
+      "status": "active",
+      "notes": "최근 24개월 아파트 매매. 만원 단위 중위·최저·최고 집계.",
+      "usedBy": [
+        "region-market-summary-24m",
+        "monthly-series-24m-all",
+        "representative-deals"
+      ]
+    },
+    {
+      "sourceId": "src-second-home-briefing-2024-04",
+      "title": "인구감소지역 부활 3종 프로젝트 (세컨드홈 세부담 예시)",
+      "publisher": "관계부처 합동 / 정책브리핑",
+      "sourceType": "policy_brief",
+      "url": "https://www.korea.kr",
+      "documentId": "second-home-2024-04-15",
+      "publishedAt": "2024-04-15",
+      "effectiveFrom": "2024-04-15",
+      "effectiveTo": null,
+      "collectedAt": "2026-08-04",
+      "lastVerifiedAt": "2026-08-04",
+      "status": "review_required",
+      "notes": "가액 제한 완화 등 이후 제도 변경 가능. 화면 예시는 발표 시점 기준 고지 필요.",
+      "usedBy": [
+        "secondhome-overview"
+      ]
+    },
+    {
+      "sourceId": "src-sigungu-codes",
+      "title": "시군구 코드 (LAWD_CD) 매핑",
+      "publisher": "호성seo/k-policymap 참고",
+      "sourceType": "reference",
+      "url": "https://github.com/hosungseo/k-policymap",
+      "documentId": "lawd-cd",
+      "publishedAt": null,
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "collectedAt": "2026-08-04",
+      "lastVerifiedAt": "2026-08-04",
+      "status": "active",
+      "notes": "107개 지역 코드 전량 매칭 완료",
+      "usedBy": [
+        "region-catalog",
+        "pipeline"
+      ]
+    }
+  ]
+}
